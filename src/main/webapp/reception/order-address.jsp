@@ -214,9 +214,7 @@
 	//修改收货人信息
 	function updateConsignee(){
 		$(".addressDiv").fadeToggle(2000);
-		$(".addressdialog2").fadeToggle(1000);
-		
-    	
+		$(".addressdialog2").fadeToggle(1000);	
 	}
 	
 	//修改收货人信息

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head lang="en">
@@ -52,13 +52,13 @@
                 <ul class="slideBar">
                     <li class="slideBarLi_one">
                         <h2>
-                            <i class="fa fa-home" id="slideBarLi_one_myhome"></i><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserPersonCenterInfo" class="slideBarOption">个人中心</a>
+                            <i class="fa fa-home" id="slideBarLi_one_myhome"></i><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=orderpersonpage" class="slideBarOption">个人中心</a>
                         </h2>
                     </li>
                     <li class="slideBarLi_two">
                         <h2><i class="fa fa-file" id="slideBarLi_two_myhome"></i>我的订单</h2>
                         <ul>
-                            <li ><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo" class="slideBarOption">近三个月订单</a></li>
+                            <li ><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage" class="slideBarOption">近三个月订单</a></li>
                         </ul>
                     </li>
                     <li class="slideBarLi_three">
@@ -111,15 +111,11 @@
             </div>
 
             <!-- 最近订单详情-->
-            <!-- 第一行-->
+           <!-- 第一行-->
+           <c:forEach items="${OrderDetailInfo }" var="ordresInfo" end="2">  
             <div class="recently-order-content">
                 <div class="recently-order-content-div1">
                     <a href="javascript:void(0)"><img src="${pageContext.request.contextPath }/image/order_img.jpg"></a>
-
-                    <h3>蒸品店</h3>
-                    <p><a href="javascript:void(0)">蒸韭菜饺子两份/煎韭菜饺子两份</a></p>
-                    <a href="javascript:void(0)" class="recently-order-content-div1-a2">共<i>4</i>个菜品</a>
-
                     <h3>${ordresInfo.bname }</h3>
                    
                     <p><a href="javascript:void(0)">
@@ -132,59 +128,29 @@
                     <a href="javascript:void(0)" class="recently-order-content-div1-a2">共<i>${ordresInfo.good_count }</i>个菜品</a>
                 </div>
                 <div class="recently-order-content-div2">
-                        2018-08-04<br>
-                            16:52
+                        <fmt:formatDate value="${ ordresInfo.create_time }"  type="date" dateStyle="default"/><br/><br/>
+                        <fmt:formatDate value="${ordresInfo.create_time}" pattern="HH:mm:ss"/>
                 </div>
                 <div class="recently-order-content-div3">
-                    <p>¥28.50</p>
+                    <p>¥${ordresInfo.total_price }</p>
                 </div>
                 <div class="recently-order-content-div4">
-                    <p>订单已取消</p>
+                    <p>
+						<c:choose>
+			                <c:when test="${ordresInfo.order_status==0 }">未付款</c:when>
+			                <c:when test="${ordresInfo.order_status==1 }">订单失效</c:when>
+			                <c:when test="${ordresInfo.order_status==2 }">已付款</c:when>
+			                <c:when test="${ordresInfo.order_status==3 }">未送达 </c:when>
+			                <c:when test="${ordresInfo.order_status==4 }">已送达</c:when>			                
+			                </c:choose>
+					</p>
                     <a href="javascript:void(0)" onclick="orderDetails()">订单详情</a>
                 </div>
             </div>
+		</c:forEach>
 
-            <!-- 第二行-->
-            <div class="recently-order-content">
-                <div class="recently-order-content-div1">
-                    <a href="javascript:void(0)"><img src="${pageContext.request.contextPath }/image/order_img.jpg"></a>
-                    <h3>蒸品店</h3>
-                    <p><a href="javascript:void(0)">蒸韭菜饺子两份/煎韭菜饺子两份</a></p>
-                    <a href="javascript:void(0)" class="recently-order-content-div1-a2">共<i>4</i>个菜品</a>
-                </div>
-                <div class="recently-order-content-div2">
-                    2018-08-04<br>
-                    16:52
-                </div>
-                <div class="recently-order-content-div3">
-                    <p>¥28.50</p>
-                </div>
-                <div class="recently-order-content-div4">
-                    <p>订单已取消</p>
-                    <a href="javascript:void(0)" onclick="orderDetails()">订单详情</a>
-                </div>
-            </div>
-
-            <!-- 第三行-->
-            <div class="recently-order-content">
-                <div class="recently-order-content-div1">
-                    <a href="javascript:void(0)"><img src="${pageContext.request.contextPath }/image/order_img.jpg"></a>
-                    <h3>蒸品店</h3>
-                    <p><a href="javascript:void(0)">蒸韭菜饺子两份/煎韭菜饺子两份</a></p>
-                    <a href="javascript:void(0)" class="recently-order-content-div1-a2">共<i>4</i>个菜品</a>
-                </div>
-                <div class="recently-order-content-div2">
-                    2018-08-04<br>
-                    16:52
-                </div>
-                <div class="recently-order-content-div3">
-                    <p>¥28.50</p>
-                </div>
-                <div class="recently-order-content-div4">
-                    <p>订单已取消</p>
-                    <a href="javascript:void(0)" onclick="orderDetails()">订单详情</a>
-                </div>
-            </div>
+            
+            
         </div>
 
     </div>

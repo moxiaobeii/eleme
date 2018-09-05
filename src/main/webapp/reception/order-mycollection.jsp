@@ -52,13 +52,13 @@
                 <ul class="slideBar">
                     <li class="slideBarLi_one">
                         <h2>
-                            <i class="fa fa-home" id="slideBarLi_one_myhome"></i><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserPersonCenterInfo"  class="slideBarOption">个人中心</a>
+                            <i class="fa fa-home" id="slideBarLi_one_myhome"></i><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=orderpersonpage"  class="slideBarOption">个人中心</a>
                         </h2>
                     </li>
                     <li class="slideBarLi_two">
                         <h2><i class="fa fa-file" id="slideBarLi_two_myhome"></i>我的订单</h2>
                         <ul>
-                            <li ><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo" class="slideBarOption">近三个月订单</a></li>
+                            <li ><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage" class="slideBarOption">近三个月订单</a></li>
                         </ul>
                     </li>
                     <li class="slideBarLi_three">
