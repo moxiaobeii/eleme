@@ -28,7 +28,7 @@ public class OrderInfoDao {
 
 	public List<OrderDetails> queryOrderDetailsByOrderId(String oid) throws SQLException {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
-		return qr.query("select * from order_details where oid = ?", new BeanListHandler<OrderDetails>(OrderDetails.class));
+		return qr.query("select * from order_details where oid = ?", new BeanListHandler<OrderDetails>(OrderDetails.class),oid);
 	}
 	
 	//插入收货人地址信息

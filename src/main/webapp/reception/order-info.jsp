@@ -75,21 +75,29 @@
 					<!-- 购物车内容-->
 					<dl class="order_car">
 						<dt class="oder_car_title">购物车</dt>
-						<dd class="oder_car_box">
-							<!--商品信息-->
-							<div class="order_car_good">
-								<div class="cell itemname ng-binding">巨无霸汉堡</div>
-								<!--选择数量-->
-								<div class="cell itemquantity">
-									<button id="sub_goodCount">-</button>
-									<input class="oder_car_goodCount" value="1">
-									<button id="add_goodCount">+</button>
-								</div>
-								<div class="cell itemtotal">
-									￥<span class="good_money">12.50</span>
-								</div>
-							</div>
-						</dd>
+						
+						
+							<!-- 遍历商品明细 -->
+							<c:forEach items="${OrderDetailsInfo }" var="orderDeails">
+								<dd class="oder_car_box">
+								<!--商品信息-->
+									<div class="order_car_good">
+										<!-- 单个商品信息 -->
+										<div class="cell itemname ng-binding goodName">${orderDeails.gname }</div>
+										<!--选择数量-->
+										<div class="cell itemquantity">
+											<button id="sub_goodCount">-</button>
+											<input class="oder_car_goodCount" value="${orderDeails.count }"> <!-- ${orderDeails.count } -->
+											<button id="add_goodCount">+</button>
+										</div>
+										<div class="cell itemtotal">
+											￥<span class="good_money">${orderDeails.subtotal }</span>
+										</div>
+									</div>
+								</dd>
+							</c:forEach>
+						
+						
 					</dl>
 					<!--配送金额-->
 					<ul>
@@ -139,6 +147,10 @@
 											<p class="ng-binding"><span>${c.name}</span>&nbsp;&nbsp;&nbsp;<span>${c.telphone}</span></p>
 											<p class="color_weak">${c.address}</p>
 										</div>
+										<div class="modify_addr">
+											<a href="javascript:">修改</a>
+											<a href="javascript:">×</a>
+										</div>
 									</li>
 								</c:when>
 					 			<c:otherwise>
@@ -147,6 +159,10 @@
 										<div class="checkout_address_info">
 											<p class="ng-binding"><span>${c.name}</span>&nbsp;&nbsp;&nbsp;<span>${c.telphone}</span></p>
 											<p class="color_weak">${c.address}</p>
+										</div>
+										<div class="modify_addr">
+											<a href="javascript:">修改</a>
+											<a href="javascript:">×</a>
 										</div>
 									</li>
 					 			</c:otherwise>
@@ -318,6 +334,7 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
+	//点击保存地址,将数据保存到数据库
 	$("#saveAddress").click(function(){
 		var name = $("#name").val();
 		var sex = $("input[name='sex']:checked").val();
@@ -331,11 +348,15 @@ $(document).ready(function(){
 			url,
 			param,
 			function(){
-				alert("回调成功");
 				$(".addressdialog").hide();
 				window.location.reload(true);
 			});
-		
+	});
+	
+	//点击确认支付,将当前订单传入servlet,然后请求跳转到支付页面,显示出支付页面
+	$(".btn_order").click(function(){
+		//请求的路径
+		window.location.href="${pageContext.request.contextPath }/payServlet?method=orderConfirm"; 
 	});
 })
 </script>

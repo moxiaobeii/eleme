@@ -3,6 +3,7 @@ package eleme.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -21,7 +22,7 @@ import com.alipay.demo.trade.ResponseCode;
 import com.alipay.demo.trade.ServerResponse;
 import com.alipay.demo.trade.config.Configs;
 
-import eleme.entity.Orders;
+import eleme.entity.OrderDetails;
 import eleme.entity.User;
 import eleme.service.impl.PayServiceImpl;
 
@@ -42,10 +43,8 @@ public class PayServlet extends BaseServlet {
 		 * 获取upload文件夹路径
 		 */
 		//模拟一个订单号
-		String oId = "201808281526";
-		//创建存放response的作用域
-		ServletContext servletContext = this.getServletContext();
-		servletContext.setAttribute("RESPONSE2", response);
+		String oId = "201808280001";
+		
 		//获取从前台传来的订单号
 		//String oId = (String) request.getAttribute("oId");
 		HttpSession session = request.getSession();
@@ -74,13 +73,7 @@ public class PayServlet extends BaseServlet {
 	//支付的回调函数处理的接口,写在url上,获取支付宝传来的数据
 	public Object alipayCallback(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("支付成功");
-		//页面跳转
-		//request.getRequestDispatcher("/reception/pay.jsp").forward(request, response);
-	
-		//HttpSession paySession = request.getSession();
-		//存放response对象
-		//ServletContext servletContext = this.getServletContext();
-		//servletContext.setAttribute("RESPONSE", response);
+		
 		
 		Map<String,String> params = new HashMap<String, String>();
 		//遍历map集合
@@ -95,7 +88,7 @@ public class PayServlet extends BaseServlet {
 			}
 			params.put(name, valueStr);
 		}
-		//paySession.invalidate();
+		
 		log.info("支付宝回调,sign:{},trade_status:{},参数:{}"+params.get("sign")+","+params.get("trade_status")+","+params.toString());
 		ServerResponse serverResponse = PayServiceImpl.aliCallback(params);
 
@@ -135,4 +128,21 @@ public class PayServlet extends BaseServlet {
 		}
 		return PayServiceImpl.queryOrderPayStatus(user.getUserId(), oid);
 	}
+	
+	//由订单页面点击跳转到支付页面的接口,获取订单信息,将此订单插入到数据库。并显示此订单的信息。
+	public void orderConfirm(HttpServletRequest request,HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		//获取此订单详情,将之插入到数据库中
+		List<OrderDetails> orderDetails = (List<OrderDetails>) session.getAttribute("OrderDetailsInfo");
+		
+		//跳转页面,并显示信息.
+		try {
+			request.getRequestDispatcher("/reception/pay.jsp").forward(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

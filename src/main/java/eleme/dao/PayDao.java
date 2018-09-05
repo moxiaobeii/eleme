@@ -53,7 +53,7 @@ public class PayDao {
 	
 	//根据订单号来更新订单表
 	public static void updateOrderByorderId(Orders order) throws SQLException {
-		qr.update("update orders set order_status = ? where oid = ?",order.getOrder_status(),order.getOid());
+		qr.update("update orders set order_status = ?,create_time=? where oid = ?",order.getOrder_status(),order.getCreate_time(),order.getOid());
 	}
 	
 }

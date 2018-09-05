@@ -5,9 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/Orderbasic.css">
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/Orderbasic.css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/pay/alipay.css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/font-awesome/css/font-awesome.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.1.min.js" charset="utf-8"></script>
+    
 </head>
 <body>
 
@@ -25,4 +27,13 @@
         </div>
     </div>
 </body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	 $(".btn-stress").click(function(){
+			//请求的路径
+			window.location.href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage"; 
+   	 });
+})
+</script>
 </html>

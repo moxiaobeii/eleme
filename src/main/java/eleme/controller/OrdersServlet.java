@@ -43,7 +43,7 @@ public class OrdersServlet extends BaseServlet {
 		session.setAttribute("USER", loginUser);
 		
 		//模拟一个订单ID,查询出订单明细,遍历显示在前端页面
-		String oid = "201808281518";
+		String oid = "201808281508";
 		
 		//如果用户登录,查询出用户的信息和购物车信息
 		if(loginUser != null) {
@@ -54,8 +54,8 @@ public class OrdersServlet extends BaseServlet {
 				List<Consignee> consignee = new OrderServiceImpl().queryConsigneeById(userId);
 				request.setAttribute("ConsigneeAddressInfo", consignee);
 				//查询此用户的当前订单的详情表
-				//List<OrderDetails> orderDetails = new OrderServiceImpl().queryOrderDetailsByOrderId(oid);
-				//request.setAttribute("OrderDetailsInfo", orderDetails);
+				List<OrderDetails> orderDetails = new OrderServiceImpl().queryOrderDetailsByOrderId(oid);
+				session.setAttribute("OrderDetailsInfo", orderDetails);
 				//跳转到订单页面
 				request.getRequestDispatcher("/reception/order-info.jsp").forward(request, response);
 			} catch (SQLException e) {

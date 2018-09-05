@@ -363,6 +363,23 @@ ul li{
     margin-top: 8px;
     color: #999;
 }
+/* 地址栏的删除功能 */
+.modify_addr{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: white;
+    display: none; 
+}
+.modify_addr a{
+    text-decoration: none;
+    color: #0089dc;
+    font-size: 13px;
+}
+.modify_addr :hover{
+	display: block; 
+    background-color: #f9f9f9;
+}
 
 /*付款方式*/
 .checkout_pay_tip{

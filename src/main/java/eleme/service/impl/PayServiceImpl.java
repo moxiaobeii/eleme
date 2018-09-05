@@ -2,7 +2,9 @@ package eleme.service.impl;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -192,12 +194,13 @@ public class PayServiceImpl implements PayService{
 				System.out.println("非此商城订单");
 				return ServerResponse.createByErrorMessage("非此商城订单");
 			}
-			if(order.getOrder_status() == 2) {	
+			if(order.getOrder_status() == 2) {
 				System.out.println("订单已支付,支付宝重复调用");
 				return ServerResponse.createBySuccess("订单已支付,支付宝重复调用");
 			}
 			if("TRADE_SUCCESS".equals(tradeStatus)) {	//支付完成
 				order.setOrder_status(2);
+				order.setCreate_time(new Date(System.currentTimeMillis()));
 				//更新订单状态进数据库
 				System.out.println("更新订单状态");
 				PayDao.getPayDao().updateOrderByorderId(order);

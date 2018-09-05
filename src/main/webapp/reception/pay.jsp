@@ -40,7 +40,7 @@
                             <p class="user_info">罗(先生) 17875511823
 南沙科技创新中心A4栋4楼
 -
-3个小腿+1个翅中  x2汉堡+鸡肉卷  x2辣子鸡块  x2</p>
+3个小腿+1个翅中x2&nbsp;&nbsp;汉堡+鸡肉卷x2&nbsp;&nbsp;辣子鸡块x2</p>
                             <a class="a_css look_up" href="javascript:">
                                 <span class="look_order">收起</span>
                                 <span class="fa fa-angle-up"></span>
@@ -97,12 +97,22 @@
     </div>
 
     <!--生成二维码-->
-    <div class="QRcode" id="QRcode">
+ <%--    <div class="QRcode" id="QRcode">
         <div class="QRcode_close" id="QRcode_close"></div>
         <div class="QRcode_header">请扫二维码</div>
         <div class="QRcode_content">
             <img src="${pageContext.request.contextPath }image/pay/QRCODE.png">
         </div>
-    </div>
+    </div> --%>
 </body>
+<script type="text/javascript">
+$(document).ready(function(){
+    //点击支付,跳转到二维码页面
+    $(".btn").click(function(){
+		//请求的路径
+		window.location.href="${pageContext.request.contextPath }/payServlet?method=pay"; 
+    });
+	
+})
+</script>
 </html>
