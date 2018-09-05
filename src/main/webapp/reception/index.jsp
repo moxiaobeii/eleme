@@ -304,7 +304,7 @@
   		    		//先找到div标签的父节点
  	            	var $parent = $(".ordMes-all");
  	            	//显示一个加载中的文字
-             		var $div = $("<div></div>").addClass("seller-small-mes-container").css({"width":"1190px", "height":"100px"});
+             		var $div = $("<div></div>").addClass("seller-small-mes-container").css({"width":"1190px", "height":"140px"});
       				var $div1 = $("<div></div>").addClass("search-nodata");           				
       				/*var $img11 = $("<img/>").attr({"src":"${pageContext.request.contextPath }/image/index-SearchBar2-1.png", "alt":"找不到商家"}).addClass("nodata"); */
       				var $div12 = $("<div></div>").addClass("typo-small").html("正在载入更多商家...").css("font-size","15");
