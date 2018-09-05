@@ -1,0 +1,301 @@
+a{
+    text-decoration: none;
+    color: #333333;
+}
+/*个人中心内容div*/
+.person-center{
+    width:1001px;
+    /*height: 100px;*/
+    /*background: gray;*/
+    /*border: 1px solid black;*/
+}
+
+/*头部信息div*/
+.person-center-info{
+    width: 100%;
+    height: 174px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding-top: 30px;
+    border: 1px solid #EEEEEE;
+    background-color: white;
+}
+.person-center-info div{
+    display: inline-block;
+    box-sizing: border-box;
+    border-right: 1px solid #EEEEEE;
+}
+.person-center-info-div1{
+    width: 399px;
+    height: 112px;
+    padding-left: 30px;
+    position: relative;
+}
+.person-center-info-div1 img{
+    width: 112px;
+    height: 112px;
+    display: inline-block;
+    border-radius: 60px;
+    cursor: pointer;
+    z-index: 2;
+}
+.edit:hover #edit-message{
+    display: block;
+}
+#edit-message{
+    width: 112px;
+    height: 112px;
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    /*visibility: hidden;*/
+    background-color:black ;
+    opacity: 0.4;
+    text-align: center;
+    line-height: 112px; 
+    font-size: 14px;
+    cursor: pointer;
+    display: none;
+    z-index: 9;
+    border-radius: 60px;
+}
+#edit-message span a{
+	width:112px;
+	height:112px;
+	border-radius:60px;
+	display:block;
+	  color: white;
+}
+
+.person-center-info-div1 h3{
+    width: 156px;
+    height: 24px;
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    /*vertical-align: middle;*/
+    position: absolute;
+    top: 30px;
+    left: 160px;
+}
+.person-center-info-div1 h3 strong{
+    font-weight: bolder;
+}
+.person-center-info-div1 p{
+    width: 156px;
+    height: 18px;
+    display: block;
+    font-size: 12px;
+    line-height: 24px;
+    position: absolute;
+    top: 60px;
+    left: 160px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #999999;
+}
+.person-center-info-div2,.person-center-info-div3,.person-center-info-div4{
+    width: 202px;
+    height: 112px;
+    margin-left: -10px;
+    vertical-align: top;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+/*我的红包*/
+.person-center-info-div2-p1,.person-center-info-div2-p2{
+    text-align: center;
+    font-size: 14px;
+}
+.person-center-info-div2-p1{
+    height: 21px;
+}
+.person-center-info-div2-p2{
+    height: 60px;
+    line-height: 60px;
+}
+.PerCenIoD2P2{
+    color: red;
+}
+.person-center-info-div2-p2 span a{
+    color: red;
+    font-size: 36px;
+    font-weight: bolder;
+}
+/*我的金币*/
+.PerCenIoD3P2,.PerCenIoD3P2 span a{
+    color: #5DB423;
+}
+/*我的余额*/
+.PerCenIoD4P2,.PerCenIoD4P2 span a{
+    color: #FF9C00;
+}
+
+
+
+/*最近订单*/
+.recently-order{
+    width: 100%;
+    /*height: 100px;*/
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: white;
+}
+.recently-order-title{
+    width: 100%;
+    height: 30px;
+    position: relative;
+    border-bottom: 2px solid #EEEEEE;
+}
+.recently-order-title-a1 {
+    width: 84px;
+    height: 27px;
+    display: inline-block;
+    margin-bottom: 2px;
+    border-bottom: 3px solid #0089DC;
+    font-size: 16px;
+    text-align: center;
+    color: #666666;
+    position: absolute;
+    top: 2px;
+}
+
+.recently-order-title-a2{
+    width: 81px;
+    height: 12px;
+    font-size: 10px;
+    position: absolute;
+    right: 0px;
+    color: #666666;
+}
+.recently-order-title-a2:hover{
+    color: #0089DC;
+}
+
+/*最近订单详情*/
+.recently-order-content{
+    width: 100%;
+    height: 108px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.recently-order-content div{
+    display: inline-block;
+}
+.recently-order-content-div1{
+    width: 592px;
+    height: 70px;
+    position: relative;
+}
+.recently-order-content-div1 img{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.recently-order-content-div1 h3{
+    width: 390px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: top;
+    font-weight: bolder;
+}
+.recently-order-content-div1 p{
+    width: 390px;
+    height: 24px;
+    display: inline-block;
+    position: absolute;
+    top: 25px;
+    left: 88px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-size: 10px;
+}
+.recently-order-content-div1 p a{
+    color: #999999;
+}
+.recently-order-content-div1-a2{
+    width: 72px;
+    height: 16px;
+    position: absolute;
+    /*display: inline-block;*/
+    left: 88px;
+    top: 50px;
+    font-size: 10px;
+    color: #999999;
+}
+
+
+.recently-order-content-div1-a2 i{
+    font-style: normal;
+    color: red;
+}
+
+.recently-order-content-div2{
+    width: 85px;
+    height: 70px;
+    margin-left: -10px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 10px;
+    color: #999999;
+    vertical-align: top;
+}
+.recently-order-content-div3{
+    width: 190px;
+    height: 70px;
+    margin-left: -10px;
+    box-sizing: border-box;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    vertical-align: top;
+}
+.recently-order-content-div3 p{
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+
+}
+.recently-order-content-div4{
+    width: 100px;
+    height: 70px;
+    margin-left: -10px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    vertical-align: top;
+    text-align: center;
+}
+.recently-order-content-div4 p{
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    font-size: 16px;
+    color: #999999;
+}
+.recently-order-content-div4 a{
+    width: 48px;
+    height: 17px;
+    text-align: center;
+    font-size: 10px;
+    color: #0089DC;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

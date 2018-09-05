@@ -1,0 +1,121 @@
+		-- 创建数据库
+create DATABASE eleme;
+
+-- 使用数据库
+use eleme;
+
+
+-- 管理员
+create table admin(
+  name varchar(20) not null PRIMARY key comment '名称',
+  password varchar(20) not null comment '密码',
+  compassword varchar(20) not null comment '确定密码'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户';
+
+-- 用户表
+create table user(
+  userId int(5) not null PRIMARY key auto_increment comment '用户id',
+  telphone long not null comment '用户手机',
+  username varchar(10) not null comment '用户名',
+  password varchar(10) not null comment '用户密码'
+)ENGINE=InnoDB auto_increment = 1001 DEFAULT CHARSET=utf8 comment '用户';
+
+-- 商家分类表
+create table category(
+  cid int(5) not null PRIMARY KEY auto_increment COMMENT '分类id',
+  c_name varchar(10) COMMENT '分类名称',
+  tid int(5) not null comment '上下级关系,0表示没有上一级，有数值表示有上一级'
+)ENGINE=InnoDB auto_increment = 1 DEFAULT CHARSET=utf8 comment '商家分类';
+
+-- 商家信息表
+create table business(
+  bid int(10) not null PRIMARY KEY auto_increment COMMENT '商家id',
+  bname varchar(10) not null COMMENT '商家名称',
+  evaluation_score decimal (2,1) not null comment '评价分数',
+  months_amount int(20) not null comment '月销售量',
+  offer_price int(5) comment '起送价格',
+  distribution_fee int(5) comment '配送费',
+	distribution_time int(5) comment '配送时间',
+	category varchar(20) comment '商家品类',
+	telphone long not null comment '商家手机',
+  business_hour varchar(30) comment '营业时间',
+  address varchar(256) not null COMMENT '商家地址',
+  service_evaluation decimal(2,1) comment '服务评价',
+  good_evaluation decimal(2,1) comment '菜品评价',
+  logo varchar(50) not null comment '商家logo',
+  collection int(5) not null comment '收藏  0:没收藏  1:收藏',
+  cid int(5) not null COMMENT '外键',
+	FOREIGN KEY(cid) REFERENCES category(cid) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB auto_increment = 1 DEFAULT CHARSET=utf8 comment '商家信息';
+
+
+-- 商品类型表
+create table goods_type(
+  gtid int(5) not null auto_increment PRIMARY KEY comment '商品类型id',
+  gtname varchar(10) not null COMMENT '类型名称',
+  bid int(5) not null comment '商家id外键',
+  FOREIGN KEY(bid) REFERENCES business(bid)
+)ENGINE=InnoDB auto_increment=1 default CHARSET=utf8 comment '商品类型';
+
+-- 商品信息
+create table goods(
+	gid int(5) not null auto_increment PRIMARY key comment '商品id',
+  bname varchar(10) not null comment '商家名称',
+	gname varchar(10) not null comment '商品名称',
+  price double not null comment '价格',
+	shop_evaluation decimal(2,1) comment '商品评价',
+  months_amount int(20) not null comment '月销售量',
+  pimage varchar(100) not null comment '商品图片地址',
+	gtid int(5) not null comment '商品分类id',
+	FOREIGN KEY(gtid) REFERENCES goods_type(gtid)
+)ENGINE=InnoDB auto_increment=1 default CHARSET=utf8 comment '商品信息';
+
+-- 订单详情表
+create table order_details(
+	cart_id varchar(32) not null comment '购物车id',
+	subtotal double not null comment '商品小计',
+	count int(20) not null comment '购买数量',
+  bname varchar(10) not null comment '商家名称',
+  good_evaluation int(5) not null comment '商品评价分数 0-3：不满意  3-5：满意',
+  oid varchar(32) not null comment '订单id 外键',
+	gid int(5) not null comment '商品id 外键',
+  FOREIGN KEY(gid) REFERENCES goods(gid),
+  FOREIGN KEY(oid) REFERENCES orders(oid)
+)ENGINE=InnoDB default CHARSET=utf8 comment '订单详情表';
+
+-- 订单
+create table orders(
+ 	oid varchar(32) not null PRIMARY key comment '订单id',
+	bname varchar(10) not null comment '商家名称',
+  create_time time not null comment '创建订单时间',
+  total_count int(20) not null comment '订单总数量',
+  total_price double not null comment '订单总金额',
+  pay_way int(10) comment '付款方式 0:支付宝  1：微信  2：易宝',
+  order_remarks varchar(100) comment '订单备注',
+  order_status int(5) not null comment '订单状态 0:未付款 1:订单失效 2:已付款 3:未送达 4:已送达',
+  userId int(5) not null comment '用户id',
+  con_id int(5) not null comment '收货人id',
+  FOREIGN KEY(userId) REFERENCES user(userId),
+	FOREIGN KEY(con_id) REFERENCES consignee(con_id)
+)ENGINE=InnoDB default CHARSET=utf8 comment '订单';
+
+-- 收货人
+create table consignee(
+	con_id int(5) not null PRIMARY KEY auto_increment comment '收货人id',
+  name varchar(20) not null comment '姓名',
+  sex int(5) not null comment '性别 0:男 1:女',
+  address varchar(50) not null comment '收货人地址',
+  telphone long not null comment '收货人手机号码'
+)ENGINE=InnoDB auto_increment=1 default CHARSET=utf8 comment '收货人';
+
+-- 商品评价表
+create table evaluation(
+  eid int(5) not null PRIMARY key auto_increment comment '评价id',
+  service_content varchar(200) comment '服务评价内容',
+  service_evaluation decimal(2,1) comment '服务评价 0-3:不满意  4-5满意',
+  good_evaluation decimal(2,1) comment '菜品评价 0-3:不满意  4-5满意' ,
+  feeding_speed int(5) comment '送餐速度',
+  sell_reply varchar(100) comment '商家回复内容',
+  oid varchar(32) not null comment '订单id 外键',
+  FOREIGN KEY(oid) REFERENCES orders(oid)
+)ENGINE=InnoDB auto_increment=1 default CHARSET=utf8 comment '商品评价表';

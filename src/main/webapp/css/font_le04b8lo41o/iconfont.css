@@ -1,0 +1,19 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1535426455878'); /* IE9*/
+  src: url('iconfont.eot?t=1535426455878#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAASAAAsAAAAABuQAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFY9JEigY21hcAAAAYAAAABLAAABcOfWt7RnbHlmAAABzAAAAM0AAADs7wnPamhlYWQAAAKcAAAALwAAADYSdQUraGhlYQAAAswAAAAcAAAAJAfeA4NobXR4AAAC6AAAAAgAAAAICAAAAGxvY2EAAALwAAAABgAAAAYAdgAAbWF4cAAAAvgAAAAgAAAAIAESAFRuYW1lAAADGAAAAUUAAAJtPlT+fXBvc3QAAARgAAAAIAAAADHb49BweJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkYWCcwMDKwMHUyXSGgYGhH0IzvmYwYuRgYGBiYGVmwAoC0lxTGByerXu2jrnhfwNDDHMDQwNQmBEkBwD4VQ0/eJxjYGBgZWBgYAZiHSBmYWBgDGFgZAABP6AoI1icmYELLM7CoARWwwISf7bu/38YCeSzgEkGRjaGUcADJmWgPHBYQTADIwDSdQwhAHicTYwxbsJAAAR3cc4WwnJkC3xUSL5Id4WVRL4YuwFKSIHSp0y+kA9Ygn9Q0iNe48Y/4AWIYBSIaKbZmYUL/FYPcCoMofCKCeZYAFReQKWNNsrtyxFtUWbFONdPTsB+bItcG8eFF0MWKDVM+EIzYzmiDOg5M+a67WKZdZqBr75/vpQvI9lLV5t12pXRs7Z2aa3e1adGCCZ1zUSIU1PvD0Ic9n/cXSWGYfqWpRGHyp/M36e9x0gy4WVbWvLj0t3/HD//L1pyezNxBiZaOAkAAAB4nGNgZGBgAOII0dLr8fw2Xxm4WRhA4PqqB9MR9P8GFgbmBiCXg4EJJAoAPswLagB4nGNgZGBgbvjfwBDDwgACQJKRARUwAQBHCAJrBAAAAAQAAAAAAAAAAHYAAAABAAAAAgBIAAYAAAAAAAIAAAAKAAoAAAD/AAAAAAAAeJxlj01OwzAQhV/6B6QSqqhgh+QFYgEo/RGrblhUavdddN+mTpsqiSPHrdQDcB6OwAk4AtyAO/BIJ5s2lsffvHljTwDc4Acejt8t95E9XDI7cg0XuBeuU38QbpBfhJto41W4Rf1N2MczpsJtdGF5g9e4YvaEd2EPHXwI13CNT+E69S/hBvlbuIk7/Aq30PHqwj7mXle4jUcv9sdWL5xeqeVBxaHJIpM5v4KZXu+Sha3S6pxrW8QmU4OgX0lTnWlb3VPs10PnIhVZk6oJqzpJjMqt2erQBRvn8lGvF4kehCblWGP+tsYCjnEFhSUOjDFCGGSIyujoO1Vm9K+xQ8Jee1Y9zed0WxTU/3OFAQL0z1xTurLSeTpPgT1fG1J1dCtuy56UNJFezUkSskJe1rZUQuoBNmVXjhF6XNGJPyhnSP8ACVpuyAAAAHicY2BigAAuBuyAiZGJkZmBvSAzLz0rM5GBAQAUYAL/') format('woff'),
+  url('iconfont.ttf?t=1535426455878') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1535426455878#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pingjia:before { content: "\e6ae"; }
+

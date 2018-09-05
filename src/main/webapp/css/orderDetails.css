@@ -1,0 +1,258 @@
+
+a{
+    text-decoration: none;
+}
+
+.content{
+    width: 1001px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: white;
+}
+.content h3{
+    width: 927px;
+    height: 27px;
+    padding: 0 20px 11px;
+
+    font-size: 18px;
+    border-bottom: 2px solid #f4f4f4;
+}
+.content ul{
+    position: relative;
+    display: table;
+    margin: 20px 0 40px;
+    padding-bottom: 30px;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+
+}
+.content ul li{
+    float: left;
+    height: 56px;
+    position: relative;
+    display: table-cell;
+    color: #999;
+    text-align: center;
+    line-height: 4em;
+}
+.content ul li:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    margin-bottom: -9px;
+    margin-left: -9px;
+    width: 8px;
+    height: 8px;
+    border: 5px solid #f8f8f8;
+    border-radius: 50%;
+    background-color: #ddd;
+    content: "";
+}
+.orderprogress-info{
+    width: 972px;
+    margin: 20px 0;
+    border: 1px solid #f8e5bb;
+    background-color: #fefdee;
+    box-sizing: inherit;
+}
+.orderprogress-info .orderprogress-child{
+    position: relative;
+    padding: 24px 32px 0 30px;
+    min-height: 68px;
+    border: 1px solid #f8e5bb;
+    background-color: #fefdee;
+    line-height: 1;
+
+}
+.orderprogress-child h5{
+    padding-bottom: 12px;
+    font-size: 16px;
+    color: #333;
+}
+.orderprogress-child p{
+    padding-bottom: 8px;
+    line-height: 1.5;
+    font-size: 14px;
+    color: #999;
+}
+.orderprogress-again{
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    height: 40px;
+}
+.orderprogress-again .orderprogress-again-item{
+    display: inline-block;
+    line-height: 40px;
+    margin-left: 24px;
+    min-width: 100px;
+    text-align: center;
+}
+.orderprogress-again .linktype{
+    color: #999;
+    text-decoration: underline;
+}
+.orderprogress-again .buttontype{
+    color: #fff;
+    padding: 0 .8em;
+    border-radius: 2px;
+    background-color: #f74342;
+}
+
+.orderprogress-rsinfo{
+    width: 910px;
+    height: 44px;
+    position: relative;
+    padding: 18px 30px 16px;
+        background-color: #f8f8f6;
+    border: 1px solid #eee;
+}
+.orderprogress-rsinfo .orderprogress-rsimg{
+    width: 44px;
+    margin-right: 12px;
+}
+.orderprogress-rsinfo .orderprogress-rsid{
+    height: 44px;
+    vertical-align: top;
+    display: inline-block;
+    line-height: 1;
+}
+.orderprogress-rsid .orderprogress-rsname{
+    padding-top: 2px;
+    font-size: 16px;
+    color: #333;
+}
+.orderprogress-rstextra{
+    padding-top: 12px;
+    font-size: 14px;
+    color: #999;
+}
+.orderprogress-rstextra span {
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.orderprogress-rstoperate {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+}
+.orderprogress-rstoperate a{
+    display: inline-block;
+    margin-left: 18px;
+    color: #999;
+    width: 65px;
+    font-size: 14px;
+}
+
+.orderprogress-cardtable{
+    display: table;
+    width: 972px;
+}
+.orderprogress-cardcell {
+    display: table-cell;
+    background-color: #f8f8f8;
+    border-left: 1px solid #eee;
+    vertical-align: top;
+    width: 538px;
+}
+.orderprogress-total{
+    padding-bottom: 32px;
+}
+.orderprogress-totalrow.orderprogress-totaltitle {
+    padding: 20px 0 16px;
+    font-weight: 700;
+    border-bottom: 1px solid #eee;
+    width: 537px;
+}
+
+.orderprogress-totalrow {
+    display: table;
+    width: 100%;
+    font-size: 14px;
+    color: #666;
+    padding-top: 24px;
+    line-height: 1;
+}
+
+.orderprogress-totalrow .cell {
+    display: table-cell;
+    vertical-align: middle;
+
+}
+
+.orderprogress-totalrow .cell.name {
+    padding-left: 30px;
+    width: 60%;
+    text-align: left;
+}
+.orderprogress-baseline{
+    width: 100%;
+    padding-top: 20px;
+    margin-bottom: -4px;
+    border-bottom: 1px solid #eee;
+}
+.orderprogress-pay{
+    padding-top: 20px;
+    line-height: 1;
+    padding-right: 30px;
+    text-align: right;
+    font-size: 14px;
+    color: #333;
+}
+.orderprogress-pay span{
+    font-size: 26px;
+    font-weight: 700;
+    color: #f74342;
+}
+element.style {
+}
+.orderprogress-totalrow .cell.quantity {
+    width: 10%;
+    text-align: center;
+}
+
+.orderprogress-totalrow .cell.price {
+    padding-right: 30px;
+    width: 30%;
+    text-align: right;
+}
+.orderprogress-cardcell.rightside {
+    background-color: #fff;
+    border-right: 1px solid #eee;
+    width: auto;
+}
+.orderprogress-deliveryinfo {
+    padding: 0 30px;
+}
+.orderprogress-deliverytitle {
+    padding: 20px 0 4px;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 700;
+}
+.orderprogress-deliverygroup {
+    border-bottom: 1px dashed #eee;
+    padding: 20px 0 4px;
+}
+.orderprogress-deliverygroup p {
+    display: table;
+    height: 36px;
+    font-size: 14px;
+    color: rgb(51,51,51);
+}
+.orderprogress-deliverygroup span {
+    display: table-cell;
+    vertical-align: top;
+    line-height: 18px;
+    /*word-break: break-word;*/
+}
+.orderprogress-border{
+    background: url(${pageContext.request.contextPath }/image/order-border.png);
+    height: 9px;
+    margin-top: -8px;
+}

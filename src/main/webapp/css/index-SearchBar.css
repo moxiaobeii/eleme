@@ -1,0 +1,135 @@
+/*body样式*/
+body{
+    position: relative;
+    background: #f7f7f7;
+    padding-right: 35px;
+}
+a{
+    text-decoration:none;
+    cursor: pointer;
+    font-size: 14px;
+}
+/*tbody的公共样式*/
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+/*tr的公共样式*/
+tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+/*th公共样式*/
+th{
+    padding: .5em 1em;
+    border: 1px solid #ddd;
+}
+
+/*通过搜索框搜索出来的商家和菜式主内容区*/
+.seller-small-mes-container{
+    font-size: 14px;
+    width: 1190px;
+    margin: 0 auto;
+}
+/*某个商家的信息*/
+.seller-small-mes-container .seller-mes{
+    background: #fff;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+.seller-mes th{
+    background: #f9f9f9;
+}
+/*某个商家的信息的名字*/
+.seller-mes th .seller-h4{
+    margin-bottom: 0;
+    padding-bottom: 5px;
+}
+.seller-mes th .seller-h4 .seller-name{
+    color: #333;
+    font-size: 1.2em;
+}
+/*商家评价*/
+.seller-mes th .star{
+    position: relative;
+    display: inline-block;
+    line-height: 1em;
+    color: #ccc;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+}
+.seller-mes th .star span{
+    overflow: hidden;
+    color: #ffc30c;
+    white-space: nowrap;
+}
+.seller-mes th>small{
+    margin-right: 10px;
+    padding-left: 10px;
+    border-left: 1px solid #ddd;
+}
+.seller-mes th>small>span{
+    color: inherit;
+    padding: 0 3px;
+}
+/*商家商品*/
+/*td公共样式*/
+td{
+    padding: 11px 14px;
+    border: 0;
+    border-top: 1px solid #f5f5f5;
+}
+/*商品名字*/
+.food-mes a{
+    color: #333;
+}
+.food-mes a span{
+    box-sizing: inherit;
+}
+/*商品单价*/
+.food-mes .search-col2{
+    width: 100px;
+    text-align: center;
+}
+/*商品去购买按钮，即跳转页面*/
+.food-mes .search-col3{
+    width: 160px;
+    text-align: center;
+}
+.food-mes .search-col3 .btn{
+    font-size: 14px;
+    background-color: #0080d9;
+    padding: 7px 30px;
+    color: #fff;
+}
+/*商品评分和月销量*/
+.food-mes .search-col4{
+    width: 130px;
+}
+/*评分*/
+.food-mes .search-col4 .star{
+    position: relative;
+    display: inline-block;
+    line-height: 1em;
+    color: #ccc;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+}
+.food-mes .search-col4 .star span{
+    overflow: hidden;
+    color: #ffc30c;
+    white-space: nowrap;
+}

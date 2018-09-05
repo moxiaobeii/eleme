@@ -1,0 +1,21 @@
+/**
+ * Created by guojiakang on 2018/8/13.
+ */
+$(document).ready(function(){
+    $(".addressblock").mouseenter(function(){
+        $(this).css("border-color","#0089DC");
+        $(this).find("button").css("color","#0089DC");
+    });
+    $(".addressblock").mouseleave(function(){
+        $(this).css("border-color","#DDDDDD");
+        $(this).find("button").css("color","#BBBBBB");
+    });
+    $(".addNewAddressDiv").mouseenter(function(){
+        $(this).css("color","#0089DC");
+        $(this).children("i").css("color","#0089DC");
+    });
+    $(".addNewAddressDiv").mouseleave(function(){
+        $(this).css("color","#0089DC");
+        $(this).children("i").css("color","#0089DC");
+    });
+});

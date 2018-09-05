@@ -1,0 +1,266 @@
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+p {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.content{
+    width: 1001px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: white;
+}
+.content title{
+    width: 927px;
+    height: 27px;
+    padding: 0 20px 11px;
+
+    font-size: 18px;
+    border-bottom: 2px solid #f4f4f4;
+}
+h3 span{
+    font-size: 18px;
+    font-weight: 700;
+}
+h3 .subtitle{
+    font-size: 12px;
+    font-weight: 400;
+    color: #999;
+}
+
+.rsinfoCon-rsname{
+    display: table;
+    margin-top: 12px;
+    padding: 10px 32px;
+    width: 908px;;
+    min-height: 78px;
+    background-color: #f7f7f7;
+}
+.rsinfoCon-rsname .rsinfoCon-item:first-child{
+   width: 508px;
+}
+.rsinfoCon-rsname .rsinfoCon-item{
+    display: table-cell;
+    color: #999;
+    vertical-align: middle;
+}
+.rsinfoCon-rsname .favor{
+    width: 86px;
+    font-size: 14px;
+}
+.rsinfoCon-name img{
+    margin-right: 13px;
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+}
+.rsinfo{
+    display: inline-block;
+    max-width: 80%;
+    vertical-align: middle;
+}
+.rsinfo a{
+    color: #333;
+}
+.rsinfo span{
+    font-size: 14px;
+}
+.rsinfoCon-item .favor {
+    width: 86px;
+}
+.appraise{
+    margin-top: 38px;
+
+}
+.appraise div{
+    margin-bottom: 30px;
+}
+.appraise-service-item{
+    display: inline-block;
+    margin-right: 27px;
+    width: 100px;
+    text-align: right;
+    font-size: 16px;
+    vertical-align: top;
+}
+.appraise-service-item span{
+    margin-right: 7px;
+    color: #f74342;
+}
+.appraise-service-score{
+    display: inline-block;
+    width: 62%;
+}
+.iconfont{
+    color: #dbdbdb;
+    font-size: 27px;
+    z-index: 2;
+}
+.score-text{
+    margin-left: 16px;
+    line-height: 27px;
+    color: #999
+}
+.service-text{
+    position: relative;
+    margin-top: 14px;
+    padding: 10px 12px;
+    width: 340px;
+    background-color: #f7f7f7;
+    border: 1px solid #eee;
+    border-radius: 2px;
+    font-size: 12px;
+    word-break: break-all;
+    display: none;
+}
+.service-text span:first-child{
+    margin-left:0;
+}
+.service-text span{
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 8px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #666;
+    border: 1px solid #eee;
+    background-color: #fff;
+}
+
+.service-area{
+    padding: 10px;
+    width: 93%;
+    height: 50px;
+    color: #999;
+    resize: none;
+    outline: 0;
+    vertical-align: top;
+    border: 1px solid #eee;
+    background-color: #fff;
+}
+.appraise-driver-content{
+    padding-bottom: 30px;
+    border-bottom: 1px dashed #e4e4e4;
+    display: inline-block;
+    width: 62%;
+
+}
+.appraise-driver-progress{
+    position: relative;
+    margin-left: 10px;
+    width: 240px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.time-bar{
+    /*background-color: #0089dc;*/
+
+    /*content: '';*/
+    position: absolute;
+    top: 7px;
+    width: 100%;
+    height: 5px;
+    background-color: #edecec;
+}
+.bar{
+    background-color: #0089dc;
+    width: 0;
+    height: 5px;
+
+}
+.timeslider-handle {
+    position: absolute;
+    top: 0;
+
+    margin-left: -10px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    z-index: 2;
+}
+
+.appraise-driver-time{
+    position: relative;
+    margin-left: 30px;
+    margin-top: -5px;
+    padding: 4px 12px 4px 19px;
+    border: 1px solid #ededed;
+    border-radius: 2px;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+}
+.appraise-driver-label{
+    display: inline-block;
+    margin-right: 27px;
+    width: 100px;
+    text-align: right;
+    font-size: 16px;
+    vertical-align: top;
+}
+.appraise-food-info{
+    display: inline-block;
+    width: 62%;
+    height: 27px;
+}
+.food-item{
+    box-sizing: inherit;
+    font-size: 14px;
+}
+.food-name{
+    display: inline-block;
+    margin-right: 16px;
+    width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.icon-pingjia:before {
+    font-size: 23px;
+}
+.food-text{
+    margin-left: 16px;
+    line-height: 27px;
+    color: #999;
+}
+.appraise-food-item .appfood{
+    color: rgb(153, 153, 153);
+    font-size: 14px;
+}
+.appraise-btn{
+    padding-left: 127px;
+
+}
+.btn{
+    background-color: #0089dc;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 16px;
+    width: 160px;
+    line-height: 1;
+    border: none;
+    border-radius: 2px;
+    outline: 0;
+    cursor: pointer;
+
+    text-align: center;
+}
+.appraise-prompt{
+    margin-top: 20px;
+    color: #999;
+}
+.appraise-prompt .appraise-tip{
+    margin: 0 5px;
+    color: #f74342;
+}

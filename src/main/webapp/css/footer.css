@@ -1,0 +1,154 @@
+a{
+    text-decoration: none;
+}
+/*尾部*/
+#footer{
+    background-color: #f7f7f7;
+    border-top: 1px solid #eee;
+    margin-top: 50px;
+}
+/*底部主要内容*/
+#bottom{
+    font-size: 14px;
+    width: 960px;
+    margin: 0 auto;
+}
+/*底部左边内容*/
+#bottom .footer-left{
+    float: left;
+    width: 15%;
+    margin-top: 30px;
+}
+/*底部左边内容-标题标签*/
+.footer-left h3{
+    line-height: 30px;
+}
+/*底部左边内容-a标签*/
+.footer-left a{
+    font-size: 12px;
+    color: #999;
+    display: block;
+    line-height: 24px;
+}
+.footer-left a:hover{
+    color: #b0bcd0;
+}
+
+/*底部内容的中间区域*/
+#bottom .footer-center{
+    float: left;
+    margin-top: 30px;
+    font-size: 14px;
+}
+/*中间内容上面div-24小时*/
+.footer-center .up{
+    margin-bottom: 12px;
+    color: #666;
+    text-align: center;
+    line-height: 24px;
+}
+.footer-center .up a{
+    text-decoration: none;
+    color: inherit;
+}
+/*中间内容下面面div-关注我们*/
+.footer-center .down{
+    margin-bottom: 14px;
+    color: #666;
+    line-height: 24px;
+}
+/*微信二维码*/
+.footer-center .down i{
+    font-size: 20px;
+    margin-left: 5px;
+    color: rgba(150, 205, 205, 0.6);
+}
+.footer-center .down .fa-weixin{
+    font-size: 20px;
+    margin-left: 5px;
+    position: relative;
+    color: rgba(150, 205, 205, 0.6);
+    cursor: pointer;
+}
+.footer-center .fa-weixin #wechat-box{
+    width: 140px;
+    height: 160px;
+    position: absolute;
+    bottom: 20px;
+    left: -60px;
+    background-color: white;
+    box-shadow:1px 1px 1px;
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid hotpink;
+    display: none;
+}
+#wechat-box img{
+    width: 80%;
+    margin: 10px 10px 5px;
+}
+/*显示二维码*/
+.fa-weixin:hover #wechat-box{
+    display: block;
+}
+/*小图标变色*/
+.footer-center .down .fa-weixin:hover{
+    color: cornflowerblue;
+}
+.footer-center .down i:hover{
+    color: cornflowerblue;
+}
+
+/*底部内容右边*/
+#bottom .footer-right{
+    float: right;
+    font-size: 12px;
+    color: #666;
+    width: 265px;
+    margin-top: 30px;
+}
+/*二维码*/
+.footer-right img{
+    width: 90px;
+    margin-right: 20px;
+    float: left;
+}
+.footer-right h3{
+    font-size: 16px;
+    color: #333;
+    margin-top: 20px;
+    line-height: 30px;
+    font-weight: bold;
+}
+/*底部内容下边*/
+#bottom .footer-down{
+    padding-top: 60px;
+    clear: both;
+    font-size: 12px;
+    text-align: center;
+    color: #999;
+}
+.footer-down h5{
+    color: #0e0e0e;
+}
+.footer-down a{
+    color: #999;
+}
+.footer-down a:hover{
+    color: #0e0e0e;
+    text-decoration: underline;
+}
+
+/*底部内容下边中国公安*/
+#bottom .footer-police{
+    margin: 0 auto;
+}
+.footer-police a{
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+.footer-police img {
+    height: 30px;
+}

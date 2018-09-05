@@ -1,0 +1,428 @@
+a{
+    text-decoration: none;
+    color: #333333;
+}
+/*我的资料内容div*/
+.myaddress-center{
+    width:1001px;
+    height: 680px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #EEEEEE;
+
+}
+/*我的资料标题*/
+.myaddress-center-h3{
+    height: 40px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    font-weight: bolder;
+    font-size: 18px;
+    margin-bottom: 2px;
+    border-bottom: 2px solid #F4F4F4;
+}
+.myaddress-center-div{
+    width: 100%;
+    height: 214px;
+    box-sizing: border-box;
+    padding-top: 20px;
+}
+
+/*地址div*/
+.addressblock{
+    width: 300px;
+    height: 110px;
+    display: inline-block;
+    border: 1px solid #DDDDDD;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding: 15px;
+    vertical-align: top;
+    color: #666666;
+    cursor: pointer;
+}
+.addNewAddressDiv{
+    text-align: center;
+    line-height: 80px;
+}
+.fa-plus-square{
+    color:  #666666;
+}
+.addressblock-div1{
+    width: 100%;
+    height: 22px;
+    margin-bottom: 5px;
+    position: relative;
+}
+.addressblock-div1-p1{
+	width:100px;
+	heigth:30px;
+	display:inline-block;
+}
+.addressblock-div1-b1{
+    width: 40px;
+    height: 17px;
+    position: absolute;
+    right: 30px;
+    top: 0px;
+    font-size: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: #BBBBBB;
+}
+.addressblock-div1-b2{
+    width: 40px;
+    height: 17px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-size: 10px;
+    background-color: transparent;
+    border: transparent;
+    color: #BBBBBB;
+}
+.addressblock-div2{
+    width: 100%;
+    height: 22px;
+    overflow: hidden;
+    line-height: 22px;
+    font-size: 14px;
+}
+.addressblock-div3{
+    width: 100%;
+    height: 22px;
+    margin-top: 5px;
+<<<<<<< HEAD
+}
+=======
+}
+
+
+.addressDiv{
+    width: 100%;
+    height: 1230px;
+    background-color: #7B7B7B;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0.5;
+	display:none;
+}
+
+
+
+/*添加地址*/
+.addressdialog{
+    width:790px;
+    height:475px;
+    position: absolute;
+    left: 400px;
+    top: 150px;
+    background-color: white;
+	display:none;    
+}
+.addressdialog2{
+	width:790px;
+    height:475px;
+    position: absolute;
+    left: 400px;
+    top: 150px;
+    background-color: white;
+	display:none;   
+}
+
+.addressdialog-header{
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.addressdialog-header2{
+	width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.addressdialog-close{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    line-height: 20px;
+    text-align: right;
+    cursor:pointer;
+    font-size:30px;
+}
+.addressdialog-close2{
+	 width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 17px;
+    right: 20px;
+    line-height: 20px;
+    text-align: right;
+    cursor:pointer;
+    font-size:30px;
+    
+}
+
+.addressdialog-content{
+    width: 100%;
+    height: 415px;
+    box-sizing: border-box;
+    padding: 15px;
+
+}
+.addressdialog-content2{
+	width: 100%;
+    height: 415px;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.addressdialog-content-name{
+    width: 100%;
+    height: 67px;
+    box-sizing: border-box;
+    padding-bottom: 30px;
+}
+.addressdialog-content-name2{
+	width: 100%;
+    height: 67px;
+    box-sizing: border-box;
+    padding-bottom: 30px;
+    text-align:left;
+}
+
+.addressdialog-content-sex{
+    width: 100%;
+    height: 38px;
+    margin-bottom: 15px;
+}
+.addressdialog-content-sex2{
+	width: 100%;
+    height: 38px;
+    margin-bottom: 15px;
+}
+
+.addressdialog-content-location{
+    width: 100%;
+    height: 67px;
+}
+.addressdialog-content-location2{
+	width: 100%;
+    height: 67px;
+}
+
+.addressdialog-content-address{
+    width: 100%;
+    height: 67px;
+}
+.addressdialog-content-address2{
+	 width: 100%;
+    height: 67px;
+}
+
+.addressdialog-content-telphone{
+    width: 100%;
+    height: 67px;
+}
+.addressdialog-content-telphone2{
+	width: 100%;
+    height: 67px;
+}
+
+.addressdialog-content-save{
+    width: 676px;
+    height: 42px;
+    margin-left: 90px;
+}
+.addressdialog-content-save2{
+	width: 676px;
+    height: 42px;
+    margin-left: 90px;
+}
+
+.addressdialog-content-label{
+    width: 65px;
+    height: 35px;
+    display: inline-block;
+    margin-right: 20px;
+    text-align: right   ;
+    line-height: 35px;
+}
+.addressdialog-content-label2{
+	width: 65px;
+    height: 35px;
+    display: inline-block;
+    margin-right: 20px;
+    text-align: right   ;
+    line-height: 35px;
+}
+
+.addressdialog-content-label-input{
+    width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    background-color: #DEDEDE;
+    border: 0px;
+}
+.addressdialog-content-label-input2{
+	 width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    background-color: #DEDEDE;
+    border: 0px;
+}
+
+.addressdialog-content-input{
+    width: 300px;
+    height: 42px;
+    box-sizing: border-box;
+    padding-left: 5px;
+}
+.addressdialog-content-input2{
+	 width: 300px;
+    height: 42px;
+    box-sizing: border-box;
+    padding-left: 5px;
+}
+
+.addressdialog-content-save-button1{
+    width: 160px;
+    height: 42px;
+    margin-top:30px
+    margin-right: 10px;
+    background-color: #0089DC;
+    color: white;
+    border: 0px;
+    cursor:pointer;
+}
+.addressdialog-content-save-button12{
+	width: 160px;
+    height: 42px;
+    margin-top:30px
+    margin-right: 10px;
+    background-color: #0089DC;
+    color: white;
+    border: 0px;
+    cursor:pointer;
+}
+
+.addressdialog-content-save-button2{
+    width: 68px;
+    height: 42px;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 0px;
+    background-color: transparent;
+}
+.addressdialog-content-save-button22{
+	width: 68px;
+    height: 42px;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 0px;
+    background-color: transparent;
+}
+
+.addressdialog-content-p-error{
+	width:300px;
+	height:15px;
+	margin-left:95px;
+	color:red;
+	font-size:8px;
+	display:none;
+}
+.addressdialog-content-p-error2{
+	width:300px;
+	height:15px;
+	margin-left:95px;
+	color:red;
+	font-size:8px;
+	display:none;
+}
+
+
+/*删除收货人信息*/
+.deleteConsigneeInfo{
+	width:500px;
+	height:300px;
+	position:absolute;
+	top:200px;
+	left:500px;
+	opacity:0.4;
+	background-color:black;
+	display:none;
+}
+.deleteConsigneeInfo-p{
+	width:100%;
+	height:80px;
+	box-sizing: border-box;
+	padding-top:20px;
+	padding-bottom:20px;
+	padding-left:20px;
+	text-align:center;
+	line-height:80px;
+	font-size:24px;
+	color:white;
+}
+.consigneeID{
+	display:none;
+}
+
+.deleteConsigneeInfo-button1{
+	width:120px;
+	height:50px;
+	background-color:blue;
+	border:0px;
+	margin-top:100px;
+	margin-left:100px;
+	color:white;
+	font-size:20px;
+	cursor:pointer;
+}
+.deleteConsigneeInfo-button2{
+	width:120px;
+	height:50px;
+	background-color:blue;
+	border:0px;
+	margin-top:100px;
+	margin-left:20px;
+	color:white;
+	font-size:20px;
+	cursor:pointer;
+}
+
+
+
+/*修改地址*/
+.addressdialog2{
+    width:790px;
+    height:475px;
+    position: absolute;
+    left: 300px;
+    top: 150px;
+    background-color: white;
+	display:none;    
+}
+
+
+
+
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/moxiaobeii/eleme.git

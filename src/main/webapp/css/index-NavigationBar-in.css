@@ -1,0 +1,144 @@
+/*body样式*/
+body{
+    position: relative;
+    background: #f7f7f7;
+    padding-right: 35px;
+}
+a{
+    text-decoration:none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.ordMes-main-in{
+    overflow:hidden;
+}
+.ordMes-main-in .sellers{
+    width: 25%;
+    float: left;
+    font-size: 12px;
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px #f5f5f5 solid;
+    height: 140px;
+}
+/*鼠标移上去变色*/
+.ordMes-main-in .sellers:hover{
+    background-color: #f6f6f6;
+}
+/*/!*显示隐藏信息*!/*/
+/*.ordMes-main-in .sellers:hover .seller-mes-hide-out{*/
+    /*display: block;*/
+/*}*/
+
+/*商家logo*/
+.ordMes-main-in .sellers .seller-logo{
+    padding: 20px;
+    color: #999;
+    text-align: center;
+    float: left;
+    font-size: 12px;
+    position: relative;
+}
+/*商家logo照片*/
+.ordMes-main-in .sellers .seller-logo img{
+    display: block;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+/*商家信息*/
+.ordMes-main-in .sellers .seller-mes{
+    padding: 20px;
+}
+/*商家名字*/
+.ordMes-main-in .sellers .seller-title{
+    font-size: 16px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #333;
+}
+/*商家评价*/
+.ordMes-main-in .sellers .star{
+    position: relative;
+    display: inline-block;
+    line-height: 1em;
+    color: #ccc;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+}
+.ordMes-main-in .sellers .star span{
+    overflow: hidden;
+    color: #ffc30c;
+    white-space: nowrap;
+}
+/*配送费*/
+.ordMes-main-in .sellers .seller-cost{
+    color: #999;
+    margin-top: 3px;
+}
+/*商家状态*/
+.ordMes-main-in .sellers .seller-activity{
+    margin-top: 9px;
+}
+
+
+/*商家的隐藏信息*/
+.sellers .seller-mes-hide-out{
+    border: 1px solid #f6f676;
+    position: absolute;
+    right: -300px;
+    top: 8px;
+    overflow: hidden;
+    z-index: 30;
+    background-color: white;
+}
+/*有该属性,商家隐藏信息就隐藏*/
+.sellers .hide{
+    display: none;
+}
+.seller-mes-hide-out .seller-mes-hide-in{
+    margin: 20px 10px;
+
+}
+.seller-mes-hide-out .seller-mes-hide-in .seller-mes-hide-name{
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #333;
+}
+.seller-mes-hide-in .seller-mes-hide-type{
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f6f676;
+    padding-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #999;
+}
+.seller-mes-hide-in ul li{
+    text-align: center;
+    float: left;
+    width: 75px;
+    color: black;
+    margin: 0 auto 8px;
+    padding: 6px 20px;
+    background-color: #f6f6f6;
+}
+.seller-mes-hide-in ul>li:last-child{
+    border-left: 1px solid #f6f676;
+    width: 120px;
+}
+.seller-mes-hide-in ul>li>span{
+    color: orangered;
+}

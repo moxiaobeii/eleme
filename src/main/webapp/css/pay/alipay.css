@@ -1,0 +1,247 @@
+/*头部*/
+html *{
+    box-sizing: border-box;
+}
+p{
+    display: block;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+h3{
+    font-weight: 700;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+body{
+    background-color: #F7F7F7;
+}
+.active{
+    border: 1px solid #f74342;
+}
+.text-color{
+    color: #666;
+}
+.pay_color{
+    color:#f66c1c;
+}
+.text-money{
+    color:#f66c1c;
+    font-size: 20px;
+}
+.header{
+    width: 100%;
+    /*height: 80px;*/
+    background-color: #1985F1;
+    color: #fff;
+    padding: 20px 30px;
+}
+.header .title{
+    vertical-align: middle;
+    font-size: 21px;
+    margin-left: 30px;
+    display: inline-block;
+    font-weight: 600;
+}
+.header img{
+    vertical-align: middle;
+    width: 104px;
+}
+
+
+/*内容区*/
+.main_container{
+    background-color: #F7F7F7;
+    width: 100%;
+    padding: 10px 15px;
+
+}
+.content{
+    margin: 10px auto;
+    padding: 15px 30px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    width: 1170px;
+}
+.content h3{
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+.content .oder_detail{
+    margin-top: 12px;
+}
+.user_box{
+    width: 560px;
+}
+.text-muted{
+    color: #666;
+    width: 480px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.a_css{
+    color: #427bd8;
+    font-size: 14px;
+    vertical-align: 6px;
+    cursor: pointer;
+}
+
+.order_rigth{
+    display: inline-block;
+    vertical-align: middle;
+    padding-top: 1%;
+
+}
+.oder_money{
+    color: #f66c1c;
+    font-weight: 700;
+    font-size: 24px;
+}
+.pay_method > header{
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.pay_method h3{
+    margin-right: 15px;
+    display: inline-block;
+    border-bottom: none;
+}
+.pay_method > header p{
+    display: inline-block;
+}
+
+.pay_box{
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+}
+.pay_title{
+    margin: 24px 0 12px
+}
+.alipay{
+    border: 1px solid #e6e6e6;
+    width:140px;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    padding: 10px 16px;
+    background-size: 176px auto;
+    cursor: pointer;
+    position: relative;
+}
+.alipay .after{
+    background:url("../../image/pay/payway.jpg")0 -496px no-repeat;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    content: "";
+    width: 17px;
+    height: 17px;
+    display: none;
+}
+.alipay:before{
+    content: "";
+    display: inline-block;
+    width: 38px;
+    height: 38px;
+    margin-right: 10px;
+    vertical-align: middle;
+    background-image: url("../../image/pay/data_image.png");
+    background-repeat: no-repeat;
+}
+ 
+.alipay_foot{
+    display: inline-block;
+    vertical-align: middle;
+}
+.btn{
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: #f74342;
+    color: #fff;
+    margin-top: 15px;
+    border: none;
+}
+/*隐藏部分*/
+.hidden{
+    display: none;
+}
+.order_detail{
+    width: 640px;
+    margin-top: 12px;
+
+}
+.order_detail p{
+    white-space: pre-wrap;
+}
+#look_order_info{
+    display: block;
+}
+
+
+/*二维码*/
+.QRcode{
+    left: 460px;
+    top: 94.5px;
+    z-index: 1001;
+    position: fixed;
+    background: #fff;
+    padding: 0;
+    border: 1px solid gainsboro;
+    width: 500px;
+    height: 460px;
+}
+.QRcode_close{
+    display: inline-block;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    background: url("../../image/orderInfo/close.png")center center no-repeat;;
+}
+.QRcode_header{
+    font-size: 18px;
+    font-weight: 600;
+    padding: 15px;
+    color: #333;
+}
+.QRcode_content{
+    width: 352px;
+    height: 352px;
+    margin: auto;
+}
+.QRcode_content img{
+    width: 350px;
+    height: 350px;
+}
+.btn-box{
+	width: 140px;
+    height: 352px;
+    margin: auto;
+}
+.btn-stress {
+    background-color: #f74342;
+    color: #fff;
+}
+.btn-lg {
+    padding: 12px 30px;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 1;
+    border: none;
+    border-radius: 2px;
+    outline: 0;
+    cursor: pointer;
+    text-align: center;
+}

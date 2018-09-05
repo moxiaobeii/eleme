@@ -1,0 +1,28 @@
+饿了么开发文档
+1、项目目录：
+    src 
+    	java
+    		eleme
+    			controller   控制层
+    			dao	                        数据层
+    			service      业务层
+    			entity       实体层
+    			utils        工具包
+    			dpo          数据传输层（数据访问对象从数据库中检索数据）
+    	resources    存放配置文件
+    	test  存放测试的类和方法
+    	webapp   静态资源包
+    	
+    	数据流向
+    	页面jsp——>controller——>service——>dao——>entity
+    	                                    ——>dto
+    	                             
+2、开发要求
+(1)环境设置
+mysql , maven , eclipse
+(2)技术
+ajax ,gson , jsp , servlet
+(3)编码
+utf-8
+(4)代码要加上应有的注释
+		

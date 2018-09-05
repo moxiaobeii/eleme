@@ -1,0 +1,407 @@
+/*body样式*/
+body{
+    position: relative;
+    background: #f7f7f7;
+    padding-right: 35px;
+}
+a{
+    text-decoration:none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/*右侧导航栏*/
+.sidebar{
+    position: fixed;
+    top: 0;
+    right: -295px;
+    bottom: 0;
+    background-color: #504d53;
+    width: 330px;
+    transition: transform .3s;
+    height: auto;
+    z-index: 3;
+}
+/*右边导航栏的左边选择部分*/
+.sidebar .sidebar-tabs{
+    float: left;
+    width: 35px;
+    height: 100%;
+}
+.sidebar .sidebar-tabs .sidebar-tabs-up{
+    position: absolute;
+    width: 35px;
+    top: 50%;
+    margin-top: -220px;
+}
+/*选择部分上面第一个按键-我的订单图标*/
+.sidebar-tabs-up .fa-address-book{
+    width: 35px;
+    height: 37px;
+    color: #ccc;
+    margin: 5px 0;
+    display: block;
+    position: relative;
+    font-size: 20px;
+    text-align: center;
+    line-height: 37px;
+}
+/*选择部分上面第一个按键-我的订单*/
+.sidebar-tabs-up .fa-address-book .myOrd{
+    width: 70px;
+    height: 32px;
+    font-size: 13px;
+    position: absolute;
+    left: -75px;
+    top: 3px;
+    background: rgba(80, 77, 83, 0.4);
+    color: white;
+    text-align: center;
+    line-height: 32px;
+    display: none;
+}
+.sidebar-tabs-up .fa-address-book:hover .myOrd{
+    display: block;
+}
+
+/*选择部分上面第二个按键-购物车*/
+.sidebar-tabs-up #up-cartbtn{
+    color: #fff;
+    outline: 0;
+    width: 19px;
+    height: 70px;
+    display: block;
+    text-align: center;
+    padding: 7px 8px 10px;
+    line-height: 17px;
+    margin: 32px 0 8px;
+    font-size: 14px;
+}
+/*选择部分上面第三个按键-我的信息小图标*/
+.sidebar-tabs-up .fa-envelope-o{
+    width: 35px;
+    height: 37px;
+    color: #ccc;
+    margin: 5px 0;
+    display: block;
+    position: relative;
+    font-size: 20px;
+    text-align: center;
+    line-height: 37px;
+}
+/*选择部分上面第一个按键-我的信息*/
+.sidebar-tabs-up .fa-envelope-o .myMes{
+    width: 70px;
+    height: 32px;
+    font-size: 13px;
+    position: absolute;
+    left: -75px;
+    top: 3px;
+    background: rgba(80, 77, 83, 0.4);
+    color: white;
+    text-align: center;
+    line-height: 32px;
+    display: none;
+}
+/*被选中的的导航栏拥有该属性*/
+.sidebar-tabs-up .choice-left{
+    background-color: #26a2ff;
+}
+/*选择部上面鼠标移入背景颜色会变*/
+
+.sidebar-tabs-up a:hover{
+    background-color: #26a2ff;
+}
+.sidebar-tabs-up a:hover .myMes{
+    display: block;
+}
+
+/*选择部分下面*/
+.sidebar-tabs-down{
+    bottom: 10px;
+    position: absolute;
+}
+.sidebar-tabs-down .fa-qrcode{
+    width: 37px;
+    height: 37px;
+    color: #ccc;
+    margin: 5px 0;
+    display: inline-block;
+    font-size: 25px;
+    text-align: center;
+    position: relative;
+    line-height: 37px;
+    cursor: pointer;
+}
+/*选择部分下面-二维码div*/
+.sidebar-tabs-down .fa-qrcode .tabs-down-dropbox{
+    width: 160px;
+    height: 200px;
+    line-height: 24px;
+    font-size: 13px;
+    position: absolute;
+    right: 40px;
+    top: -165px;
+    background-color: white;
+    box-shadow: 1px 1px 1px;
+    border: 1px solid hotpink;
+    color: white;
+    display: none;
+    z-index: 9;
+}
+/*选择部分下面-二维码*/
+.fa-qrcode .tabs-down-dropbox img{
+    width: 80%;
+    margin-top: 10px;
+}
+/*选择部分下面-二维码下的文字*/
+.fa-qrcode .tabs-down-dropbox p{
+    color: #0089dc;
+    font-size: 16px;
+}
+/*选择部分下面-二维码下的文字p2*/
+.fa-qrcode .tabs-down-dropbox .p2{
+    color: orange;
+    font-size: 14px;
+}
+.sidebar-tabs-down .fa-qrcode:hover{
+    background-color: #26a2ff;
+}
+.sidebar-tabs-down .fa-qrcode:hover .tabs-down-dropbox{
+    display: block;
+}
+
+/*选择部分上面第三个按键-回到顶部小图标*/
+.sidebar-tabs-down .fa-hand-o-up{
+    width: 35px;
+    height: 37px;
+    color: #ccc;
+    margin: 5px 0;
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    line-height: 37px;
+    position: relative;
+}
+/*选择部分上面第一个按键-回到顶部*/
+.sidebar-tabs-down .fa-hand-o-up .backTop{
+    width: 70px;
+    height: 32px;
+    font-size: 13px;
+    position: absolute;
+    left: -75px;
+    top: 3px;
+    background: rgba(80, 77, 83, 0.4);
+    color: white;
+    text-align: center;
+    line-height: 32px;
+    display: none;
+}
+.sidebar-tabs-down .fa-hand-o-up:hover{
+    display: block;
+    background-color: #26a2ff;
+}
+.sidebar-tabs-down .fa-hand-o-up:hover .backTop{
+    display: block;
+}
+
+/*导航栏主要内容部分-购物车*/
+.sidebar-content-cart{
+    margin-left: 35px;
+    height: 100%;
+    width: 295px;
+    overflow: auto;
+    background-color: #e6e6e6;
+    display: none;
+}
+/*导航栏主要内容部分-购物车*/
+.sidebar-content-cart .content-up{
+    color: black;
+    background-color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.sidebar-content-cart .content-up a{
+    max-width: 240px;
+    display: inline-block;
+    line-height: 16px;
+    text-decoration: none;
+    color: black;
+}
+.sidebar-content-cart .content-up a:hover{
+    text-decoration: underline;
+}
+
+.sidebar-content-cart .content-up span{
+    float: right;
+    cursor: pointer;
+}
+.sidebar-content-cart .content-up span:hover{
+    color: cornflowerblue;
+}
+
+/*中间购物车样式*/
+.sidebar-content-cart .content-center{
+    background-color: white;
+    color: black;
+    font-size: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: solid #ddd;
+    border-width: 1px 0;
+    overflow:hidden;
+}
+/*中间购物车上面*/
+.content-center .shop-one-up{
+    border-bottom: 1px solid #ddd;
+    padding: 2px 3px;
+    overflow:hidden;
+}
+.shop-one-up a{
+    float: right;
+    text-decoration: none;
+}
+
+/*中间购物车下面*/
+.sidebar-content-cart .shop-one-down ul li{
+    padding: 10px;
+    line-height: 20px;
+    overflow:hidden;
+}
+/*菜式名字*/
+.shop-one-down ul li .cuisine-name{
+    float: left;
+    width: 45%;
+}
+/*菜式数量*/
+.shop-one-down ul li .cuisine-num{
+    float: left;
+    width: 26%;
+}
+.shop-one-down ul li .cuisine-num span{
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: #f5f5f5;
+    color: #999;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid hotpink;
+    float: left;
+}
+/*加菜数量*/
+.shop-one-down ul li .cuisine-num .sub{
+    border-right: none;
+}
+.shop-one-down ul li .cuisine-num input{
+    width: 18px;
+    height: 18px;
+    float: left;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/*减菜数量*/
+.shop-one-down ul li .cuisine-num .add{
+    border-left: none;
+}
+
+/*菜式价格*/
+.shop-one-down ul li .cuisine-price{
+    font-weight: 700;
+    float: right;
+    color: #f17530;
+    font-size: 12px;
+    line-height: 20px;
+}
+.shop-one-down ul li:hover{
+    background: rgba(80, 77, 83, 0.1);
+}
+
+/*最下面的合计和结算*/
+.content-down{
+    position: absolute;
+    bottom: 0;
+    width: 275px;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    padding: 20px 10px;
+}
+/*份数和合计价钱*/
+.content-down p{
+    font-size: 14px;
+    display: block;
+    text-align: right;
+}
+.content-down p span{
+    color: #f74342;
+}
+/*去结算按钮*/
+.content-down .btn{
+    display: block;
+    border: 0;
+    background-color: #f74342;
+    color: #fff;
+    width: 100%;
+    line-height: 32px;
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/*导航栏主要内容部分-我的信息*/
+.sidebar-content-mes{
+    margin-left: 35px;
+    height: 100%;
+    width: 295px;
+    overflow: auto;
+    background-color: #e6e6e6;
+    display: none;
+}
+/*导航栏主要内容部分-我的信息*/
+.sidebar-content-mes .content-up{
+    color: black;
+    background-color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.sidebar-content-mes .content-up a{
+    max-width: 240px;
+    display: inline-block;
+    line-height: 16px;
+    text-decoration: none;
+    color: black;
+}
+.sidebar-content-mes .content-up a:hover{
+    text-decoration: underline;
+}
+
+.sidebar-content-mes .content-up span{
+    float: right;
+    cursor: pointer;
+}
+.sidebar-content-mes .content-up span:hover{
+    color: cornflowerblue;
+}
+.sidebar-content-mes .mes-down{
+    padding: 5px 10px;
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+}
+.sidebar-content-mes .mes-down i{
+    color: #999;
+    margin: 30px auto 20px;
+    font-size: 50px;
+    display: block;
+}
+/*左边导航栏被选中，右边相应内容拥有该属性-显示出来*/
+.choice-right{
+    display: block;
+}

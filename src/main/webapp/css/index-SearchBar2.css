@@ -1,0 +1,21 @@
+.seller-small-mes-container {
+    font-size: 14px;
+    width: 960px;
+    margin: 0 auto;
+}
+.seller-small-mes-container .search-nodata{
+    text-align: center;
+    padding: 80px 20px;
+    border: 1px solid #e6e6e6;
+    background: #fff;
+}
+.seller-small-mes-container .search-nodata .nodata{
+    margin-bottom: 20px;
+    padding-top: 50px;
+    text-align: center;
+    width: 100px;
+}
+.seller-small-mes-container .search-nodata .typo-small{
+    font-size: .9em;
+    color: #888;
+}

@@ -1,0 +1,143 @@
+a{
+    text-decoration: none;
+    color: #333333;
+}
+/*我的收藏内容div*/
+.myCollect-center{
+    width:1001px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #EEEEEE;
+}
+/*我的收藏标题*/
+.myCollect-center-h3{
+    height: 40px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    font-weight: bolder;
+    font-size: 18px;
+    margin-bottom: 2px;
+    border-bottom: 2px solid #F4F4F4;
+}
+.myCollect-center-div{
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+.myaddress-favorTitle{
+    width: 100%;
+    height: 14px;
+    font-size: 10px;
+}
+.myaddress-favorTitle span{
+    color: red;
+    font-size: 14px;
+}
+.myaddress-deliveryShop{
+    width: 100%;
+    box-sizing: border-box;
+    padding-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+    /*line-height: 164px;*/
+}
+.myaddress-deliveryShop p{
+    width: 208px;
+    height: 50px;
+    display: inline-block;
+    color: #999999;
+    text-align: center;
+    line-height: 50px;
+}
+.myaddress-noDeliveryShop{
+    width: 300px;
+    box-sizing: border-box;
+    padding-top: 0px;
+    margin-bottom: 30px;
+    display: inline-block;
+    border-bottom: 2px solid #F7F7F7;
+}
+.myaddress-noDeliveryShop-div{
+    width: 280px;
+    height: 200px;
+    display: inline-block;
+    box-sizing: border-box;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    opacity: 0.8;
+}
+.myaddress-noDeliveryShop-div-photo1 img{
+    width: 288px;
+    height: 85px;
+    opacity: 0.3;
+}
+.myaddress-noDeliveryShop-div-photo2{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 10px;
+    top: 30px;
+    border-radius: 40px;
+    border: 1px solid white;
+}
+.myaddress-noDeliveryShop-div-a{
+    width: 288px;
+    height: 32px;
+    font-size: 16px;
+    color: red;
+    position: absolute;
+    left: 110px;
+    top: 50px;
+    line-height: 32px;
+}
+.myaddress-noDeliveryShop-div-p1{
+    width: 86px;
+    height: 14px;
+    margin-bottom: 10px;
+    font-size: 10px;
+    text-align: center;
+    color: #C6C6C6;
+    position: absolute;
+    left: 60px;
+    top: 130px;
+}
+.myaddress-noDeliveryShop-div-p2{
+    width: 86px;
+    height: 14px;
+    margin-bottom: 10px;
+    font-size: 10px;
+    text-align: center;
+    color: #C6C6C6;
+    position: absolute;
+    left: 150px;
+    top: 130px;
+}
+.myaddress-noDeliveryShop-div-p3{
+    width: 86px;
+    height: 24px;
+    font-size: 18px;
+    text-align: center;
+    color: #C6C6C6;
+    position: absolute;
+    left: 60px;
+    top: 150px;
+    line-height: 24px;
+    /*margin-top: 10px;*/
+}
+.myaddress-noDeliveryShop-div-p4{
+    width: 86px;
+    height: 24px;
+    font-size: 18px;
+    text-align: center;
+    color: #C6C6C6;
+    position: absolute;
+    left: 150px;
+    top: 150px;
+    line-height: 24px;
+    /*margin-top: 5px;*/
+}

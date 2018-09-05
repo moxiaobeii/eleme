@@ -1,0 +1,86 @@
+/*body样式*/
+body{
+    position: relative;
+    background: #f7f7f7;
+    padding-right: 35px;
+}
+a{
+    text-decoration:none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/*主内容部分*/
+/*搜索导航*/
+.ordMes-all{
+    width: 1180px;
+    font-size: 14px;
+    margin: 0 auto;
+}
+.ordMes-all .ordMes-search{
+    border: 1px solid #e6e6e6;
+}
+.ordMes-all .ordMes-search .ordMes-search-main{
+    line-height: 26px;
+    padding: 10px 10px 10px 7em;
+    background-color: #fff;
+    position: relative;
+}
+.ordMes-search .ordMes-search-main span{
+    position: absolute;
+    left: 10px;
+    top: 13px;
+    color: #999;
+    padding: 0 10px;
+    margin-right: 8px;
+}
+
+.ordMes-search .ordMes-search-main .item{
+    color: #666;
+    white-space: nowrap;
+    display: inline-block;
+    margin: 5px 6px;
+    padding: 0 10px;
+}
+/*导航栏-上，被选中的选项的样式*/
+.ordMes-search .ordMes-search-main .choice-out{
+    background-color: #f6f6f6;
+}
+.ordMes-search .ordMes-search-main>.item:hover{
+    background-color: #f6f6f6;
+}
+
+.ordMes-search .ordMes-search-main .ordMes-search-main-next{
+    background-color: #f6f6f6;
+    padding: 6px 0;
+    line-height: 26px;
+    box-sizing: inherit;
+    display: none;
+}
+/*隐藏导航栏-下的选项*/
+.ordMes-search-main .ordMes-search-main-next{
+    display: none;
+}
+/*被导航栏-上，选中的导航栏-上就显示*/
+.ordMes-search-main .choice-in-show{
+    display: block;
+}
+/*导航栏-下中，被选中的选项的样式*/
+.ordMes-search-main .ordMes-search-main-next .choice-in{
+    background-color: rgba(0,137,220,0.3);
+}
+.ordMes-search-main .ordMes-search-main-next>.item:hover{
+    background-color: rgba(0,137,220,0.3);
+}
+
+/*商家*/
+.ordMes-all .ordMes-main-out{
+    position: relative;
+    border: 1px solid #e6e6e6;
+    border-bottom: 0;
+    margin-top: 20px;
+    background: #fff;
+}
+.ordMes-all .ordMes-main-out{
+	min-height: 140px;
+}

@@ -1,0 +1,123 @@
+/*body样式*/
+body{
+    position: relative;
+    background: #f7f7f7;
+    padding-right: 35px;
+}
+a{
+    text-decoration:none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+/*主要内容*/
+.main-content{
+    box-sizing: inherit;
+}
+/*内容区-地址*/
+.main-content .OrdAddress{
+    width: 1180px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.OrdAddress .location{
+    vertical-align: middle;
+    font-size: 12px;
+    float: left;
+}
+/*当前位置、地址、切换地址*/
+.OrdAddress .location>span{
+    display: inline-block;
+    line-height: 54px;
+    vertical-align: top;
+}
+/*当前位置*/
+.OrdAddress .location>span:first-child{
+    color: #999;
+    margin-right: 5px;
+}
+/*地址*/
+.OrdAddress .location .location-current{
+    max-width: 138px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.location .location-current a{
+    color: inherit;
+    font-size: 10px;
+}
+.location .location-current a:hover{
+    color: #0089dc;
+}
+
+/*切换地址*/
+.location>span:last-child{
+    display: inline-block;
+    line-height: 54px;
+    vertical-align: top;
+}
+.location>span:last-child a{
+    display: inline-block;
+    line-height: 54px;
+    vertical-align: top;
+    font-size: 12px;
+}
+
+.location>span:last-child a{
+    color: #0089dc;
+}
+
+/*右边的搜索商家，美食*/
+.OrdAddress .place-search{
+    float: right;
+    margin: 10px 0;
+    height: 32px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    position: relative;
+}
+/*公共样式*/
+.OrdAddress .place-search #search-btn,#global-search{
+    padding: 0 8px;
+    margin: 5px 0;
+    line-height: 24px;
+}
+/*搜索框小图标*/
+.OrdAddress .place-search #search-btn{
+    float: right;
+    width: 46px;
+    text-align: center;
+    font-size: 20px;
+    color: #999;
+    background-color: transparent;
+}
+/*搜索框*/
+.OrdAddress .place-search #global-search{
+    width: 236px;
+    border: 0;
+    transition: width .3s ease-in-out;
+    outline: 0;
+}
+
+/*谁去拿外卖*/
+.getOrd{
+    font-size: 18px;
+    border-bottom: 1px solid #e6e6e6;
+    text-align: right;
+    width: 1180px;
+    margin: 0 auto;
+}
+.getOrd .postOrd{
+    margin-bottom: 6px;
+    width: 186px;
+    height: 42px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+.getOrd .postOrd img{
+    width: 186px;
+    height: 55px;
+    vertical-align: middle;
+}

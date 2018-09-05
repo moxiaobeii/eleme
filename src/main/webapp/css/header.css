@@ -1,0 +1,160 @@
+a{
+    text-decoration: none;
+    /*font-size: 16px;*/
+}
+/*头部样式*/
+#header{
+    display: block;
+    width: auto;
+    height: auto;
+    background-color: #1e89e0;
+}
+#header a{
+    font-size: 16px;
+}
+/*头部正文样式*/
+#top{
+    width: 1180px;
+    height: 60px;
+    margin: 0 auto;
+
+}
+/*头部正文内容-左边内容*/
+#top-left a{
+    color: white;
+    display: inline-block;
+    width: 134px;
+    height: 60px;
+    float: left;
+    text-align: center;
+    line-height: 60px;
+}
+/*头部左边内容-logo*/
+#top-left .top-logo{
+    font-size: 30px;
+    width: 105px;
+    margin-right: 30px;
+}
+/*饿了么logo*/
+#top-left .top-logo img{
+    width: 118px;
+    height: 32px;
+    margin: 15px 0;
+}
+/*头部左边内容-首页*/
+#top-left .top-first{
+    width: 112px;
+}
+
+#top-left .top-item:hover{
+    background-color: rgba(12,112,209, 0.7);
+}
+
+/*头部右边内容*/
+#top-right{
+    /*float: right;*/
+    display: inline-block;
+    margin-left: 80px;
+    width: 450px;
+}
+/*头部右边内容*/
+#top-right .top-itemR{
+    display: inline-block;
+    width: 106px;
+    height: 60px;
+}
+/*头部右边内容-公共样式*/
+#top-right .top-itemR{
+    color: white;
+    display: inline-block;
+    width: 106px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    position: relative;
+    cursor: pointer;
+}
+/*头部右边内容-规则中心*/
+#top-right .top-itemR-first{
+    padding: 0 10px;
+    width: 106px;
+    color: whitesmoke;
+    font-size: 14px;
+}
+
+/*手机应用-小图标*/
+.top-itemR-second i{
+    font-size: 30px;
+    position: absolute;
+    bottom: 13px;
+    left: -2px;
+}
+/*手机应用中的二维码div*/
+.top-itemR-second .top-itemR-mobile-drop{
+    width: 200px;
+    border: 1px solid hotpink;
+    color: #333;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: -6px;
+    position: absolute;
+    top: 100%;
+    left: -13px;
+    background-color: white;
+    box-shadow:1px 1px 1px;
+    display: none;
+    z-index: 99;
+}
+.top-itemR-mobile-drop span{
+    width: auto;
+    height: auto;
+    color: black;
+
+}
+.top-itemR-mobile-drop img{
+    width: 80%;
+    margin: 10px 10px 5px;
+}
+/*显示二维码*/
+.top-itemR-second:hover .top-itemR-mobile-drop{
+    display: block;
+}
+/*头部右边内容-用户账户*/
+#top-right .top-itemR-last{
+    float: right;
+}
+/*用户账号隐藏内容*/
+.top-itemR-last .top-itemR-profile-drop{
+    width: 122px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: -8px;
+    background-color: white;
+    border: 1px solid hotpink;
+    box-shadow:1px 1px 1px;
+    display: none;
+    z-index: 99;
+}
+/*隐藏内容a标签*/
+.top-itemR-profile-drop a{
+    display: block;
+    width: 110px;
+    color: #666;
+    line-height: 30px;
+    margin: 0 auto;
+    font-style: normal;
+    font-size: 16px;
+}
+/*第四个隐藏内容下标签*/
+.top-itemR-profile-drop .profile-drop-d{
+    border-bottom: 1px solid rgba(150, 205, 205, 0.2);
+}
+/*鼠标移入隐藏内容变色*/
+.top-itemR-profile-drop a:hover{
+    background: rgba(150, 205, 205, 0.2);
+}
+/*显示用户账号隐藏内容*/
+.top-itemR-last:hover .top-itemR-profile-drop{
+    display: block;
+}
