@@ -1,22 +1,16 @@
 package eleme.dao;
 
-import java.sql.SQLException;
-import java.util.List;
-
-import javax.management.Query;
-
+import eleme.dto.GoodsDto;
+import eleme.entity.Business;
+import eleme.entity.Goods;
+import eleme.entity.GoodsType;
+import eleme.utils.DataSourceUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import eleme.dto.BusinessDto;
-import eleme.dto.GoodsDto;
-import eleme.entity.Business;
-import eleme.entity.Consignee;
-import eleme.entity.Goods;
-import eleme.entity.GoodsType;
-import eleme.entity.User;
-import eleme.utils.DataSourceUtils;
+import java.sql.SQLException;
+import java.util.List;
 
 public class BusinessDao {
 
@@ -74,14 +68,28 @@ public class BusinessDao {
 		}
 		return goods;
 	}
-	
-	public static void main(String[] args) {
-		BusinessDao businessDao = new BusinessDao();
-		List<GoodsDto> goodsDtos = businessDao.getGoodsDto("麦德乐炸鸡汉堡");
-		for(GoodsDto goodsDto:goodsDtos) {
-			System.out.println(goodsDto.getGid());
+
+	public List<Goods> getAllGoods(String bname) {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from goods where bname = ?";
+		List<Goods> goodsList = null;
+		try {
+			goodsList = runner.query(sql,new BeanListHandler<Goods>(Goods.class),bname);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		
+		return goodsList;
 	}
-	
+
+	public List<Goods> getGoodsBySearchVal(String bname,String search) {
+		QueryRunner runner= new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from goods where bname = ? and gname like ?";
+		List<Goods> goodsList = null;
+		try {
+			goodsList = runner.query(sql,new BeanListHandler<Goods>(Goods.class),bname,"%"+search+"%");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return goodsList;
+	}
 }

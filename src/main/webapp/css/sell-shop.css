@@ -1,3 +1,4 @@
+
 .container,.shopmain{
     width: 1180px;
     height: 20px;
@@ -87,6 +88,13 @@
 .shopmenu-list .shopmenu-title .shopmenu-des{
     font-size: 12px;
     color: #999;
+}
+.shopmenu-food-sort{
+    padding: 20px 0 10px 15px;
+    font-size: 20px;
+}
+.shopmenu-food-sort span{
+    color: #f74342;
 }
 .shopmenu-food{
     position: relative;

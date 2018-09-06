@@ -241,6 +241,7 @@ body{
     height: 59px;
 }
 .main .main_nav .nav_left .shopnav-tab{
+    cursor: pointer;
     text-decoration: none;
     position: relative;
     display: inline-block;
@@ -267,14 +268,18 @@ body{
     margin-right: 31px;
 }
 
-.main .main_nav .nav_left .shopnav-filter{
+.shopnav-filter{
     float: right;
 }
-.main .main_nav .nav_left .shopnav-filter a{
+ .shopnav-filter a{
     display: inline-block;
     padding: 0 10px;
     line-height: 1;
     text-decoration: none;
+    cursor: pointer;
+}
+.shopnav-filter a span{
+    cursor: pointer;
 }
 .shop_line_active{
     color: #0089DC;

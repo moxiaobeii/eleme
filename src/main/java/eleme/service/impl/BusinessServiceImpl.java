@@ -58,12 +58,12 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	/**
+	 * 获得购物的信息
 	 * bid:商家id
 	 * gid:商品id
 	 */
 	public Cart getCart(String bid1, String gid1) {
 		
-		int bid = Integer.parseInt(bid1);
 		int gid = Integer.parseInt(gid1);
 		
 		//调用服务层
@@ -233,5 +233,18 @@ public class BusinessServiceImpl implements BusinessService {
 		}
 		jedis.set("cart_item",gson.toJson(carts));
 	}
+
+	public List<Goods> getAllGoods(String bname) {
+		BusinessDao dao = new BusinessDao();
+		List<Goods> goodsList = dao.getAllGoods(bname);
+		return goodsList;
+	}
+
+	public List<Goods> getGoodsBySearchVal(String bname,String search) {
+		BusinessDao dao = new BusinessDao();
+		List<Goods> goodsList = dao.getGoodsBySearchVal(bname,search);
+		return goodsList;
+	}
+
 
 }

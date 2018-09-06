@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import eleme.dto.BusinessDto;
 import eleme.entity.Business;
 import eleme.entity.Cart;
+import eleme.entity.Goods;
 import eleme.entity.GoodsType;
 import eleme.service.BusinessService;
 import eleme.service.impl.BusinessServiceImpl;
@@ -137,16 +138,29 @@ public class BusinessController extends BaseServlet {
 	}
 
 	//搜索框
-	public void search(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+	public void search(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		String bid = request.getParameter("bid");
-		String search = request.getParameter("search");
-		String item = request.getParameter("item");
-		System.out.println("商家id：" + bid);
-		System.out.println("搜索框的值：" + search);
-		System.out.println("排序的值：" + item);
+
+		String bname = request.getParameter("bname");
+		String search = request.getParameter("searchVal");
+
+		BusinessService service = new BusinessServiceImpl();
+		List<Goods> goodsList = null;
+		if (search == null || "".equals(search)){
+			//查询所有
+			goodsList = service.getAllGoods(bname);
+		}else {
+			//模糊查询
+			goodsList = service.getGoodsBySearchVal(bname,search);
+		}
+
+		Gson gson = new Gson();
+		String goods = gson.toJson(goodsList);
+
+		PrintWriter out = response.getWriter();
+		out.print(goods);
 	}
 
 }

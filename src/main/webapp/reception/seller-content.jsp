@@ -118,18 +118,18 @@
     <!--头部导航栏-->
     <div class="main_nav">
         <div class="nav_left">
-            <a href="#" class="shopnav-tab shopnav-tab-active">所有商品</a>
-            <a href="#" class="shopnav-tab shop_line">商品评价</a>
-            <a href="#" class="shopnav-tab shop_line">商家资质</a>
+            <a class="shopnav-tab shopnav-tab-active">所有商品</a>
+            <a class="shopnav-tab shop_line">商品评价</a>
+            <a class="shopnav-tab shop_line">商家资质</a>
             <span class="shopnav-filter">
-                <a href="#" class="shop_line_active"><span>默认排序</span></a>
-                <a href="#" class="shop_line"><span>评分</span>
+                <a class="shop_line_active"><span class="">默认排序</span></a>
+                <a class="shop_line"><span>评分</span>
                     <i class="icon iconfont icon-jiantouarrow505"></i>
                 </a>
-                <a href="#" class="shop_line"><span>销量</span>
+                <a class="shop_line"><span>销量</span>
                     <i class="icon iconfont icon-jiantouarrow505"></i>
                 </a>
-                <a href="#" class="shop_line"><span title="desc">价格</span>
+                <a class="shop_line"><span title="desc">价格</span>
                     <i class="icon iconfont icon-jiantouarrow505"></i>
                 </a>
             </span>
@@ -302,7 +302,7 @@
                 });
                 //该商品不存在，则追加
                 if (bool != 2){
-                    $(".cartbasket").append("<div class=\"shopCart\" id='"+idAttr+"' name='\"+shop_price+\"'>\n" +
+                    $(".cartbasket").append("<div class=\"shopCart\" id='"+idAttr+"' name='"+shop_price+"'>\n" +
                         "                    <div class=\"item-name\" name='"+shop_name+"'>"+shop_name+"</div>\n" +
                         "                    <div class=\"item-quali\">\n" +
                         "                        <button class=\"cell subnum\">-</button>\n" +
@@ -317,9 +317,9 @@
                 $(".cartbasket input").each(function (key, value){
                     totalMoney += parseFloat($(this).val());
                     totalCount += parseInt($(this).parent().next().html().substring(1));
-                    $(".icon-gouwuchekong span").html(totalMoney);
-                    $(".icon-gouwuchekong").next().html(totalCount);
                 });
+                $(".icon-gouwuchekong span").html(totalMoney);
+                $(".icon-gouwuchekong").next().html(totalCount);
             }
 
             /*  添加购物车 */
@@ -329,12 +329,72 @@
             		function() {
             		    //保存数据，不用有回调函数
 					});
+
+            $(".addnum").off('click').on('click',function () {
+                //获得商品id
+                var gid = $(this).parent().parent().attr("ID");
+                var price = parseFloat($(this).parent().parent().attr("name"));
+                var n = $(this).prev().val();
+                var num = parseInt(n) + 1;
+                $(this).prev().val(num);
+                var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())+1;
+                var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())+price;
+                var subTotal = num * price;
+                $(this).parent().next().html("￥"+subTotal);
+                $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
+                $("#cartfooter .footerToggle .totalMoney").html(totalMoney);
+                /*  增商品 */
+                $.getJSON(
+                    "${pageContext.request.contextPath}/business?method=updateGoods",
+                    {"gid":gid,
+                        "bid":"${business.bid}",
+                        "subTotal":subTotal,
+                        "subCount":num,
+                        "totalMoney":totalMoney,
+                        "totalCount":totalCount
+                    },
+                    function() {
+                        //保存数据，不用有回调函数
+                    });
+            });
+            //购物车中减少商品
+            $(".subnum").off('click').on('click',function () {
+                //获得商品id
+                var gid = $(this).parent().parent().attr("ID");
+                var price = parseFloat($(this).parent().parent().attr("name"));
+                var n = $(this).next().val();
+                var num = parseInt(n) - 1;
+                if (num == 0){
+                    $(this).parent().parent().hide();
+                }
+                $(this).next().val(num);
+                var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())-1;
+                var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())-price;
+                var subTotal = num * price;
+                $(this).parent().next().html("￥"+subTotal);
+                $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
+                $("#cartfooter .footerToggle .totalMoney").html(totalMoney);
+                /*  减商品 */
+                $.getJSON(
+                    "${pageContext.request.contextPath}/business?method=updateGoods",
+                    {"gid":gid,
+                        "bid":"${business.bid}",
+                        "subTotal":subTotal,
+                        "subCount":num,
+                        "totalMoney":totalMoney,
+                        "totalCount":totalCount
+                    },
+                    function() {
+                        //保存数据，不用有回调函数
+                    });
+            });
+
         });
         //购物车中减少商品
-        $(".subnum").click(function () {
+        $(".subnum").off('click').on('click',function () {
             //获得商品id
             var gid = $(this).parent().parent().attr("ID");
-            var price = $(this).parent().parent().attr("name");
+            var price = parseFloat($(this).parent().parent().attr("name"));
             var n = $(this).next().val();
             var num = parseInt(n) - 1;
             if (num == 0){
@@ -343,8 +403,8 @@
             $(this).next().val(num);
             var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())-1;
             var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())-price;
-            var subTotal = num * parseInt(price);
-            $(this).parent().next().html(subTotal);
+            var subTotal = num * price;
+            $(this).parent().next().html("￥"+subTotal);
             $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
             $("#cartfooter .footerToggle .totalMoney").html(totalMoney);
             /*  减商品 */
@@ -362,17 +422,19 @@
                 });
         });
 
-        $(".addnum").click(function () {
+        $(".addnum").off('click').on('click',function () {
+            alert(1);
             //获得商品id
             var gid = $(this).parent().parent().attr("ID");
             var price = parseFloat($(this).parent().parent().attr("name"));
             var n = $(this).prev().val();
             var num = parseInt(n) + 1;
+            alert(num);
             $(this).prev().val(num);
             var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())+1;
             var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())+price;
-            var subTotal = num * parseInt(price);
-            $(this).parent().next().html(subTotal);
+            var subTotal = num * price;
+            $(this).parent().next().html('￥'+subTotal);
             $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
             $("#cartfooter .footerToggle .totalMoney").html(totalMoney);
             /*  增商品 */
@@ -389,9 +451,12 @@
                     //保存数据，不用有回调函数
                 });
         });
+
         //清空购物车
         $(".clearShop").click(function () {
             $(this).parent().parent().siblings().hide();
+            $(".totalCount").hide() ;
+            $(".totalMoney").hide();
             $.getJSON(
                 "${pageContext.request.contextPath}/business?method=deleteGoods",
                 {"bid":"${business.bid}"},
@@ -403,6 +468,7 @@
     });
 
     $(document).ready(function () {
+        //收藏
         $(".favorite").click(function () {
             $(this).hide();
             $(".um-favorite").show();
@@ -437,17 +503,14 @@
             //如果搜索框为空
             if(searchVal == null || searchVal == undefined || searchVal== ""){
                 if (temp){
-                    alert("1");
                     //如果临时存储值不为空
                     searchVal = temp;
                     search(searchVal,item);
                 }else{
-                    alert("2");
                     //如果临时存储值为空
                     search(searchVal,item);
                 }
             }else{
-                alert("3");
                 //如果搜索框不为空
                 temp = searchVal;
                 search(searchVal,item);
@@ -459,28 +522,100 @@
         $.getJSON(
             "${pageContext.request.contextPath}/business?method=search",
             {
-                "bid":"${business.bid}",
-                "searchVal":searchVal,
-                "item":item
+                "bname":"${business.bname}",
+                "searchVal":searchVal
             },
             function(data) {
-
+                loadGoods(data,item);
             });
     };
     function formSearch() {
         var searchVal = $(".globalsearch").val();
-        $.getJSON(function () {
+        $.getJSON(
             "${pageContext.request.contextPath}/business?method=search",
-                {
-                    "bid":"${business.bid}",
-                    "searchVal":searchVal,
-                    "item":null
-                },
-                function(data) {
-                }
-        });
+            {
+                "bname":"${business.bname}",
+                "searchVal":searchVal
+            },
+            function(data) {
+                show(data);
+            });
+    }
+    //根据条件排序
+    function loadGoods(goods,item) {
 
+        //按照商品评价进行排序
+        function sortPrice(a,b) {
+            return a.price - b.price;
+        }
+
+        //按照评分进行排序
+        function sortScore(a,b){
+            return a.shop_evaluation - b.shop_evaluation;
+        }
+        
+        //按照销量进行排序
+        function  sortNumber(a,b) {
+            return a.months_amount - b.months_amount;
+        }
+
+        if (item == "价格"){
+            goods.sort(sortPrice);
+        }
+
+        if (item == "销量"){
+            goods.sort(sortNumber);
+        }
+
+        if (item == "评分"){
+            goods.sort(sortScore);
+        }
+        show(goods);
+    }
+    //显示查询结果
+    function show(goods) {
+        if (goods != null){
+            var contents = "<div class=\"shopmenu\">\n" +
+                "        <div class=\"shopmenu-list\">\n" +
+                "            <div class=\"shopmenu-main\" >\n" +
+                "               ";
+            $.each(goods,function (index,good) {
+                var content = "<div class=\"shopmenu-food\">\n" +
+                    "    <span><a href=\"#\"><img src=\"../image/seller/chicken.jpg\" alt=\"鸡腿\"></a></span>\n" +
+                    "    <div class=\"shopmenu-tro\">\n" +
+                    "        <h3 class=\"food\">"+good.gname+"</h3>\n" +
+                    "        <span class=\"material\">双层鸡腿堡 主要原料："+good.gname+"</span>\n" +
+                    "        <div>\n" +
+                    "            <span class=\"star\"></span>\n" +
+                    "            <span class=\"number\">("+good.shop_evaluation+")</span>\n" +
+                    "            <span class=\"month-number\">月售"+good.months_amount+"份</span>\n" +
+                    "        </div>\n" +
+                    "        <div class=\"price\">￥"+good.price+"</div>\n" +
+                    "    </div>\n" +
+                    "    <div class=\"addCart\" id='"+good.gid+"'>加入购物车</div>\n" +
+                    "</div>";
+                contents += content;
+            })
+            contents += "        </div>\n" +
+                "    </div>\n" +
+                "</div>";
+            $(".container").html(contents);
+            $(".container").append("</div>\n" +
+                "    <div class=\"shopmain-right\">\n" +
+                "        <div class=\"notice\">商家公告</div>\n" +
+                "        <div class=\"clear\"></div>\n" +
+                "        <div class=\"distribution\">\n" +
+                "            <ul>\n" +
+                "                <h4>配费说明</h4>\n" +
+                "                <p>配送费￥1</p>\n" +
+                "            </ul>\n" +
+                "        </div>\n" +
+                "        <a class=\"report\" href=\"#\">举报商家</a>\n" +
+                "    </div>\n" +
+                "</div>");
+        }
     }
 </script>
+
 </body>
 </html>
