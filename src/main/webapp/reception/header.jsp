@@ -8,7 +8,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/order.js"></script>
 <title>Insert title here</title>
 <!--导入jQuery文件-->
-    <script src="../js/jquery-3.1.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery-3.1.1.min.js"></script>
     <!--外部引入公共css样式-->
     <!-- <link rel="stylesheet" type="text/css" href="../css/basic.css"> -->
     <!--外部引入小图标css样式-->
@@ -63,7 +63,14 @@
 </header>
 
 <script type="text/javascript">
-	
+	$(function(){
+		//判断当前有无用户登录
+		$(".top-itemR-last").mouseenter(function(){
+			$("#top-itemR-profile-drop").removeClass("showUser");
+		}).mouseleave(function(){
+			$("#top-itemR-profile-drop").addClass("showUser");
+		});	
+	});
 </script>
 </body>
 </html>
