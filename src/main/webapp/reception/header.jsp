@@ -22,8 +22,8 @@
             <a href="index.jsp" class="top-logo">
                 <img src="${pageContext.request.contextPath }/image/header-2.png">
             </a>
-            <a href="index.jsp" class="top-item top-first">首页</a>
-            <a href="order.jsp" class="top-item">我的订单</a>
+            <a href="${pageContext.request.contextPath }/reception/default.jsp" class="top-item top-first">首页</a>
+            <a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage" class="top-item">我的订单</a>
             <a href="javascript:void(0)" class="top-item">加盟合作</a>
             <a href="javascript:void(0)" class="top-item">我的客服</a>
         </div>
@@ -42,7 +42,7 @@
                 <span>${USER.username }</span>
                 <spna></spna>
                 <div class="top-itemR-profile-drop">
-                    <a class="profile-drop-a" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserPersonCenterInfo" >个人中心</a>
+                    <a class="profile-drop-a" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=orderpersonpage" >个人中心</a>
                     <a class="profile-drop-b" href="${pageContext.request.contextPath }/consigneeCtroller?method=collectedBusinessInfo">我的收藏</a>
                     <a class="profile-drop-c" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryConsigneeInfo">我的地址</a>
                     <a class="profile-drop-d">安全设置</a>

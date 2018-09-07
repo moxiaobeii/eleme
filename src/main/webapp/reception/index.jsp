@@ -51,7 +51,7 @@
                     <a>南沙科技创新中心</a>
                 </span>
                 <span>
-                    <a>[切换地址]</a>
+                    <a href="${pageContext.request.contextPath }/reception/map-all.jsp">[切换地址]</a>
                 </span>
             </div>
             <div class="place-search">
