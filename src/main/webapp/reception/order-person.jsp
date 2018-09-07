@@ -107,7 +107,7 @@
         <div class="recently-order">
             <div class="recently-order-title">
                 <a href="javascript:void(0)" class="recently-order-title-a1">最近订单</a>
-                <a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage" class="recently-order-title-a2" ">查看全部订单></a>
+                <a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage" class="recently-order-title-a2">查看全部订单></a>
             </div>
 
             <!-- 最近订单详情-->
