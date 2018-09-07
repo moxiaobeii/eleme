@@ -45,7 +45,16 @@ section {
     font-size: 14px;
     background: #fff;
 }
-
+.showMessage{
+    position: absolute;
+    left: 317px;
+    height: 48px;
+    width: 200px;
+    top: 0px;
+    color: red;
+    line-height: 48px;
+    font-size: 14px;
+}
 section input {
     width: 100%;
     height: 100%;
@@ -56,7 +65,7 @@ section input {
     color: #333;
 }
 
-.user button {
+.user .disable {
     padding: 0;
     /*border-radius: 6px;*/
     border: 0;
@@ -67,6 +76,10 @@ section input {
     right: 0;
     text-align: center;
     font-size: 14px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    outline: none;
     /*float: right;*/
 }
 

@@ -1,30 +1,25 @@
 package eleme.dao;
 
-import java.sql.SQLException;
-
+import eleme.entity.User;
+import eleme.utils.DataSourceUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
-import eleme.entity.User;
-import eleme.utils.DataSourceUtils;
+import java.sql.SQLException;
 
 public class UserDao {
-	public User getUser(String username,String password) {
+	public User getUser(long phone) {
 		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
-		String sql = "select * from user where username=? and password=?";
+		String sql = "select * from user where telphone = ?";
 		User user = null;
 		try {
-			user = runner.query(sql,new BeanHandler<User>(User.class),username,password);
+			user = runner.query(sql,new BeanHandler<User>(User.class),phone);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(user.getTelphone());
 		return user;
 	}
-	
-	public static void main(String[] args) {
-		UserDao userDao = new UserDao();
-		User user = userDao.getUser("root", "admin");
-		System.out.println(user.getUserId()+"gdfgg");
-	}
+
 }

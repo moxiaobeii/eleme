@@ -6,9 +6,9 @@ import eleme.service.UserService;
 
 public class UserServiceImpl implements UserService {
 
-	public User getUser(String username, String password) {
+	public User getUser(long phone) {
 		UserDao userDao = new UserDao();
-		User user = userDao.getUser(username, password);
+		User user = userDao.getUser(phone);
 		return user;
 	}
 

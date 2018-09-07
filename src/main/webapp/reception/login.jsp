@@ -59,13 +59,15 @@
             </div>
         </div>
         <div class="content-form">
-            <form action="" method="post">
+            <form action="javascript:checkLogin()" method="post">
                 <section class="user">
-                    <input type="text" name="username" placeholder="手机号"/>
-                    <button disabled="disabled">获取验证码</button>
+                    <input type="text" name="username" placeholder="手机号" class="userphone" min="11" max="11"/>
+                    <div class="showMessage"></div>
+                    <button class="disable" disabled="disabled"  onclick="send()">获取验证码</button>
                 </section>
                 <section class="validation">
-                    <input type="text" name="password" placeholder="验证码"/>
+                    <input type="number" name="password" placeholder="验证码" class="password" />
+                    <div class="showMessage"></div>
                 </section>
                 <section style="color: #999">
                     温馨提示：未注册饿了么账号的手机号，登录时将自动注册，且代表您已同意
@@ -93,10 +95,107 @@
                 </p>
                 <img src="${pageContext.request.contextPath }/image/login/wangbei.jpg"/>
             </div>
-
         </div>
     </div>
-
 </div>
+<script>
+    $(".userphone").blur(function () {
+        var userphone = $(".userphone").val();
+        if ($.trim(userphone).length == 0){
+            $(".user .showMessage").html("手机号码不能为空");
+        }else if(userphone.length != 11){
+            $(".user .showMessage").html("手机位数不正确");
+        }else if (isPhoneNo(userphone) == false) {
+            $(".user .showMessage").html("手机号码不正确");
+        }else {
+            $(".disable").css("color","#2395ff");
+            $(".disable").removeAttr("disabled");
+        }
+        $(this).focus(function () {
+            $(".user .showMessage").html("");
+        });
+    });
+    //校验手机号码
+    function isPhoneNo(phone){
+        var pattern = /^1\d{10}$/;
+        return pattern.test(phone);
+    }
+
+    var InterValObj;  //time变量，控制时间
+    var count = 60;  //间隔函数，1秒执行
+    var curCount;   //当前剩余秒数
+    var code = "";   //验证码
+    var codeLength = 4;  //验证码长度
+
+    function send() {
+        var userphone = $(".userphone").val();
+        curCount = count;
+        //产生验证码
+        for(var i = 0;i < codeLength;i++){
+            code += parseInt(Math.random() * 9).toString();
+        }
+        //设置button效果，开始计时
+        $(".disable").attr("disabled","true");
+        $(".disable").text(curCount + "s后重发");
+        InterValObj = window.setInterval(SetRemainTime,1000);//启动计时器，1秒执行一次
+        alert(code);
+        <%--//发送验证码和手机到后台--%>
+        <%--$.getJSON(--%>
+            <%--"${pageContext.request.contextPath}/userController?method=sendCode",--%>
+            <%--{--%>
+                <%--"code":code,--%>
+                <%--"phone":userphone--%>
+            <%--},--%>
+            <%--function (data) {--%>
+
+            <%--}--%>
+        <%--);--%>
+
+    }
+    function checkLogin() {
+        var userphone = $(".userphone").val();
+        var userCode = $(".password").val();
+        if ($.trim(userphone).length == 0){
+            $(".user .showMessage").html("手机号码不能为空");
+        }else if(userphone.length != 11){
+            $(".user .showMessage").html("手机位数不正确");
+        }else if (isPhoneNo(userphone) == false) {
+            $(".user .showMessage").html("手机号码不正确");
+        }else {
+            $(".disable").css("color","#2395ff");
+            $(".disable").removeAttr("disabled");
+        }
+        if (userCode == null || userCode.length == 0){
+            $(".validation .showMessage").html("验证码为空")
+        }else{
+            if (userCode != code){
+                $(".validation .showMessage").html("验证码不正确");
+            }else{
+                //发送验证码和手机到后台
+                $.getJSON(
+                    "${pageContext.request.contextPath}/userController?method=login",
+                    {
+                        "phone":userphone
+                    },
+                    function (data) {
+
+                    }
+                );
+            }
+        }
+    }
+    function SetRemainTime() {
+        if (curCount == 0){
+            window.clearInterval(InterValObj);  //停止计时器
+            $(".disable").removeAttr("disabled");
+            $(".disable").text("重新发送");
+            code = "";
+        }else{
+            curCount --;
+            $(".disable").text(curCount + "s后重发");
+        }
+    }
+
+</script>
 </body>
 </html>
