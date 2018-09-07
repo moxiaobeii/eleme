@@ -366,10 +366,13 @@ $(document).ready(function(){
 	$(".btn_order,.btn-stress").click(function(){
 		//获得当前 的收货人id
 		var $curr_con = $(".active").find("span").html();
+		//获取备注
+		var mark = $(".checkout_input").val();
+		//获取送达时间
 		//获取当前的订单总价
 		var totalMoney = $("#totalMoney").val();
  		//请求的路径
- 		window.location.href="${pageContext.request.contextPath }/payServlet?method=orderConfirm&conId="+$curr_con+"&totalMoney="+totalMoney; 
+ 		window.location.href="${pageContext.request.contextPath }/payServlet?method=orderConfirm&conId="+$curr_con+"&totalMoney="+totalMoney+"&mark="+mark; 
  	});
 
 

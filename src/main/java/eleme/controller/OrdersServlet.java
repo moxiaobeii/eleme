@@ -33,15 +33,12 @@ public class OrdersServlet extends BaseServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("utf-8");
-		
 		/**
 		 * 查询用户地址
 		 */
 		//获得登录用户
 		HttpSession session = request.getSession();
 		User loginUser = (User) session.getAttribute("user");
-		
-		
 		//获取购物车的信息
 		Jedis jedis = JedisPoolUtils.getJedis();
 		//1、判断购物车是否存在
@@ -161,11 +158,9 @@ public class OrdersServlet extends BaseServlet {
 		String bid = jedis.get("current_bid");	
 		carts.remove(bid);
 		jedis.set("cart_item",gson.toJson(carts));
-		
 		//清空用户信息
 		HttpSession session = request.getSession();
 		session.removeAttribute("user");
-		
 		try {
 			//重定向到登录页面
 			response.sendRedirect(request.getContextPath()+"/reception/login.jsp");

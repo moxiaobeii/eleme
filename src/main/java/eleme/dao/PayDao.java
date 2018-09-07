@@ -67,8 +67,8 @@ public class PayDao {
 	}
 
 	//根据订单id和购物车来插入订单表
-	public void insertOrders(int userId, String oid, Cart cart, CartDetail cartDetail, String conId) throws SQLException {
-		qr.update("insert into orders values(?,?,?,?,?,?,?,?,?,?)",oid,cartDetail.getGoods().getBname(),new Date(System.currentTimeMillis()).toLocaleString(),cart.getTotalCount(),cart.getTotalMoney(),1,"加辣",0,userId,conId);
+	public void insertOrders(int userId, String oid, Cart cart, CartDetail cartDetail, String mark, String conId) throws SQLException {
+		qr.update("insert into orders values(?,?,?,?,?,?,?,?,?,?)",oid,cartDetail.getGoods().getBname(),new Date(System.currentTimeMillis()).toLocaleString(),cart.getTotalCount(),cart.getTotalMoney(),1,mark,0,userId,conId);
 	}
 
 	public Consignee queryConsignee(String conId) throws SQLException {

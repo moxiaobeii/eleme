@@ -149,6 +149,8 @@ public class PayServlet extends BaseServlet {
 	public void orderConfirm(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
+		//获取备注
+		String mark = request.getParameter("mark");
 		//获取此收货地址id
 		String conId = request.getParameter("conId");
 		Consignee consignee = new PayServiceImpl().queryConsignee(conId);
@@ -167,7 +169,7 @@ public class PayServlet extends BaseServlet {
 			request.setAttribute("oid", oid);
 			boolean insertResult = false;
 			if(!insertResult) {
-				new PayServiceImpl().insertOrders(user.getUserId(),oid,cart,cartDetail,conId);
+				new PayServiceImpl().insertOrders(user.getUserId(),oid,cart,cartDetail,mark,conId);
 				new PayServiceImpl().insertOrdersDetail(user.getUserId(),oid,cartDetail);
 				insertResult = true;
 			}

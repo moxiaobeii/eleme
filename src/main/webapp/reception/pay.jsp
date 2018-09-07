@@ -117,9 +117,10 @@ $(document).ready(function(){
         if(!($(".after").is(":hidden"))){
             //请求的路径
     		window.location.href="${pageContext.request.contextPath }/payServlet?method=pay&oid="+oid; 
-        }else{
-            alert("请选择支付的方式");
         }
+       /*  else{
+            alert("请选择支付的方式");
+        } */
     });
 	
 })
