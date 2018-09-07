@@ -44,7 +44,7 @@
             
             <!-- 地址导航栏 -->
             <div class="location">
-                <span id="span1">当前位置:</span><span id="span2"><a href="javascript:void(0)">广州市南沙区人民政府</a></span><span id="span3"><a href="javascript:void(0)">[切换地址]</a></span><span id="span4"><i class="iconfont icon-xiangyou"></i><span>近三个月订单</span></span>
+                <span id="span1">当前位置:</span><span id="span2"><a href="javascript:void(0)">广州市南沙区人民政府</a></span><span id="span3"><a href="${pageContext.request.contextPath }/reception/map-all.jsp">[切换地址]</a></span><span id="span4"><i class="iconfont icon-xiangyou"></i><span>近三个月订单</span></span>
             </div>
 
             <div class="center-content">
