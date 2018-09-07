@@ -105,14 +105,7 @@ ${cartDetails.goods.gname } x${cartDetails.subCount}
 
 	<span id="oid" style="display: none;">${oid }</span>
 
-    <!--生成二维码-->
- <%--    <div class="QRcode" id="QRcode">
-        <div class="QRcode_close" id="QRcode_close"></div>
-        <div class="QRcode_header">请扫二维码</div>
-        <div class="QRcode_content">
-            <img src="${pageContext.request.contextPath }image/pay/QRCODE.png">
-        </div>
-    </div> --%>
+
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -120,8 +113,13 @@ $(document).ready(function(){
     $(".btn").click(function(){
     	//获取当前订单id
     	var oid = $("#oid").text();
-		//请求的路径
-		window.location.href="${pageContext.request.contextPath }/payServlet?method=pay&oid="+oid; 
+    	
+        if(!($(".after").is(":hidden"))){
+            //请求的路径
+    		window.location.href="${pageContext.request.contextPath }/payServlet?method=pay&oid="+oid; 
+        }else{
+            alert("请选择支付的方式");
+        }
     });
 	
 })

@@ -39,16 +39,8 @@ public class OrdersServlet extends BaseServlet {
 		 */
 		//获得登录用户
 		HttpSession session = request.getSession();
-//		User loginUser = (User) session.getAttribute("LOGIN_USER");
+		User loginUser = (User) session.getAttribute("user");
 		
-		
-		//模拟一个用户
-		User loginUser = new User();
-		loginUser.setUserId(1001);
-		loginUser.setUsername("root");
-		loginUser.setPassword("admin");
-		loginUser.setTelphone(17875511823L);
-		session.setAttribute("USER", loginUser);
 		
 		//获取购物车的信息
 		Jedis jedis = JedisPoolUtils.getJedis();
@@ -77,12 +69,7 @@ public class OrdersServlet extends BaseServlet {
 			try {
 				//查询此用户的收货地址
 				List<Consignee> consignee = new OrderServiceImpl().queryConsigneeById(userId);
-				request.setAttribute("ConsigneeAddressInfo", consignee);
-				
-/*				//查询此用户的当前订单的详情表
-				List<OrderDetails> orderDetails = new OrderServiceImpl().queryOrderDetailsByOrderId(oid);
-				session.setAttribute("OrderDetailsInfo", orderDetails);*/
-				
+				request.setAttribute("ConsigneeAddressInfo", consignee);				
 				//跳转到订单页面
 				request.getRequestDispatcher("/reception/order-info.jsp").forward(request, response);
 			} catch (SQLException e) {
@@ -92,15 +79,11 @@ public class OrdersServlet extends BaseServlet {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-		}
-		//用户没有登录的情况下,跳转登录页面
-		else {
+		}else {
 			try {
-				request.getRequestDispatcher(request.getContextPath()+"/login.jsp").forward(request, response);
+				//用户没有登录的情况下,跳转登录页面
+				response.sendRedirect(request.getContextPath()+"/reception/login.jsp");
 				
-			} catch (ServletException e) {
-				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -115,7 +98,7 @@ public class OrdersServlet extends BaseServlet {
 		response.setContentType("utf-8");
 		
 		HttpSession session = request.getSession();
-		User loginUser = (User) session.getAttribute("USER");
+		User loginUser = (User) session.getAttribute("user");
 		
 		//获取前端传来的信息
 		String name = request.getParameter("name");
@@ -166,5 +149,29 @@ public class OrdersServlet extends BaseServlet {
 		}
 	}
 	
+	
+	//退出登录
+	public void exitUser(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+		//清空缓存
+		Jedis jedis = JedisPoolUtils.getJedis();
+		Gson gson = new Gson();
+		Type type = new TypeToken<Map<String, Cart>>() {}.getType();
+		Map<String, Cart> carts = gson.fromJson(jedis.get("cart_item"), type);
+		//获得当前商家的id和购物车
+		String bid = jedis.get("current_bid");	
+		carts.remove(bid);
+		jedis.set("cart_item",gson.toJson(carts));
+		
+		//清空用户信息
+		HttpSession session = request.getSession();
+		session.removeAttribute("user");
+		
+		try {
+			//重定向到登录页面
+			response.sendRedirect(request.getContextPath()+"/reception/login.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

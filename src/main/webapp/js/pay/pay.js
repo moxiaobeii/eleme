@@ -34,18 +34,6 @@ $(document).ready(function(){
         $("#look_order_msg").hide();
     });
 
-    //点击支付,生成二维码
-    $(".btn").click(function(){
-        if(!($(".after").is(":hidden"))){
-            $("#QRcode").show();
-        }else{
-            alert("请选择支付方式");
-        }
-    });
-    //点击关闭二维码
-    $("#QRcode_close").click(function(){
-        $("#QRcode").hide();
-    });
 
 
 });

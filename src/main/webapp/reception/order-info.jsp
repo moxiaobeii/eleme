@@ -27,14 +27,14 @@
 			class="fa fa-angle-right"></i> 订单消息
 		</span>
 		<!-- 登录用户信息-->
-		<span class="top_bar_rigth"> <span id="username">${USER.username } </span> 
+		<span class="top_bar_rigth"> <span id="username">${user.username } </span> 
 		<span class="fa fa-angle-down fa_size"></span>
 			<div class="dropbox topbar-profilebox-dropbox" id="dropbox">
 				<a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserPersonCenterInfo"><i class="fa fa-user"></i>个人中心</a> <a
 					href="${pageContext.request.contextPath }/consigneeCtroller?method=collectedBusinessInfo"><i class="fa fa-star"></i>我的收藏</a> <a
 					href="${pageContext.request.contextPath }/consigneeCtroller?method=queryConsigneeInfo"><i class="fa fa-map-marker"></i>我的地址</a>
 				<!--<a href="javascript:"><i class="fa fa-gear "></i>安全设置</a>-->
-				<a href="login.html"><i class="fa fa-power-off"></i>退出登录</a>
+				<a href="${pageContext.request.contextPath }/ordersServlet?method=exitUser"><i class="fa fa-power-off"></i>退出登录</a>
 			</div>
 		</span>
 		<div style="clear: both"></div>

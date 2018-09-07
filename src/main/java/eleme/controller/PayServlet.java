@@ -63,7 +63,7 @@ public class PayServlet extends BaseServlet {
 		//获取订单号
 		String oId = request.getParameter("oid");
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("USER");
+		User user = (User)session.getAttribute("user");
 		if(user == null) {
 			//用户需要登录,跳转到登录页面
 			request.getRequestDispatcher("/reception/login.jsp").forward(request, response);
@@ -137,7 +137,7 @@ public class PayServlet extends BaseServlet {
 	public ServerResponse<Boolean> queryOrderPayStatus(HttpServletRequest request,HttpServletResponse response){
 		HttpSession session = request.getSession();
 		String oid = (String) request.getAttribute("oid");
-		User user = (User) session.getAttribute("LOGIN_USER");
+		User user = (User) session.getAttribute("user");
 		if(user == null) {		//返回用户需要登录
 			return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
 		}
@@ -148,7 +148,7 @@ public class PayServlet extends BaseServlet {
 	@SuppressWarnings("unused")
 	public void orderConfirm(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("USER");
+		User user = (User)session.getAttribute("user");
 		//获取此收货地址id
 		String conId = request.getParameter("conId");
 		Consignee consignee = new PayServiceImpl().queryConsignee(conId);
