@@ -14,7 +14,7 @@
   </init-param>
   <init-param> 
        <param-name>notCheckURLList </param-name> 
-       <param-value>/reception/login.jsp;</param-value> 
+       <param-value>/reception/login.jsp;index.jsp</param-value> 
   </init-param> 
  </filter>
   <filter-mapping>
