@@ -27,7 +27,7 @@
     <!-- JQuery库-->
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.1.min.js"></script>
     <!--导入js文件-->
-    <script src="${pageContext.request.contextPath }/js/sidebar.js"></script>
+    
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/order.js"></script>
 </head>
 <body>

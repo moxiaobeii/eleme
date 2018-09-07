@@ -45,25 +45,21 @@ public class ConsigneeCtroller extends BaseServlet {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-				
-		
-	
-		
 		//user1为测试数据
-		User user1 = new User();
-		user1.setUserId(1003);
-		user1.setUsername("郭家康");
-		user1.setTelphone(1787551181);
-		user1.setPassword("a123");
-		user1.setMyRedPaper(2);
-		user1.setMyGold(56);
-		user1.setMyCount(23);
+//		User user1 = new User();
+//		user1.setUserId(1003);
+//		user1.setUsername("郭家康");
+//		user1.setTelphone(1787551181);
+//		user1.setPassword("a123");
+//		user1.setMyRedPaper(2);
+//		user1.setMyGold(56);
+//		user1.setMyCount(23);
 		//session1为测试数据
-		HttpSession session1 = request.getSession();
-		session1.setAttribute("USER", user1);		
+//		HttpSession session1 = request.getSession();
+//		session1.setAttribute("USER", user1);		
 		
 		HttpSession session = request.getSession();	
-		User user = (User)session.getAttribute("USER");//从session 获取登录用户的信息
+		User user = (User)session.getAttribute("user");//从session 获取登录用户的信息
 		
 		
 		if(user != null){
@@ -100,7 +96,9 @@ public class ConsigneeCtroller extends BaseServlet {
 	public void queryRecentlyOrderInfo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		//测试数据
-		int userId = 1003;
+		HttpSession session = request.getSession();	
+		User user = (User)session.getAttribute("user");//从session 获取登录用户的信息
+		int userId = user.getUserId();
 		
 		ConsigneeService collectBusiness = new ConsigneeServiceImpl();
 		List<Orders> recentlyOrders = collectBusiness.queryRecentlyOrderInfo(userId);		

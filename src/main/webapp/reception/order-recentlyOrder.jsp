@@ -27,7 +27,7 @@
     <!-- JQuery库-->
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.1.min.js"></script>
     <!--导入js文件-->
-    <script src="${pageContext.request.contextPath }/js/sidebar.js"></script>
+
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/order.js"></script>
 </head>
 <body>
@@ -130,7 +130,7 @@
 			                	</h3>
 			                </td>
 			                <td class="td-six">
-			                    <a href="javascript:void(0)" class="td-six-a1" onclick="orderDetails()">订单详情</a>
+			                    <a href="${pageContext.request.contextPath }/reception/order-details.jsp?oid=${ordresInfo.oid}" class="td-six-a1">订单详情</a>
 			                    <a href="javascript:void(0)" class="td-six-a2">再来一份</a>
 			                </td>
 			            </tr>

@@ -27,7 +27,7 @@
     <!-- JQuery库-->
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.1.min.js"></script>
     <!--导入js文件-->
-    <script src="${pageContext.request.contextPath }/js/sidebar.js"></script>
+
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/order.js"></script>
 </head>
 <body>
@@ -86,20 +86,20 @@
                     <img src="${pageContext.request.contextPath }/image/personal-info-headPhoto.png">
                     <div id="edit-message" ><span><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">编辑资料</a></span></div>
                 </div>
-                <h3>早上好,&nbsp;&nbsp;<strong>${sessionScope.USER.username }</strong></h3>
+                <h3>早上好,&nbsp;&nbsp;<strong>${sessionScope.user.username }</strong></h3>
                 <p>订餐了吗？提前订餐送得快！</p>
             </div>
             <div class="person-center-info-div2">
                 <p class="person-center-info-div2-p1"><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">我的红包</a></p>
-                <p class="person-center-info-div2-p2 PerCenIoD2P2"><span><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">${sessionScope.USER.myRedPaper }</a></span>个</p>
+                <p class="person-center-info-div2-p2 PerCenIoD2P2"><span><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">${sessionScope.user.myRedPaper }</a></span>个</p>
             </div>
             <div class="person-center-info-div3">
                 <p class="person-center-info-div2-p1"><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">我的金币</a></p>
-                <p class="person-center-info-div2-p2 PerCenIoD3P2"><span><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">${sessionScope.USER.myGold }</a></span>个</p>
+                <p class="person-center-info-div2-p2 PerCenIoD3P2"><span><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">${sessionScope.user.myGold }</a></span>个</p>
             </div>
             <div class="person-center-info-div4">
                 <p class="person-center-info-div2-p1"><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">账户余额</a></p>
-                <p class="person-center-info-div2-p2 PerCenIoD4P2"><span><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">${sessionScope.USER.myCount }</a></span>元</p>
+                <p class="person-center-info-div2-p2 PerCenIoD4P2"><span><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo">${sessionScope.user.myCount }</a></span>元</p>
             </div>
         </div>
 
@@ -144,7 +144,7 @@
 			                <c:when test="${ordresInfo.order_status==4 }">已送达</c:when>			                
 			                </c:choose>
 					</p>
-                    <a href="javascript:void(0)" onclick="orderDetails()">订单详情</a>
+                    <a href="${pageContext.request.contextPath }/reception/order-details.jsp?oid=${ordresInfo.oid}">订单详情</a>
                 </div>
             </div>
 		</c:forEach>
