@@ -48,6 +48,23 @@
     #poiInfo {
         background: #fff;
     }
+    #btn{
+            position: absolute;
+            top: 0;
+            right: -552px;
+            height: 58px;
+            width: 128px;
+            font-size: 18px;
+            background-color: #f74342;
+            color: white;
+            text-align: center;
+            line-height: 58px;
+            cursor: pointer;
+            display: inline-block;
+        }
+        #btn:hover{
+            background-color: rgb(230, 38, 37);
+        }
 
     .amap_lib_placeSearch .poibox.highlight {
         background-color: #CAE1FF;
@@ -70,10 +87,17 @@
                         </a>
                     </p>
                     <span class="map-header-right">
-                        <a class="user-name">
-                            <img src="//shadow.elemecdn.com/faas/desktop/media/img/default-avatar.38e40d.png">
-                            aaaaaaaa
-                        </a>
+	                    <c:if test="${user != null}">
+			               <a class="user-name">
+	                           <img src="//shadow.elemecdn.com/faas/desktop/media/img/default-avatar.38e40d.png">
+	                           <span id="userName">${sessionScope.user.username}</span>
+	                       </a>
+			            </c:if>
+			            <c:if test="${user == null}">
+			            	<a class="user-name">
+		                           <span id="userName">登录/注册</span>
+		                       </a>
+			            </c:if>
                         <a class="set-up-shop">我要开店</a>
                     </span>
                 </div>
@@ -84,6 +108,8 @@
                     <div id="pickerBox">
                         <input id="pickerInput" placeholder="请输入你的收货地址" />
                         <div id="poiInfo"></div>
+                        <!-- 搜索按钮 -->
+                    	<div id="btn">搜索</div>
                     </div>
                     <div id="container" class="map" tabindex="0"></div>
                 </div>

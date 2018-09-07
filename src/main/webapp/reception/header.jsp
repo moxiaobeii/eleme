@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,22 +37,32 @@
                     <span>扫一扫，手机定餐更方便</span>
                     <img src="${pageContext.request.contextPath }/image/header-1.png">
                 </div>
-            </div>
-            <div class="top-itemR top-itemR-last">
-                <i></i>
-                <span>${USER.username }</span>
-                <spna></spna>
-                <div class="top-itemR-profile-drop">
-                    <a class="profile-drop-a" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=orderpersonpage" >个人中心</a>
-                    <a class="profile-drop-b" href="${pageContext.request.contextPath }/consigneeCtroller?method=collectedBusinessInfo">我的收藏</a>
-                    <a class="profile-drop-c" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryConsigneeInfo">我的地址</a>
-                    <a class="profile-drop-d">安全设置</a>
-                    <a class="profile-drop-e">退出登录</a>
-                </div>
-            </div>
+            </div> 
+            <c:if test="${user != null}">
+	            <div class="top-itemR top-itemR-last">
+	                <span id="userName">${sessionScope.user.username}</span>
+	                <span class="fa fa-angle-down"></span>
+	                <div class="top-itemR-profile-drop showUser" id="top-itemR-profile-drop">
+	                    <a class="profile-drop-a" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=orderpersonpage" >个人中心</a>
+	                    <a class="profile-drop-b" href="${pageContext.request.contextPath }/consigneeCtroller?method=collectedBusinessInfo">我的收藏</a>
+	                    <a class="profile-drop-c" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryConsigneeInfo">我的地址</a>
+	                    <a class="profile-drop-d">安全设置</a>
+	                    <a class="profile-drop-e" id="profile-drop-e">退出登录</a>
+	                </div>
+	            </div>
+            </c:if>
+            <c:if test="${user == null}">
+                <div class="top-itemR top-itemR-last">
+	                <span id="userName">登录/注册</span>
+	            </div>
+            </c:if>
+            
             <div class="top-item2"></div>
         </div>
     </div>
 </header>
+
+<script type="text/javascript">
+</script>
 </body>
 </html>

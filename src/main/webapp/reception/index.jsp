@@ -179,7 +179,7 @@
 		    <div class="ordMes-main-out">
 		        <div class="ordMes-main-in">
 		        	<c:forEach var="listIndex" items="${LISTINDEX}" >
-		        		<a href="/" class="sellers">
+		        		<a href="${pageContext.request.contextPath }/business?method=getBusinessInfo&bid=${listIndex.bid}" class="sellers">
 					        <div class="seller-logo">
 					            <img src=${listIndex.logo}  alt=${listIndex.bname}>
 					            <span>${listIndex.distribution_time}分钟</span>
@@ -575,7 +575,7 @@
 		    
 		    
 		
-		    //鼠标移入“谁去拿外卖”变大
+		    /* //鼠标移入“谁去拿外卖”变大
 		    $("#postOrd-who").mouseenter(function(){
 		        $(this).animate({
 		            width: '190px',
@@ -586,7 +586,7 @@
 		            width: '186px',
 		            height: '55px',
 		        },"slow");
-		    });
+		    }); */
 		    
 		    
 		
@@ -819,7 +819,7 @@
 
 
 
-		    //鼠标移动上去某个商家信息模块，显示内容
+		    /* //鼠标移动上去某个商家信息模块，显示内容
 		    $(".ordMes-main-in .sellers").mouseenter(function(){
 	 	        $(".ordMes-main-in .sellers:nth-child(4) .seller-mes-hide-out").css("left", "-300px");
 		        $(this).find(".seller-mes-hide-out").removeClass("hide");
@@ -830,7 +830,7 @@
 		    $(".sellers .seller-mes-hide-out").mouseenter(function(){
 		        $(this).addClass("hide");
 		    });
-		    
+		     */
 	
 		});
     </script>

@@ -123,6 +123,11 @@ a{
 #top-right .top-itemR-last{
     float: right;
 }
+/* 用户账户的提示下拉小图标 */
+ .fa-angle-down{
+	
+}
+
 /*用户账号隐藏内容*/
 .top-itemR-last .top-itemR-profile-drop{
     width: 122px;
@@ -133,8 +138,10 @@ a{
     background-color: white;
     border: 1px solid hotpink;
     box-shadow:1px 1px 1px;
-    display: none;
     z-index: 99;
+}
+.top-itemR-last .showUser{
+	display: none;
 }
 /*隐藏内容a标签*/
 .top-itemR-profile-drop a{
@@ -155,6 +162,7 @@ a{
     background: rgba(150, 205, 205, 0.2);
 }
 /*显示用户账号隐藏内容*/
-.top-itemR-last:hover .top-itemR-profile-drop{
+/* .top-itemR-last:hover .top-itemR-profile-drop{
     display: block;
 }
+ */
