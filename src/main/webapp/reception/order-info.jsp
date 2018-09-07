@@ -23,7 +23,7 @@
 	<header>
 	<div class="header_nav container">
 		<span class="header_nav_path"> 当前位置: <a href="index.html">南沙创新中心</a>
-			<i class="fa fa-angle-right"></i> <a href="seller.html">蒸品店</a> <i
+			<i class="fa fa-angle-right"></i> <a href="${pageContext.request.contextPath }/business?method=getBusinessInfo&bid=18">麦徳乐炸鸡汉堡</a> <i
 			class="fa fa-angle-right"></i> 订单消息
 		</span>
 		<!-- 登录用户信息-->

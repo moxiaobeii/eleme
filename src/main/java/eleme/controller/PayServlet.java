@@ -1,6 +1,7 @@
 package eleme.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -20,6 +21,8 @@ import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.demo.trade.ResponseCode;
 import com.alipay.demo.trade.ServerResponse;
 import com.alipay.demo.trade.config.Configs;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mchange.v2.collection.MapEntry;
 
 import eleme.entity.Cart;
@@ -28,6 +31,8 @@ import eleme.entity.Consignee;
 import eleme.entity.Goods;
 import eleme.entity.User;
 import eleme.service.impl.PayServiceImpl;
+import eleme.utils.JedisPoolUtils;
+import redis.clients.jedis.Jedis;
 
 @WebServlet("/payServlet")
 public class PayServlet extends BaseServlet {
@@ -37,7 +42,7 @@ public class PayServlet extends BaseServlet {
 	//创建一个日志对象
     private static Log log = LogFactory.getLog(PayServlet.class);
 	
-	//支付的方法
+	//点击支付生成二维码的方法
 	@SuppressWarnings("rawtypes")
 	public ServerResponse pay(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/**
@@ -45,11 +50,18 @@ public class PayServlet extends BaseServlet {
 		 * 订单号判断订单是否存在,业务处理
 		 * 获取upload文件夹路径
 		 */
+
 		//清空缓存
-		
+		Jedis jedis = JedisPoolUtils.getJedis();
+		Gson gson = new Gson();
+		Type type = new TypeToken<Map<String, Cart>>() {}.getType();
+		Map<String, Cart> carts = gson.fromJson(jedis.get("cart_item"), type);
+		//获得当前商家的id和购物车
+		String bid = jedis.get("current_bid");	
+		carts.remove(bid);
+		jedis.set("cart_item",gson.toJson(carts));
 		//获取订单号
 		String oId = request.getParameter("oid");
-		
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("USER");
 		if(user == null) {
