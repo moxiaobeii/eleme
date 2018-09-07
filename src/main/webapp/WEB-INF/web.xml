@@ -13,16 +13,15 @@
   		<param-value>/reception/login.jsp</param-value>
   </init-param>
   <init-param> 
-       <param-name>notCheckURLList </param-name> 
-       <param-value>/reception/login.jsp;index.jsp</param-value> 
+       <param-name>notCheckURLList</param-name> 
+       <param-value>/reception/index.jsp;/reception/login.jsp;/reception/header.jsp;/reception/footer.jsp;/reception/sidebar.jsp;/reception/map-all.jsp</param-value> 
   </init-param> 
  </filter>
   <filter-mapping>
   <filter-name>CheckLoginFilter</filter-name>
   <url-pattern>/reception/*</url-pattern>
+
  </filter-mapping>
-  
-  
   
   <servlet>
     <description></description>
