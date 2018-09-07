@@ -2,8 +2,10 @@ package eleme.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,11 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import eleme.entity.Cart;
 import eleme.entity.Consignee;
 import eleme.entity.OrderDetails;
-import eleme.entity.Orders;
 import eleme.entity.User;
 import eleme.service.impl.OrderServiceImpl;
+import eleme.utils.JedisPoolUtils;
+import redis.clients.jedis.Jedis;
 
 @WebServlet("/ordersServlet")
 public class OrdersServlet extends BaseServlet {
@@ -26,6 +33,7 @@ public class OrdersServlet extends BaseServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("utf-8");
+		
 		/**
 		 * 查询用户地址
 		 */
@@ -42,8 +50,25 @@ public class OrdersServlet extends BaseServlet {
 		loginUser.setTelphone(17875511823L);
 		session.setAttribute("USER", loginUser);
 		
-		//模拟一个订单ID,查询出订单明细,遍历显示在前端页面
-		String oid = "201808281508";
+		//获取购物车的信息
+		Jedis jedis = JedisPoolUtils.getJedis();
+		//1、判断购物车是否存在
+		Gson gson = new Gson();
+		Type type = new TypeToken<Map<String, Cart>>() {}.getType(); 
+		Map<String, Cart> carts = gson.fromJson(jedis.get("cart_item"), type);
+		//获得当前商家的id和购物车
+		
+		String bid = jedis.get("current_bid");	
+		if(bid == null) {
+			try {
+				response.sendRedirect(request.getContextPath()+"/indexServlet?method=index");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		Cart cart = carts.get(bid);
+		//将购物车存入session,传递给前端。
+		session.setAttribute("current_cart", cart);
 		
 		//如果用户登录,查询出用户的信息和购物车信息
 		if(loginUser != null) {
@@ -53,9 +78,11 @@ public class OrdersServlet extends BaseServlet {
 				//查询此用户的收货地址
 				List<Consignee> consignee = new OrderServiceImpl().queryConsigneeById(userId);
 				request.setAttribute("ConsigneeAddressInfo", consignee);
-				//查询此用户的当前订单的详情表
+				
+/*				//查询此用户的当前订单的详情表
 				List<OrderDetails> orderDetails = new OrderServiceImpl().queryOrderDetailsByOrderId(oid);
-				session.setAttribute("OrderDetailsInfo", orderDetails);
+				session.setAttribute("OrderDetailsInfo", orderDetails);*/
+				
 				//跳转到订单页面
 				request.getRequestDispatcher("/reception/order-info.jsp").forward(request, response);
 			} catch (SQLException e) {
@@ -105,5 +132,39 @@ public class OrdersServlet extends BaseServlet {
 		}
 		
 	}
+	
+	//删除地址
+	public void deleteConsignee(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+		int conId = Integer.parseInt(request.getParameter("conId"));
+		
+		try {
+			new OrderServiceImpl().deleteConsignee(conId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	//修改地址
+	public void modifyConsignee(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("utf-8");
+		//获取前端传来的信息
+		String conId = request.getParameter("con_id");
+		String name = request.getParameter("name");
+		int sex = Integer.parseInt(request.getParameter("sex"));
+		String location = request.getParameter("location");
+		String adress = request.getParameter("adress");
+		String resultAddress = location+adress;
+		long telphone = Long.parseLong(request.getParameter("telphone"));
+	
+		try {
+			new OrderServiceImpl().modifyConsignee(conId,name,sex,resultAddress,telphone);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }

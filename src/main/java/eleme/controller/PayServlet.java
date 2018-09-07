@@ -1,12 +1,11 @@
 package eleme.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +20,12 @@ import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.demo.trade.ResponseCode;
 import com.alipay.demo.trade.ServerResponse;
 import com.alipay.demo.trade.config.Configs;
+import com.mchange.v2.collection.MapEntry;
 
-import eleme.entity.OrderDetails;
+import eleme.entity.Cart;
+import eleme.entity.CartDetail;
+import eleme.entity.Consignee;
+import eleme.entity.Goods;
 import eleme.entity.User;
 import eleme.service.impl.PayServiceImpl;
 
@@ -42,16 +45,16 @@ public class PayServlet extends BaseServlet {
 		 * 订单号判断订单是否存在,业务处理
 		 * 获取upload文件夹路径
 		 */
-		//模拟一个订单号
-		String oId = "201808280001";
+		//清空缓存
 		
-		//获取从前台传来的订单号
-		//String oId = (String) request.getAttribute("oId");
+		//获取订单号
+		String oId = request.getParameter("oid");
+		
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("USER");
 		if(user == null) {
 			//用户需要登录,跳转到登录页面
-			request.getRequestDispatcher("/reception/pay.jsp").forward(request, response);
+			request.getRequestDispatcher("/reception/login.jsp").forward(request, response);
 		}
 		//二维码的路径
 		String path = request.getSession().getServletContext().getRealPath("upload");
@@ -130,19 +133,43 @@ public class PayServlet extends BaseServlet {
 	}
 	
 	//由订单页面点击跳转到支付页面的接口,获取订单信息,将此订单插入到数据库。并显示此订单的信息。
+	@SuppressWarnings("unused")
 	public void orderConfirm(HttpServletRequest request,HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("USER");
+		//获取此收货地址id
+		String conId = request.getParameter("conId");
+		Consignee consignee = new PayServiceImpl().queryConsignee(conId);
+		request.setAttribute("current_con", consignee);
 		//获取此订单详情,将之插入到数据库中
-		List<OrderDetails> orderDetails = (List<OrderDetails>) session.getAttribute("OrderDetailsInfo");
-		
-		//跳转页面,并显示信息.
+		Cart cart = (Cart) session.getAttribute("current_cart");
+		Map<Integer, CartDetail> cartMap = cart.getMap();
+		CartDetail cartDetail = null;
+		for(CartDetail cartDetails:cartMap.values()) {
+			cartDetail = cartDetails;
+		}
 		try {
+			//将订单详情表插入到数据库
+			//生成订单表,插入到数据库
+			String oid = "c"+Math.random()*100000;
+			request.setAttribute("oid", oid);
+			boolean insertResult = false;
+			if(!insertResult) {
+				new PayServiceImpl().insertOrders(user.getUserId(),oid,cart,cartDetail,conId);
+				new PayServiceImpl().insertOrdersDetail(user.getUserId(),oid,cartDetail);
+				insertResult = true;
+			}
+			//跳转页面
 			request.getRequestDispatcher("/reception/pay.jsp").forward(request, response);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+	
 	}
 	
 }

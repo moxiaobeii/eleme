@@ -369,15 +369,15 @@ ul li{
     right: 10px;
     top: 10px;
     background-color: white;
-    display: none; 
-}
+/*     display: none; */
+ }
 .modify_addr a{
     text-decoration: none;
     color: #0089dc;
     font-size: 13px;
 }
 .modify_addr :hover{
-	display: block; 
+	display: inline-block; 
     background-color: #f9f9f9;
 }
 
@@ -395,7 +395,7 @@ ul li{
     border: 1px solid #eee;
     height: auto;
 }
-.checkout_pay.active{
+.checkout_pay.activ{
     border-color: #0089dc;
     background: url("../../image/orderInfo/seleced.png") right bottom no-repeat;
 }
@@ -594,7 +594,6 @@ ul li{
 
 /*底部确认订单*/
 .checkout_quicksubmit {
-    display: none;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -641,4 +640,71 @@ ul li{
     outline: 0;
     cursor: pointer;
     text-align: center;
+}
+
+
+
+/* 删除地址 */
+.msgbox {
+    position: fixed;
+    background-color: #fff;
+    top: 164px !important;
+    width: 465px;
+    padding: 50px;
+    display: none;
+}
+.msgbox-close {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: #ccc;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+}
+.msgbox-status {
+    float: left;
+    width: 36px;
+    height: 36px;
+    font-size: 36px;
+}
+.msgbox-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 8px;
+    margin-left: 50px;   
+}
+.msgbox-message {
+    color: #999;
+    font-size: 14px;
+    margin-left: 50px;
+    line-height: 24px;
+}
+
+.msgbox-btns {
+    margin-top: 25px;
+}
+.msgbox-btns, .msgbox-message, .msgbox-title {
+    margin-left: 50px;
+}
+.btn-primary {
+    background-color: #0089dc;
+    color: #fff;
+}
+.btn-lg {
+    padding: 12px 30px;
+    font-size: 16px;
+}
+.msgbox-cancel {
+    text-decoration: underline;
+    color: #999;
+    background: 0 0;
+    border: 0;
+    padding: 10px 20px;
+    cursor: pointer;
 }

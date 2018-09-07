@@ -27,7 +27,7 @@
 			class="fa fa-angle-right"></i> 订单消息
 		</span>
 		<!-- 登录用户信息-->
-		<span class="top_bar_rigth"> <span id="username">罗先生 </span> 
+		<span class="top_bar_rigth"> <span id="username">${USER.username } </span> 
 		<span class="fa fa-angle-down fa_size"></span>
 			<div class="dropbox topbar-profilebox-dropbox" id="dropbox">
 				<a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserPersonCenterInfo"><i class="fa fa-user"></i>个人中心</a> <a
@@ -76,27 +76,26 @@
 					<dl class="order_car">
 						<dt class="oder_car_title">购物车</dt>
 						
-						
 							<!-- 遍历商品明细 -->
-							<c:forEach items="${OrderDetailsInfo }" var="orderDeails">
-								<dd class="oder_car_box">
-								<!--商品信息-->
-									<div class="order_car_good">
-										<!-- 单个商品信息 -->
-										<div class="cell itemname ng-binding goodName">${orderDeails.gname }</div>
-										<!--选择数量-->
-										<div class="cell itemquantity">
-											<button id="sub_goodCount">-</button>
-											<input class="oder_car_goodCount" value="${orderDeails.count }"> <!-- ${orderDeails.count } -->
-											<button id="add_goodCount">+</button>
+							<c:forEach items="${current_cart.map }" var="map">
+				                <c:set var="gid" value="${map.key}"></c:set>
+				                <c:set var="cartDetails" value="${map.value}"></c:set>
+									<dd class="oder_car_box">
+									<!--商品信息-->
+										<div class="order_car_good" id="${cartDetails.goods.gid }">
+											<!-- 单个商品信息 -->
+											<div class="cell itemname ng-binding goodName">${cartDetails.goods.gname }</div>
+											<!--选择数量-->
+											<div class="cell itemquantity">
+												<button id="sub_goodCount">-</button>
+												<input class="oder_car_goodCount" value="${cartDetails.subCount}">
+												<button id="add_goodCount">+</button>
+											</div>
+											<div class="cell itemtotal">
+												￥<span class="good_money">${cartDetails.subTotal }</span>
+											</div>
 										</div>
-										<div class="cell itemtotal">
-											￥<span class="good_money">${orderDeails.subtotal }</span>
-										</div>
-									</div>
-								</dd>
 							</c:forEach>
-						
 						
 					</dl>
 					<!--配送金额-->
@@ -107,7 +106,7 @@
 							</div>
 							<div class="cell itemquantity"></div>
 							<div class="cell itemtotal">
-								￥<span id="deliverfee">5.00</span>
+								￥<span id="deliverfee">0</span>
 							</div>
 						</li>
 						<li class="order_table_row extra">
@@ -116,16 +115,23 @@
 							<div class="cell itemtotal">￥</div>
 						</li>
 					</ul>
+					
+					
 					<!-- 总金额-->
 					<div class="checkoutcart_total color_stress">
-						￥ <span class="num ng-binding"></span>
+						￥ <span class="num ng-binding" id="totalMoney">${current_cart.totalMoney }</span>
 					</div>
 					<!-- 商品总数量-->
 					<div class="checkoutcart_totalextra">
-						共<span class="ng-binding">1</span>份商品
+						共<span class="ng-binding">${current_cart.totalCount }</span>份商品
 					</div>
+					
+					
 				</div>
 			</div>
+
+
+
 
 			<!--右侧核实信息-->
 			<div class="checkout_content">
@@ -142,27 +148,29 @@
 					 		<c:choose>
 					 			<c:when test="${vs.first }">
 									<li class="checkout_address address1 active">
+										<span class="addrfinId" style="display: none;">${c.con_id }</span>
 										<i class="checkout_address_icon fa fa-map-marker"></i>
 										<div class="checkout_address_info">
 											<p class="ng-binding"><span>${c.name}</span>&nbsp;&nbsp;&nbsp;<span>${c.telphone}</span></p>
 											<p class="color_weak">${c.address}</p>
 										</div>
 										<div class="modify_addr">
-											<a href="javascript:">修改</a>
-											<a href="javascript:">×</a>
+											<a href="javascript:" class="modifyAddr">修改</a>
+											<a href="javascript:" class="deleteAddr">×</a>
 										</div>
 									</li>
 								</c:when>
 					 			<c:otherwise>
 						 			<li class="checkout_address ng-scope">
+						 				<span class="addrfinId" style="display: none;">${c.con_id }</span>
 										<i class="checkout_address_icon fa fa-map-marker"></i>
 										<div class="checkout_address_info">
 											<p class="ng-binding"><span>${c.name}</span>&nbsp;&nbsp;&nbsp;<span>${c.telphone}</span></p>
 											<p class="color_weak">${c.address}</p>
 										</div>
 										<div class="modify_addr">
-											<a href="javascript:">修改</a>
-											<a href="javascript:">×</a>
+											<a href="javascript:" class="modifyAddr">修改</a>
+											<a href="javascript:" class="deleteAddr">×</a>
 										</div>
 									</li>
 					 			</c:otherwise>
@@ -181,7 +189,7 @@
 						付款方式 <span class="checkout_pay_tip">推荐使用在线支付，不用找零，优惠更多</span>
 					</h2>
 					<ul class="">
-						<li class="checkout_pay active ng_scope">
+						<li class="checkout_pay activ ng_scope">
 							<p>在线支付</p>
 							<p class="color_mute">仅支持支付宝</p>
 						</li>
@@ -238,8 +246,7 @@
 
 
 	<!--添加地址-->
-	<div class="addressdialog"
-		style="left: 373px; top: 131.5px; z-index: 1001;">
+	<div class="addressdialog" style="left: 373px; top: 131.5px; z-index: 1001;">
 		<div class="addressdialog_close"></div>
 		<div class="addressdialog_header">添加新地址</div>
 		<div class="addressdialog_content">
@@ -322,42 +329,166 @@
 	</div>
 
 	<!-- 底部确认订单-->
-	<div class="checkout_quicksubmit" id="sroll_show">
+	<div class="checkout_quicksubmit" id="sroll_show" style="display: block;">
 		<div class="container">
 			<span class="quick-text"> 应付金额 <span class="yen">¥</span> 
-			<span class="num ng-binding"></span>
+			<span class="num ng-binding">${current_cart.totalMoney }</span>
 			</span>
 			<button class="btn-stress btn-lg">确认下单</button>
 		</div>
 	</div>
 
+
+<div id="bgcolor" style="position: fixed;display:none; left: 0px; top: 0px; width: 100%; height: 100%; opacity: 0.5; background: rgb(0, 0, 0) none repeat scroll 0% 0%; z-index: 1002;"></div>
+	
+	<div class="msgbox" style="left: 535.5px; top: 96px; z-index: 1001;">
+		<div class="msgbox-close icon-close">×</div>
+		<div class="msgbox-content">
+			<div class="msgbox-status icon-dot-warning"></div>
+			<div class="msgbox-title">确定删除送货地址？</div>
+			<div class="msgbox-message"></div>
+		</div>
+		<div class="msgbox-btns">
+			<button class="btn-primary btn-lg msgbox-confirm">确定</button>
+			<button class="msgbox-cancel">取消</button>
+		</div>
+	</div>
+
+
+
 </body>
 <script type="text/javascript">
 $(document).ready(function(){
-	//点击保存地址,将数据保存到数据库
-	$("#saveAddress").click(function(){
-		var name = $("#name").val();
-		var sex = $("input[name='sex']:checked").val();
-		var city = $("#city").val();
-		var adress = $("#adress").val();
-		var telphone = $("#telphone").val();
-		//请求的路径
-		var url = "${pageContext.request.contextPath }/ordersServlet?method=insertConsignee";
-		var param = {"name":name,"sex":sex,"location":city,"adress":adress,"telphone":telphone};
+	
+	
+	
+	//点击确认支付,将当前订单传入servlet,然后请求跳转到支付页面,显示出支付页面
+	$(".btn_order,.btn-stress").click(function(){
+		//获得当前 的收货人id
+		var $curr_con = $(".active").find("span").html();
+		//获取当前的订单总价
+		var totalMoney = $("#totalMoney").val();
+ 		//请求的路径
+ 		window.location.href="${pageContext.request.contextPath }/payServlet?method=orderConfirm&conId="+$curr_con+"&totalMoney="+totalMoney; 
+ 	});
+
+
+    //添加地址
+    $(".checkout_addaddress").click(function(){		
+    	$(".addressdialog").find(".addressdialog_header").html("添加新地址");
+		$(".addressdialog").show(500);
+		$(".addressdialog").css("z-index",9999);
+		$("#bgcolor").css("display","block");
+		
+		//点击保存地址,将数据保存到数据库
+		$("#saveAddress").click(function(){
+			var name = $("#name").val();
+			var sex = $("input[name='sex']:checked").val();
+			var city = $("#city").val();
+			var adress = $("#adress").val();
+			var telphone = $("#telphone").val();
+			//请求的路径
+			var url = "${pageContext.request.contextPath }/ordersServlet?method=insertConsignee";
+			var param = {"name":name,"sex":sex,"location":city,"adress":adress,"telphone":telphone};
+			$.post(
+				url,
+				param,
+				function(){
+					$(".addressdialog").hide();
+					window.location.reload(true);
+				}
+			);
+		});
+	});
+    
+    //关闭添加地址栏
+    $(".addressdialog_close,#exit").click(function(){
+        $(".addressdialog").hide();
+        $("#bgcolor").css("display","none");
+    });
+	
+	
+	//点击删除,删除此地址
+	var con_id;
+	$(".deleteAddr").click(function(){
+		con_id = $(this).parent().siblings(".addrfinId").text();
+		$(".msgbox").toggle(500);
+		$(".msgbox").css("z-index",9999);
+		$("#bgcolor").css("display","block");
+
+	});
+	
+	//点击关闭,隐藏删除地址栏
+	$(".msgbox-close").click(function(){
+		$(".msgbox").hide();
+		$("#bgcolor").css("display","none");
+	});
+	
+	$(".msgbox-cancel").click(function(){
+		$(".msgbox").hide();
+		$("#bgcolor").css("display","none");
+	});
+
+	//修改地址
+	$(".modifyAddr").click(function(){
+		con_id = $(this).parent().siblings(".addrfinId").text();
+		$(".addressdialog").find(".addressdialog_header").html("编辑地址");
+		$(".addressdialog").show(500);
+		$(".addressdialog").css("z-index",9999);
+		$("#bgcolor").css("display","block");
+		
+		
+		
+		$("#saveAddress").click(function(){
+			//获取修改的地址值
+			var name = $("#name").val();
+			var sex = $("input[name='sex']:checked").val();
+			var city = $("#city").val();
+			var adress = $("#adress").val();
+			var telphone = $("#telphone").val();
+			//请求的路径
+			var url = "${pageContext.request.contextPath }/ordersServlet?method=modifyConsignee";
+			var param = {"con_id":con_id,"name":name,"sex":sex,"location":city,"adress":adress,"telphone":telphone};
+			$.post(
+				url,
+				param,
+				function(){
+					$(".addressdialog").hide();
+					window.location.reload(true);
+				}
+			);
+		});
+	});
+	
+	//确认删除地址
+	$(".btn-primary").click(function(){
+		var url = "${pageContext.request.contextPath }/ordersServlet?method=deleteConsignee";
+		var param = {"conId":con_id};
 		$.post(
 			url,
 			param,
 			function(){
-				$(".addressdialog").hide();
+				$(".msgbox").hide();
 				window.location.reload(true);
-			});
+			});	
 	});
 	
-	//点击确认支付,将当前订单传入servlet,然后请求跳转到支付页面,显示出支付页面
-	$(".btn_order").click(function(){
-		//请求的路径
-		window.location.href="${pageContext.request.contextPath }/payServlet?method=orderConfirm"; 
+	//获取浏览器滚动条
+ 	$(window).scroll(function(){
+		var h = $(this).scrollTop();
+		var payH = $(".btn_order").height();
+		if(h<(payH+100)){
+			$("#sroll_show").show();
+		}
+		if(h>(payH+100)){
+			$("#sroll_show").hide();
+	    }
+		
 	});
+	 
+	
+	
+	
 })
 </script>
 </html>

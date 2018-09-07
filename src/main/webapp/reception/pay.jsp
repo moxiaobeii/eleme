@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head lang="en">
@@ -27,9 +28,12 @@
                 <h3>订单详情</h3>
                 <div class="oder_detail">
                     <div class="pull-left user_box">
-                        <p class="text-muted order_seller">获取店家的名字</p>
+                        <p class="text-muted order_seller">${current_cart.map.value.goods.bname }</p>
                         <p class="" id="look_order_info">
-                            <span class="text-muted order_user">罗(先生) 17875511823 南沙科技创新中心A4栋4楼-3个小腿+1个翅中  x2汉堡+鸡肉卷  x2辣子鸡块  x2</span>
+                            <span class="text-muted order_user"><span>${current_con.name }</span> <span>${current_con.telphone }</span> <span>${current_con.address }</span>-
+<c:forEach items="${current_cart.map }" var="map"> <c:set var="gid" value="${map.key}"></c:set> <c:set var="cartDetails" value="${map.value}"></c:set>
+<span>${cartDetails.goods.gname }</span> x<span>${cartDetails.subCount}</span>
+</c:forEach></span>
                             <a class="a_css look_order" href="javascript:">
                                 <span class="look_order">查看详情</span>
                                 <span class="fa fa-angle-down"></span>
@@ -37,10 +41,13 @@
                         </p>
                         <!-- 隐藏部分-->
                         <div class="order_detail text-muted hidden" id="look_order_msg">
-                            <p class="user_info">罗(先生) 17875511823
-南沙科技创新中心A4栋4楼
+<p class="user_info"><span>${current_con.name }</span> <span>${current_con.telphone }</span>
+<span>${current_con.address }</span>
 -
-3个小腿+1个翅中x2&nbsp;&nbsp;汉堡+鸡肉卷x2&nbsp;&nbsp;辣子鸡块x2</p>
+<c:forEach items="${current_cart.map }" var="map"> <c:set var="gid" value="${map.key}"></c:set> <c:set var="cartDetails" value="${map.value}"></c:set>
+${cartDetails.goods.gname } x${cartDetails.subCount}
+</c:forEach>
+</p>
                             <a class="a_css look_up" href="javascript:">
                                 <span class="look_order">收起</span>
                                 <span class="fa fa-angle-up"></span>
@@ -54,7 +61,7 @@
                             <span>支付金额:</span>
                             <strong class="oder_money">
                                 <span>￥</span>
-                                <span>200</span>
+                                <span>${current_cart.totalMoney }</span>
                             </strong>
                         </span>
                     </p>
@@ -79,7 +86,7 @@
                 <div class="pay_box">
                     <p class="pay_title text-muted">
                         <span>第三方支付</span>
-                        <span class="text-money">￥200</span>
+                        <span class="text-money">￥${current_cart.totalMoney }</span>
                     </p>
                     <div class="alipay">
                         <div class="alipay_foot">
@@ -96,6 +103,8 @@
         </div>
     </div>
 
+	<span id="oid" style="display: none;">${oid }</span>
+
     <!--生成二维码-->
  <%--    <div class="QRcode" id="QRcode">
         <div class="QRcode_close" id="QRcode_close"></div>
@@ -109,8 +118,10 @@
 $(document).ready(function(){
     //点击支付,跳转到二维码页面
     $(".btn").click(function(){
+    	//获取当前订单id
+    	var oid = $("#oid").text();
 		//请求的路径
-		window.location.href="${pageContext.request.contextPath }/payServlet?method=pay"; 
+		window.location.href="${pageContext.request.contextPath }/payServlet?method=pay&oid="+oid; 
     });
 	
 })

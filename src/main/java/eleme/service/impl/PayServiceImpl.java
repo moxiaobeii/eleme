@@ -25,7 +25,11 @@ import com.alipay.demo.trade.service.AlipayTradeService;
 import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
 import com.alipay.demo.trade.utils.ZxingUtils;
 
+import eleme.dao.OrderInfoDao;
 import eleme.dao.PayDao;
+import eleme.entity.Cart;
+import eleme.entity.CartDetail;
+import eleme.entity.Consignee;
 import eleme.entity.OrderDetails;
 import eleme.entity.Orders;
 import eleme.service.PayService;
@@ -45,7 +49,7 @@ public class PayServiceImpl implements PayService{
 		Map<String,String> resultMap = new HashMap<String,String>();
 		try {
 			//通过订单号和用户id来查询订单信息
-			Orders order = PayDao.getPayDao().queryOrderByUserIdAndOderId(oId,userId);
+			Orders order = PayDao.getPayDao().queryOrderByUserIdAndOderId(oId);
 			if(order ==null) {
 				System.out.println("用户没有该订单");
 				//跳转
@@ -221,7 +225,7 @@ public class PayServiceImpl implements PayService{
 	public static ServerResponse<Boolean> queryOrderPayStatus(int userId,String oid) {
 		try {
 			//对数据库进行查询此订单
-			Orders order = PayDao.getPayDao().queryOrderByUserIdAndOderId(oid, userId);
+			Orders order = PayDao.getPayDao().queryOrderByUserIdAndOderId(oid);
 			if(order == null) {
 				return ServerResponse.createByErrorMessage("用户没有该订单");	
 			}
@@ -239,6 +243,24 @@ public class PayServiceImpl implements PayService{
 		return ServerResponse.createBySuccess(false);
 	}
 	
+	
+	//将订单详情插入到数据库中
+	public void insertOrdersDetail(int userId, String oid, CartDetail cartDetail) throws SQLException {
+		PayDao.getPayDao().insertOrdersDetail(userId,oid,cartDetail);
+	}
+	
+	//将订单表插入到数据库中
+	public void insertOrders(int userId, String oid, Cart cart, CartDetail cartDetail, String conId) throws SQLException {
+		PayDao.getPayDao().insertOrders(userId,oid,cart,cartDetail,conId);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	  // 简单打印应答
     private static void dumpResponse(AlipayResponse response) {
@@ -251,6 +273,22 @@ public class PayServiceImpl implements PayService{
             log.info("body:" + response.getBody());
         }
     }
+
+    //查询收货地址
+	public Consignee queryConsignee(String conId) {
+		try {
+			return PayDao.getPayDao().queryConsignee(conId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
     
 
+    
+    
+    
+    
 }
