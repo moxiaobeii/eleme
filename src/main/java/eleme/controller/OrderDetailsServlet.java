@@ -43,9 +43,8 @@ public class OrderDetailsServlet extends BaseServlet{
 //		 String json = gson.toJson(consigneeInfo);
 		 try {
 			PrintWriter out = resp.getWriter();
-			String age = "haha";
-			System.out.println(age);
-			out.print(age);
+			System.out.println(json);
+			out.print(json);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

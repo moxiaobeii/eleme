@@ -10,8 +10,69 @@
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/basic.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/font_70a6prvbmd7/iconfont.css" type="text/css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath }/css/orderDetails.css" type="text/css"/>
+       <!-- order页面样式-->
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/order.css"/>
+    <!-- header页面样式-->
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/header.css"/>
+      <!--外部引入头部私有样式-->
+    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/sidebar.css">
+    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/header.css">
+    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/footer.css">
+    <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/order-message.css">
+	<!-- order页面样式库-->
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/font-awesome/css/font-awesome.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/order-iconfont.css"/>
+     <!--导入js文件-->
+    <!-- JQuery库-->
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.1.min.js"></script>
 </head>
 <body >
+<jsp:include page="sidebar.jsp"></jsp:include>
+
+    <!--头部部分-->
+    <header class="header">
+    	<jsp:include page="header.jsp"></jsp:include>
+    </header>
+
+    <!--内容区-->
+    <div class="bodyer">
+        <div class="center">
+            
+            <!-- 地址导航栏 -->
+            <div class="location">
+                <span id="span1">当前位置:</span><span id="span2"><a href="javascript:void(0)">广州市南沙区人民政府</a></span><span id="span3"><a href="javascript:void(0)">[切换地址]</a></span><span id="span4"><i class="iconfont icon-xiangyou"></i><span>地址管理</span></span>
+            </div>
+
+            <div class="center-content">
+                <!-- 左侧边导航栏-->
+                <ul class="slideBar">
+                    <li class="slideBarLi_one">
+                        <h2>
+                            <i class="fa fa-home" id="slideBarLi_one_myhome"></i><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserPersonCenterInfo"  class="slideBarOption">个人中心</a>
+                        </h2>
+                    </li>
+                    <li class="slideBarLi_two">
+                        <h2><i class="fa fa-file" id="slideBarLi_two_myhome"></i>我的订单</h2>
+                        <ul>
+                            <li ><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo" class="slideBarOption">近三个月订单</a></li>
+                        </ul>
+                    </li>
+                    <li class="slideBarLi_three">
+                        <h2 ><i class="fa fa-user-o" id="slideBarLi_three_myhome"></i>我的资料</h2>
+                        <ul>
+                            <li ><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryUserInfo"  class="slideBarOption">个人资料</a></li>
+                            <li ><a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryConsigneeInfo"  class="slideBarOption">地址管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="slideBarLi_four ">
+                        <h2>
+                            <i class="fa fa-star"  id="slideBarLi_four_myhome"></i><a href="${pageContext.request.contextPath }/consigneeCtroller?method=collectedBusinessInfo"  class="slideBarOption">我的收藏</a>
+                        </h2>
+                    </li>
+                </ul>
+
+                <!-- 中间内容部分-->
+                <div class="center-box">
 <!--内容区-->
 <div class="content">
     <h3>订单详情</h3>
@@ -34,7 +95,7 @@
                 <a href="javascript:" class="orderprogress-again-item linktype">
                     再来一单
                 </a>
-                <a onclick="evaluationFun()" class="orderprogress-again-item buttontype">
+                <a class="orderprogress-again-item buttontype">
                     评价
                 </a>
             </div>
@@ -159,12 +220,18 @@
     <div class="orderprogress-border"></div>
 
 </div>
-
+  </div>
+            </div>
+        </div>
+    </div>
+  <div class="footer">
+    	<jsp:include page="footer.jsp"></jsp:include>
+    </div>  
  <script>
-	$(function(){
+	
 		$.post(
                 "${pageContext.request.contextPath}/orderDetailsServlet?method=getOrderDetails",
-                 "oid="+"201808281517",
+                 "oid="+${param.oid},
                  function(result){
                 	var parsed = JSON.parse(result);
                 	//alert(parsed.order.bname);
@@ -203,9 +270,13 @@
                 	}else{
                 		$("li").css("color","#999");
                 	}
-                }
+                	
+                	//给评价按钮附上跳转链接
+                	$(".buttontype").attr("href","evalation.jsp?oid="+${param.oid});            
+                	}
+                
               )
-	});
+	
 	
 </script>
 </body>
