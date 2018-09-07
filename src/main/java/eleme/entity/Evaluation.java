@@ -8,11 +8,33 @@ package eleme.entity;
 public class Evaluation {
 	private int eid;  //评价id
 	private String service_content;  //评价内容
-	private String service_evaluation;  //服务评价   0-3:不满意  4-5满意
-	private double good_evaluation;  //菜品评价
-	private int feeding_speed;  //送餐速度
+	private double service_evaluation;  //服务评价   0-3:不满意  4-5满意
+	private String good_evaluation;  //菜品评价组成的字符串
+	private String feeding_speed;  //送餐速度
 	private String sell_reply;   //商家回复内容
-	private Orders orders;  //订单
+	private String oid;  //订单
+	private String bname; //店名
+	private String username; // 用户名
+	private String evalDate; //用户评价时间
+	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getEvalDate() {
+		return evalDate;
+	}
+	public void setEvalDate(String evalDate) {
+		this.evalDate = evalDate;
+	}
+	public String getBname() {
+		return bname;
+	}
+	public void setBname(String bname) {
+		this.bname = bname;
+	}
 	public int getEid() {
 		return eid;
 	}
@@ -25,22 +47,22 @@ public class Evaluation {
 	public void setService_content(String service_content) {
 		this.service_content = service_content;
 	}
-	public String getService_evaluation() {
+	public double getService_evaluation() {
 		return service_evaluation;
 	}
-	public void setService_evaluation(String service_evaluation) {
+	public void setService_evaluation(double service_evaluation) {
 		this.service_evaluation = service_evaluation;
 	}
-	public double getGood_evaluation() {
+	public String getGood_evaluation() {
 		return good_evaluation;
 	}
-	public void setGood_evaluation(double good_evaluation) {
+	public void setGood_evaluation(String good_evaluation) {
 		this.good_evaluation = good_evaluation;
 	}
-	public int getFeeding_speed() {
+	public String getFeeding_speed() {
 		return feeding_speed;
 	}
-	public void setFeeding_speed(int feeding_speed) {
+	public void setFeeding_speed(String feeding_speed) {
 		this.feeding_speed = feeding_speed;
 	}
 	public String getSell_reply() {
@@ -49,11 +71,11 @@ public class Evaluation {
 	public void setSell_reply(String sell_reply) {
 		this.sell_reply = sell_reply;
 	}
-	public Orders getOrders() {
-		return orders;
+	public String getOid() {
+		return oid;
 	}
-	public void setOrders(Orders orders) {
-		this.orders = orders;
+	public void setOid(String oid) {
+		this.oid = oid;
 	}
 	
 	
