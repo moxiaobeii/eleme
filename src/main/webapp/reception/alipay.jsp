@@ -9,10 +9,9 @@
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/pay/alipay.css">
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/font-awesome/css/font-awesome.css">
     <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.1.1.min.js" charset="utf-8"></script>
-    
+   
 </head>
 <body>
-
 
 
     <!--生成二维码-->
@@ -26,14 +25,48 @@
      		<button class="btn-stress btn-lg" style="padding: 12px 30px;font-size: 16px;display: inline-block;line-height: 1;border: none; border-radius: 2px;outline: 0;cursor: pointer;text-align: center;background-color: #f74342;color: #fff;">完成支付</button>
         </div>
     </div>
+    
+    <span id="oid" style="display: none;">${oId }</span>
 </body>
 
-<script type="text/javascript">
+ <script type="text/javascript">
 $(document).ready(function(){
+	 //获得此id,轮询查询向后台查询此订单状态,若已支付则跳转页面
+
+ /*
+ window.setInterval(function(){
+		 
+		 var oid = $("#oid").text();
+		 var params = {"method":"queryOrderPayStatus","oid":oid};
+		 var url = "${pageContext.request.contextPath }/ordersServlet";
+
+		 
+		$.get(
+			url,
+			params,
+			function(data){
+				var result = data.result;
+				if(result == "true"){
+					alert("完成支付"); 
+					//clearInterval();
+					//完成支付,跳转页面
+					window.location.href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage"; 
+			}else{
+					 alert("未完成支付"); 
+				}
+			},
+			"json");  
+		
+  
+ 	},2000); 
+	
+ */
+	 
 	 $(".btn-stress").click(function(){
-			//请求的路径
-			window.location.href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage"; 
+		//请求的路径
+		window.location.href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage"; 
    	 });
 })
 </script>
+
 </html>

@@ -115,4 +115,17 @@ public class EvaluationDao {
 		}
 	return evaluation;	
 	}
+	
+	public int getOrderSta(String oid) {
+		String sql = "select order_status from orders where oid = ?";
+		List<Integer> sta = null;
+		try {
+			sta = runner.query(sql, new ColumnListHandler<Integer>("order_status"),oid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return sta.get(0);
+	}
 }

@@ -222,25 +222,25 @@ public class PayServiceImpl implements PayService{
 	
 	
 	//查询该订单是否支付成功
-	public static ServerResponse<Boolean> queryOrderPayStatus(int userId,String oid) {
+	public static boolean queryOrderPayStatus(String oid) {
 		try {
 			//对数据库进行查询此订单
 			Orders order = PayDao.getPayDao().queryOrderByUserIdAndOderId(oid);
 			if(order == null) {
-				return ServerResponse.createByErrorMessage("用户没有该订单");	
+				return false;	
 			}
 			if(order.getOrder_status() == 2) {	//判断此订单是否支付成功
-				return ServerResponse.createBySuccess();
+				return true;
 			}
-			return ServerResponse.createByError();
+			return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
 		ServerResponse serverResponse =  ServerResponse.createByError();
 		if(serverResponse.isSuccess()) {
-			return ServerResponse.createBySuccess(true);
+			return true;
 		}
-		return ServerResponse.createBySuccess(false);
+		return false;
 	}
 	
 	
@@ -253,12 +253,6 @@ public class PayServiceImpl implements PayService{
 	public void insertOrders(int userId, String oid, Cart cart, CartDetail cartDetail, String mark, String conId) throws SQLException {
 		PayDao.getPayDao().insertOrders(userId,oid,cart,cartDetail,mark,conId);
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 

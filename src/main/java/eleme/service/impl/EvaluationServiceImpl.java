@@ -94,10 +94,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 	public String getEval(String oid) {
 		EvaluationDao evaluationDao = new EvaluationDao();
 		Evaluation eval = evaluationDao.getEval(oid);
+		int orderSta = evaluationDao.getOrderSta(oid);
 		if(eval != null) {
 			return "true";
 		}else {
-			return "false";
+			return "false" + orderSta;
 		}
 		
 	}

@@ -62,6 +62,7 @@ public class PayServlet extends BaseServlet {
 		jedis.set("cart_item",gson.toJson(carts));
 		//获取订单号
 		String oId = request.getParameter("oid");
+		request.setAttribute("oId", oId);
 		HttpSession session = request.getSession();
 		User user = (User)session.getAttribute("user");
 		if(user == null) {
@@ -133,17 +134,7 @@ public class PayServlet extends BaseServlet {
 	}
 	
 
-	//写一个前台轮询查询此支付状态的接口,若支付成功,返回指引让前台跳转页面
-	public ServerResponse<Boolean> queryOrderPayStatus(HttpServletRequest request,HttpServletResponse response){
-		HttpSession session = request.getSession();
-		String oid = (String) request.getAttribute("oid");
-		User user = (User) session.getAttribute("user");
-		if(user == null) {		//返回用户需要登录
-			return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
-		}
-		return PayServiceImpl.queryOrderPayStatus(user.getUserId(), oid);
-	}
-	
+
 	//由订单页面点击跳转到支付页面的接口,获取订单信息,将此订单插入到数据库。并显示此订单的信息。
 	@SuppressWarnings("unused")
 	public void orderConfirm(HttpServletRequest request,HttpServletResponse response) {

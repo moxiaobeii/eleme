@@ -1,6 +1,7 @@
 package eleme.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.sql.SQLException;
@@ -18,10 +19,11 @@ import com.google.gson.reflect.TypeToken;
 
 import eleme.entity.Cart;
 import eleme.entity.Consignee;
-import eleme.entity.OrderDetails;
 import eleme.entity.User;
 import eleme.service.impl.OrderServiceImpl;
+import eleme.service.impl.PayServiceImpl;
 import eleme.utils.JedisPoolUtils;
+import net.sf.json.JSON;
 import redis.clients.jedis.Jedis;
 
 @WebServlet("/ordersServlet")
@@ -169,4 +171,30 @@ public class OrdersServlet extends BaseServlet {
 		}
 	}
 
+	
+	
+	
+	//写一个前台轮询查询此支付状态的接口,若支付成功,返回指引让前台跳转页面
+	public void queryOrderPayStatus(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
+		response.setCharacterEncoding("UTF-8");  
+		response.setContentType("application/json; charset=utf-8");  
+		PrintWriter writer = response.getWriter();
+		
+		HttpSession session = request.getSession();
+		String oid = request.getParameter("oid");
+		User user = (User) session.getAttribute("user");
+		if(user == null) {		//返回用户需要登录
+			response.sendRedirect(request.getContextPath()+"/reception/login.jsp");
+		}
+		boolean result =  PayServiceImpl.queryOrderPayStatus(oid);
+		if(result) {
+			//跳转页面
+			request.getRequestDispatcher("/reception/pay.jsp").forward(request, response);
+			
+			writer.append("{\"result\":\"true\"}");
+		}else {
+			writer.append("{\"result\":\"false\"}");
+		}
+	}
+	
 }
