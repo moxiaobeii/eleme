@@ -221,6 +221,43 @@
                                 //保存数据，不用有回调函数
                             });
                     });
+                    $(".sub").off('click').on('click',function () {
+                        var gid = $(this).parent().prev().attr("ID");
+                        var price = parseFloat($(this).parent().next().attr("name"));
+                        var n = $(this).next().val();
+                        var num = parseInt(n) - 1;
+                        if (num == 0){
+                            $(this).parent().parent().parent().parent().remove();
+                        }
+                        $(this).next().val(num);
+                        var totalCount = parseInt($("#allNum").html())-1;
+                        var totalMoney = parseFloat($("#allPrice").html())-price;
+                        var subTotal = num * price;
+                        $(this).parent().next().html('￥'+subTotal);
+                        $("#allNum").html(totalCount);
+                        $("#allPrice").html(totalMoney);
+                        /*  增商品 */
+                     	$.getJSON(
+                            "${pageContext.request.contextPath}/business?method=updateCarts",
+                            {"gid":gid,
+                                "subTotal":subTotal,
+                                "subCount":num,
+                                "totalMoney":totalMoney,
+                                "totalCount":totalCount
+                            },
+                            function() {
+                                //保存数据，不用有回调函数
+                            });
+                        //判断购物车是否是否有商品
+                        var len = $("#shop-one .shop-one-down").length;
+                        if (len != 0){
+                            alert(len);
+                        }
+                        if (len == 0){
+                            $(".empty_cart").show();
+                            $(".cart").hide();
+                        }
+                    });
 				}else{
 					//当前商家的bid为空
 					$(".empty_cart").show();
