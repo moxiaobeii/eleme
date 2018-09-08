@@ -90,6 +90,11 @@ public class EvaluationServiceImpl implements EvaluationService {
 		
 		return evaluationDtos;
 	}
+
+	public String getEval(String oid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

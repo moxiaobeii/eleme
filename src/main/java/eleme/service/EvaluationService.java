@@ -33,4 +33,11 @@ public interface EvaluationService {
 	 * @return
 	 */
 	public List<EvaluationDto> getNoSatisfaction(String shopName);
+	
+	/**
+	 * 
+	 * @param oid
+	 * @return
+	 */
+	public String getEval(String oid);
 }

@@ -88,4 +88,17 @@ public class EvaluationServlet extends BaseServlet{
 		System.out.println(evaluationsJson);
 		out.print(evaluationsJson);
 	}
+	
+	/**
+	 * 判断该订单是否以评价过
+	 * @param req
+	 * @param resp
+	 * @throws IOException
+	 */
+	public void getEval(HttpServletRequest req,HttpServletResponse resp) throws IOException{
+		resp.setContentType("text/html;charset=utf-8");
+		PrintWriter out = resp.getWriter();
+		String oid = req.getParameter("oid");
+		EvaluationService evaluationServiceImpl = new EvaluationServiceImpl();
+	}
 }

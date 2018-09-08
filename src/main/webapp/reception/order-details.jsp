@@ -277,7 +277,13 @@
                 
               )
 	
-	
+	/* $.post{
+			"",
+			"oid="+${param.oid},
+			function(reulst){
+				
+			}
+		} */
 </script>
 </body>
 </html>
