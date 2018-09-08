@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ColumnListHandler;
 
@@ -97,5 +98,21 @@ public class EvaluationDao {
 			e.printStackTrace();
 		}
 		return gnames;
+	}
+	/**
+	 * 获得某个订单的评价
+	 * @param oid
+	 * @return
+	 */
+	public Evaluation getEval(String oid) {
+		String sql = "select * from evaluation where oid = ?";
+		Evaluation evaluation = null;
+		try {
+			 evaluation = runner.query(sql, new BeanHandler<Evaluation>(Evaluation.class),oid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	return evaluation;	
 	}
 }

@@ -100,5 +100,7 @@ public class EvaluationServlet extends BaseServlet{
 		PrintWriter out = resp.getWriter();
 		String oid = req.getParameter("oid");
 		EvaluationService evaluationServiceImpl = new EvaluationServiceImpl();
+		String eval = evaluationServiceImpl.getEval(oid);
+		out.print(eval);
 	}
 }

@@ -121,8 +121,8 @@
     <!--头部导航栏-->
     <div class="main_nav">
         <div class="nav_left">
-            <a href="#" class="shopnav-tab shopnav-tab-active">所有商品</a>
-            <a href="#" class="shopnav-tab shop_line">商品评价</a>
+            <a href="#" class="shopnav-tab">所有商品</a>
+            <a href="#" class="shopnav-tab shop_line shopnav-tab-active">商品评价</a>
             <a href="#" class="shopnav-tab shop_line">商家资质</a>
             <span class="shopnav-filter">
                 <a href="#" class="shop_line_active">默认排序</a>
@@ -269,11 +269,14 @@
 				var pingfenhui3 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
 				var pingfenhui4 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
 				var pingfenhui5 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
-				var icon = $("<span></span>").addClass("icon").append(pingfenhui1,pingfenhui2,pingfenhui3,pingfenhui4,pingfenhui5);
+				var icon = $("<span></span>").addClass("icon1").append(pingfenhui1,pingfenhui2,pingfenhui3,pingfenhui4,pingfenhui5);
 				var rateText = $("<span></span>").addClass("rate-text");
 				var rateStart = $("<p></p>").addClass("rate-start").append(icon,rateText);
 				var evalStart = $("<div></div>").addClass("eval-start").append(rateStart);
-				var evalMain = $("<div></div>").addClass("eval-main").append(evalStart);
+				//送货时间
+				var speedTime = $("<span></span>").html(parsed[i].evaluation.feeding_speed + "送达").addClass("speed-time");
+				var serviceContent = $("<p></p>").html(parsed[i].evaluation.service_content).addClass("service-content");
+				var evalMain = $("<div></div>").addClass("eval-main").append(evalStart,speedTime,serviceContent);
 				//根据服务等级，点亮icon图标
 				
 				if(parsed[i].evaluation.service_evaluation == 5){
@@ -506,11 +509,13 @@
 									var pingfenhui3 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
 									var pingfenhui4 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
 									var pingfenhui5 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
-									var icon = $("<span></span>").addClass("icon").append(pingfenhui1,pingfenhui2,pingfenhui3,pingfenhui4,pingfenhui5);
+									var icon = $("<span></span>").addClass("icon1").append(pingfenhui1,pingfenhui2,pingfenhui3,pingfenhui4,pingfenhui5);
 									var rateText = $("<span></span>").addClass("rate-text");
 									var rateStart = $("<p></p>").addClass("rate-start").append(icon,rateText);
 									var evalStart = $("<div></div>").addClass("eval-start").append(rateStart);
-									var evalMain = $("<div></div>").addClass("eval-main").append(evalStart);
+									var speedTime = $("<span></span>").html(parsed[i].evaluation.feeding_speed + "送达").addClass("speed-time");
+									var serviceContent = $("<p></p>").html(parsed[i].evaluation.service_content).addClass("service-content");
+									var evalMain = $("<div></div>").addClass("eval-main").append(evalStart,speedTime,serviceContent);
 									//根据服务等级，点亮icon图标
 									
 									if(parsed[i].evaluation.service_evaluation == 5){
@@ -633,11 +638,13 @@
 								var pingfenhui3 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
 								var pingfenhui4 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
 								var pingfenhui5 = $("<a></a>").addClass("iconfont").addClass("icon-pingfenhui");
-								var icon = $("<span></span>").addClass("icon").append(pingfenhui1,pingfenhui2,pingfenhui3,pingfenhui4,pingfenhui5);
+								var icon = $("<span></span>").addClass("icon1").append(pingfenhui1,pingfenhui2,pingfenhui3,pingfenhui4,pingfenhui5);
 								var rateText = $("<span></span>").addClass("rate-text");
 								var rateStart = $("<p></p>").addClass("rate-start").append(icon,rateText);
 								var evalStart = $("<div></div>").addClass("eval-start").append(rateStart);
-								var evalMain = $("<div></div>").addClass("eval-main").append(evalStart);
+								var speedTime = $("<span></span>").html(parsed[i].evaluation.feeding_speed + "送达").addClass("speed-time");
+								var serviceContent = $("<p></p>").html(parsed[i].evaluation.service_content).addClass("service-content");
+								var evalMain = $("<div></div>").addClass("eval-main").append(evalStart,speedTime,serviceContent);
 								//根据服务等级，点亮icon图标
 								
 								if(parsed[i].evaluation.service_evaluation == 5){

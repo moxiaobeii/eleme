@@ -277,13 +277,19 @@
                 
               )
 	
-	/* $.post{
-			"",
+		$.post(
+			"${pageContext.request.contextPath}/evaluationServlet?method=getEval",
+
 			"oid="+${param.oid},
-			function(reulst){
-				
+			function(result){
+				if(result == "true"){
+					$(".buttontype").css("display","none");
+				}else{
+					$(".buttontype").css("display"," inline-block");
+				}
 			}
-		} */
+		)
+		
 </script>
 </body>
 </html>
