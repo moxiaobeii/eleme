@@ -263,12 +263,25 @@
                 	//alert(typeof (parsed.order.order_status));
                 	if(parsed.order.order_status==2){
                 		$(".dd").first().css("color","#0089dc").nextAll().css("color","#999");
+                		$(".orderprogress-child").children("h5").html("等待商家接单");
+                		$(".orderprogress-child").children("p").html("");
+
                 	}else if(parsed.order.order_status==3){
                 		$(".jd").css("color","#0089dc").prev().css("color","#999").end().next().css("color","#999");
+                		$(".orderprogress-child").children("h5").html("商家已接单");
+                		$(".orderprogress-child").children("p").html("订单正在派送");
+
+
                 	}else if(parsed.order.order_status == 4){
                 		$(".sd").css("color","#0089dc").prevAll().css("color","#999");
+                		$(".orderprogress-child").children("h5").html("订单已送达");
+
                 	}else{
                 		$("li").css("color","#999");
+                		$(".orderprogress-child").children("h5").html("订单已取消");
+                		$(".orderprogress-child").children("p").html("");
+
+
                 	}
                 	
                 	//给评价按钮附上跳转链接
@@ -284,8 +297,10 @@
 			function(result){
 				if(result == "true"){
 					$(".buttontype").css("display","none");
-				}else{
+				}else if(result == "false4"){
 					$(".buttontype").css("display"," inline-block");
+				}else{
+					$(".buttontype").css("display","none");
 				}
 			}
 		)
