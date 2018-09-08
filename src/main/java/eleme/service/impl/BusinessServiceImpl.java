@@ -246,5 +246,28 @@ public class BusinessServiceImpl implements BusinessService {
 		return goodsList;
 	}
 
+	/**
+	 * 根据当前商家bid获得购物车信息
+	 * @return
+	 */
+	public Cart getCartByBid() {
+		Jedis jedis = JedisPoolUtils.getJedis();
+		Gson gson = new Gson();
+		Type type = new TypeToken<Map<String, Cart>>() {}.getType();
+		Map<String, Cart> carts = gson.fromJson(jedis.get("cart_item"), type);
+
+		String bid = jedis.get("current_bid");
+		if (bid == null) {
+			return null;
+		}else {
+			Cart cart = carts.get(bid);
+			if (cart!=null){
+				return cart;
+			}else {
+				return null;
+			}
+		}
+		
+	}
 
 }

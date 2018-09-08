@@ -163,5 +163,26 @@ public class BusinessController extends BaseServlet {
 		out.print(goods);
 	}
 
+	//获得购物车的信息
+	public void getCart(HttpServletRequest request,HttpServletResponse response) throws IOException {
+
+		request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+
+		BusinessService service = new BusinessServiceImpl();
+		Cart cart = service.getCartByBid();
+		Gson gson = new Gson();
+		
+		String current_cart = null;
+		
+		if (cart != null) {
+			current_cart = gson.toJson(cart);
+		}
+		System.out.println(current_cart);
+		PrintWriter writer = response.getWriter();
+		writer.print(current_cart);
+	}
+
 }
 

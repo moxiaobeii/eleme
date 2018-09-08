@@ -29,4 +29,6 @@ public interface BusinessService {
     public List<Goods> getAllGoods(String bname);
 
 	public List<Goods> getGoodsBySearchVal(String bname,String search);
+
+    public Cart getCartByBid();
 }

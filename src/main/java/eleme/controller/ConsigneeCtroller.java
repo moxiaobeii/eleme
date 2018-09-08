@@ -98,27 +98,32 @@ public class ConsigneeCtroller extends BaseServlet {
 		//测试数据
 		HttpSession session = request.getSession();	
 		User user = (User)session.getAttribute("user");//从session 获取登录用户的信息
-		int userId = user.getUserId();
-		
-		ConsigneeService collectBusiness = new ConsigneeServiceImpl();
-		List<Orders> recentlyOrders = collectBusiness.queryRecentlyOrderInfo(userId);		
-		
-		request.setAttribute("OrderDetailInfo",recentlyOrders );
-				
-		//判断是否是从recentlyorder页面送过来的参数
-		String value = request.getParameter("url");
-		
-		if ("recentlyorderpage".equals(value)) {
-			
-			request.getRequestDispatcher("/reception/order-recentlyOrder.jsp").forward(request, response);
-		}else if ("orderpersonpage".equals(value)) {
-			request.getRequestDispatcher("/reception/order-person.jsp").forward(request, response);			
+
+		if(user == null){
+			response.sendRedirect("reception/login.jsp");
 		}else{
-			PrintWriter out = response.getWriter();
-			Gson gson = new Gson();
-			String json = gson.toJson(recentlyOrders);
-			out.println(json);
+			int userId = user.getUserId();
+			ConsigneeService collectBusiness = new ConsigneeServiceImpl();
+			List<Orders> recentlyOrders = collectBusiness.queryRecentlyOrderInfo(userId);
+
+			request.setAttribute("OrderDetailInfo",recentlyOrders );
+
+			//判断是否是从recentlyorder页面送过来的参数
+			String value = request.getParameter("url");
+
+			if ("recentlyorderpage".equals(value)) {
+
+				request.getRequestDispatcher("/reception/order-recentlyOrder.jsp").forward(request, response);
+			}else if ("orderpersonpage".equals(value)) {
+				request.getRequestDispatcher("/reception/order-person.jsp").forward(request, response);
+			}else{
+				PrintWriter out = response.getWriter();
+				Gson gson = new Gson();
+				String json = gson.toJson(recentlyOrders);
+				out.println(json);
+			}
 		}
+
 	}
 	
 	//保存用户体提交过来的收获人信息

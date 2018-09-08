@@ -23,7 +23,7 @@
             <a href="index.jsp" class="top-logo">
                 <img src="${pageContext.request.contextPath }/image/header-2.png">
             </a>
-            <a href="${pageContext.request.contextPath }/reception/default.jsp" class="top-item top-first">首页</a>
+            <a href="${pageContext.request.contextPath }/index.jsp" class="top-item top-first">首页</a>
             <a href="${pageContext.request.contextPath }/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage" class="top-item">我的订单</a>
             <a href="javascript:void(0)" class="top-item">加盟合作</a>
             <a href="javascript:void(0)" class="top-item">我的客服</a>

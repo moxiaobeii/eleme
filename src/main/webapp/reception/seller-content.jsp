@@ -27,13 +27,13 @@
 
                 </h3>
                 <li>
-                    <a href="index.html">首页</a>
+                    <a href="${pageContext.request.contextPath}/index.jsp">首页</a>
                 </li>
                 <li>
-                    <a href="order.html">我的订单</a>
+                    <a href="${pageContext.request.contextPath}/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage">我的订单</a>
                 </li>
                 <li>
-                    <a href="order.html">加盟合作</a>
+                    <a href="/">加盟合作</a>
                 </li>
             </ul>
         </div>
@@ -166,7 +166,7 @@
 	                <c:set value="${businessDto.goods}" var="goodsDtos"></c:set>
 	                <c:forEach items="${goodsDtos}" var="goodsDto">
 		                <div class="shopmenu-food">
-		                    <span><a href="#"><img src="${pageContext.request.contextPath}/image/seller/chicken.jpg" alt="鸡腿"></a></span>
+		                    <span><a href="#"><img src="${pageContext.request.contextPath}/${goodsDto.pimage}" alt="鸡腿"></a></span>
 		                    <div class="shopmenu-tro">
 		                        <h3 class="food">${goodsDto.gname}</h3>
 		                        <span class="material">双层鸡腿堡 主要原料：${goodsDto.gname}</span>
@@ -581,7 +581,7 @@
                 "               ";
             $.each(goods,function (index,good) {
                 var content = "<div class=\"shopmenu-food\">\n" +
-                    "    <span><a href=\"#\"><img src=\"../image/seller/chicken.jpg\" alt=\"鸡腿\"></a></span>\n" +
+                    "    <span><a href=\"#\"><img src=\"${pageContext.request.contextPath}/"+good.pimage+"\" alt=\"鸡腿\"></a></span>\n" +
                     "    <div class=\"shopmenu-tro\">\n" +
                     "        <h3 class=\"food\">"+good.gname+"</h3>\n" +
                     "        <span class=\"material\">双层鸡腿堡 主要原料："+good.gname+"</span>\n" +

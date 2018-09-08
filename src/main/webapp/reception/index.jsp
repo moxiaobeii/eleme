@@ -20,11 +20,8 @@
     <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/footer.css">
     <!--外部引入右边购物车私有样式-->
     <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/sidebar.css">
-    <!--外部引入搜索框信息私有样式-->
     <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/index-SearchBar.css">
-    <!--外部引入搜索框找不到商家信息私有样式-->
     <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/index-SearchBar2.css">
-    <!--导入js文件 <script src="../js/index.js"></script>-->
     <!--外部引入导航栏搜索的私有样式-->
     <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/index-NavigationBar-out.css">
     <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath }/css/index-NavigationBar-in.css">

@@ -216,6 +216,7 @@ a{
 }
 /*导航栏主要内容部分-购物车*/
 .sidebar-content-cart .content-up{
+	position: relative;
     color: black;
     background-color: white;
     font-size: 16px;
@@ -226,22 +227,45 @@ a{
 .sidebar-content-cart .content-up a{
     max-width: 240px;
     display: inline-block;
-    line-height: 16px;
+    line-height: 29px;
     text-decoration: none;
     color: black;
+    font-size:17px;
 }
 .sidebar-content-cart .content-up a:hover{
     text-decoration: underline;
 }
 
 .sidebar-content-cart .content-up span{
-    float: right;
+	padding-left:207px;
     cursor: pointer;
+    
+    
 }
 .sidebar-content-cart .content-up span:hover{
     color: cornflowerblue;
 }
+.cart_item{
+	padding: 5px 10px;
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+}
+.cart_item h3{
+	font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+}
+.cart_item p{
+	color: #999;
+    font-size: 12px;
+    text-align: center;
+}
+.cart_item img{
+	height: 115px;
+    width: 190px;
 
+}
 /*中间购物车样式*/
 .sidebar-content-cart .content-center{
     background-color: white;
@@ -290,7 +314,7 @@ a{
     line-height: 18px;
     text-align: center;
     cursor: pointer;
-    border: 1px solid hotpink;
+    border: 1px solid #ddd; 
     float: left;
 }
 /*加菜数量*/
@@ -402,6 +426,4 @@ a{
     display: block;
 }
 /*左边导航栏被选中，右边相应内容拥有该属性-显示出来*/
-.choice-right{
-    display: block;
-}
+
