@@ -183,21 +183,43 @@
                 		$("#shop-one").append("<dd class=\"shop-one-down\">\n" +
                             "                        <ul>\n" +
                             "                            <li>\n" +
-                            "                                <div class=\"cuisine-name\">"+map.goods.gname+"</div>\n" +
+                            "                                <div class=\"cuisine-name\" id='"+map.goods.gid+"'>"+map.goods.gname+"</div>\n" +
                             "                                <div class=\"cuisine-num\">\n" +
                             "                                    <span class=\"sub\">-</span>\n" +
                             "                                    <input id=\"num\" type=\"text\" value='"+map.subCount+"'>\n" +
                             "                                    <span class=\"add\">+</span>\n" +
                             "                                </div>\n" +
-                            "                                <div class=\"cuisine-price\" title='"+map.goods.price+"'>"+map.subTotal+"</div>\n" +
+                            "                                <div class=\"cuisine-price\" name='"+map.goods.price+"'>"+map.subTotal+"</div>\n" +
                             "                            </li>\n" +
                             "                        </ul>\n" +
                             "                    </dd>");
                 	});
                 	$("#allNum").text(data.totalCount);
                 	$("#allPrice").text(data.totalMoney);
-                	$(".sub").click(function () {
-
+                    $(".add").off('click').on('click',function () {
+                        var gid = $(this).parent().prev().attr("ID");
+                        var price = parseFloat($(this).parent().next().attr("name"));
+                        var n = $(this).prev().val();
+                        var num = parseInt(n) + 1;
+                        $(this).prev().val(num);
+                        var totalCount = parseInt($("#allNum").html())+1;
+                        var totalMoney = parseFloat($("#allPrice").html())+price;
+                        var subTotal = num * price;
+                        $(this).parent().next().html('￥'+subTotal);
+                        $("#allNum").html(totalCount);
+                        $("#allPrice").html(totalMoney);
+                        /*  增商品 */
+                        $.getJSON(
+                            "${pageContext.request.contextPath}/business?method=updateCarts",
+                            {"gid":gid,
+                                "subTotal":subTotal,
+                                "subCount":num,
+                                "totalMoney":totalMoney,
+                                "totalCount":totalCount
+                            },
+                            function() {
+                                //保存数据，不用有回调函数
+                            });
                     });
 				}else{
 					//当前商家的bid为空

@@ -184,5 +184,28 @@ public class BusinessController extends BaseServlet {
 		writer.print(current_cart);
 	}
 
+	public void updateCarts(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+
+		String gid = request.getParameter("gid");
+		Jedis jedis = JedisPoolUtils.getJedis();
+		String bid = jedis.get("current_bid");
+
+		//商品小计
+		double subTotal = Double.parseDouble(request.getParameter("subTotal"));
+		//单个商品数量
+		int subCount = Integer.parseInt(request.getParameter("subCount"));
+		//总价格
+		double totalMoney = Double.parseDouble(request.getParameter("totalMoney"));
+		//总数量
+		int totalCount = Integer.parseInt(request.getParameter("totalCount"));
+
+		BusinessService service = new BusinessServiceImpl();
+		service.updateGoods(gid, bid,subTotal,subCount,totalCount,totalMoney);
+
+	}
+
 }
 

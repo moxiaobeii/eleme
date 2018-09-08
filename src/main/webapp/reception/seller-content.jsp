@@ -429,7 +429,6 @@
             var price = parseFloat($(this).parent().parent().attr("name"));
             var n = $(this).prev().val();
             var num = parseInt(n) + 1;
-            alert(num);
             $(this).prev().val(num);
             var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())+1;
             var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())+price;

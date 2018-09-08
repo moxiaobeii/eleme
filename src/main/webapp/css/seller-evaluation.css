@@ -10,6 +10,12 @@
     z-index: 0;	
    
 }
+.nav ul h3 .icon:before{
+    width: 180px;
+    font-size: 51px;
+    line-height: 51px;
+    color: #ffffff;
+}
 .shopmenu {
  height: 43px;	
   z-index: -100;	
@@ -67,6 +73,13 @@
 .eval-main{
 	margin-bottom: 20px;
 }
+.service-content{
+	margin-top: 10px;
+}
+.speed-time{
+	vertical-align: middle;
+    color: #999;
+}
 .eval-start{
 	display: inline-block;
     margin-right: 10px;
@@ -79,7 +92,7 @@
 .rate-start a{
 	font-size: 16px;
 }
-.iconfont:before{
+.icon-pingfenhui:before{
 	font-size: 16px;
 	cursor: default;
 	margin-left: 3px;

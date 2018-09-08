@@ -92,8 +92,14 @@ public class EvaluationServiceImpl implements EvaluationService {
 	}
 
 	public String getEval(String oid) {
-		// TODO Auto-generated method stub
-		return null;
+		EvaluationDao evaluationDao = new EvaluationDao();
+		Evaluation eval = evaluationDao.getEval(oid);
+		if(eval != null) {
+			return "true";
+		}else {
+			return "false";
+		}
+		
 	}
 	
 	
