@@ -47,7 +47,7 @@
                 <dl class="shop-one" id="shop-one">
                     <dt class="shop-one-up">
                         <span>1号购物车</span>
-                        <a href="/">[清空]</a>
+                        <a href="javascript:clearAll()">[清空]</a>
                     </dt>
                      <%--<dd class="shop-one-down">--%>
                         <%--<ul>--%>
@@ -234,25 +234,37 @@
                         var totalMoney = parseFloat($("#allPrice").html())-price;
                         var subTotal = num * price;
                         $(this).parent().next().html('￥'+subTotal);
-                        $("#allNum").html(totalCount);
-                        $("#allPrice").html(totalMoney);
-                        /*  增商品 */
-                     	$.getJSON(
-                            "${pageContext.request.contextPath}/business?method=updateCarts",
-                            {"gid":gid,
-                                "subTotal":subTotal,
-                                "subCount":num,
-                                "totalMoney":totalMoney,
-                                "totalCount":totalCount
-                            },
-                            function() {
-                                //保存数据，不用有回调函数
-                            });
-                        //判断购物车是否是否有商品
-                        var len = $("#shop-one .shop-one-down").length;
-                        if (len != 0){
-                            alert(len);
+                        if (totalCount==0 || totalMoney == 0.0 || totalMoney == 0) {
+                            $(".totalCount").hide();
+                            $(".totalMoney").hide();
+                            $(".empty_cart").show();
+                            $(".cart").hide();
+                            $.getJSON(
+                                "${pageContext.request.contextPath}/business?method=clearAll",
+                                {"gid":"gid",
+
+                                },
+                                function() {
+                                    //保存数据，不用有回调函数
+                                });
+                        }else{
+                            $("#allNum").html(totalCount);
+                            $("#allPrice").html(totalMoney);
+                            /*  增商品 */
+                            $.getJSON(
+                                "${pageContext.request.contextPath}/business?method=updateCarts",
+                                {"gid":gid,
+                                    "subTotal":subTotal,
+                                    "subCount":num,
+                                    "totalMoney":totalMoney,
+                                    "totalCount":totalCount
+                                },
+                                function() {
+                                    //保存数据，不用有回调函数
+                                });
                         }
+                        //判断购物车是否是还有商品
+                        var len = $("#shop-one .shop-one-down").length;
                         if (len == 0){
                             $(".empty_cart").show();
                             $(".cart").hide();
@@ -265,6 +277,23 @@
             }
         );
     })
+    //清空购物车
+    function clearAll() {
+		$("#shop-one .shop-one-down").remove();
+        $("#allNum").html("");
+        $("#allPrice").html("");
+        $(".empty_cart").show();
+        $(".cart").hide();
+        $.getJSON(
+            "${pageContext.request.contextPath}/business?method=clearAll",
+            {"gid":"gid",
+
+            },
+            function() {
+                //保存数据，不用有回调函数
+            });
+
+	}
 </script>
 </body>
 </html>

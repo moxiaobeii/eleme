@@ -260,13 +260,18 @@ public class BusinessServiceImpl implements BusinessService {
 		if (bid == null) {
 			return null;
 		}else {
-			Cart cart = carts.get(bid);
-			if (cart!=null){
-				return cart;
-			}else {
-				return null;
+			try {
+				Cart cart = carts.get(bid);
+				if (cart!=null){
+					return cart;
+				}else {
+					return null;
+				}
+			}catch (Exception e) {
 			}
+			
 		}
+		return null;
 		
 	}
 

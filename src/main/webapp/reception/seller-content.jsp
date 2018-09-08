@@ -337,8 +337,8 @@
                 var n = $(this).prev().val();
                 var num = parseInt(n) + 1;
                 $(this).prev().val(num);
-                var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())+1;
-                var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())+price;
+                var totalCount = parseInt($(".totalCount").html())+1;
+                var totalMoney = parseFloat($(".totalMoney").html())+price;
                 var subTotal = num * price;
                 $(this).parent().next().html("￥"+subTotal);
                 $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
@@ -365,28 +365,41 @@
                 var n = $(this).next().val();
                 var num = parseInt(n) - 1;
                 if (num == 0){
-                    $(this).parent().parent().hide();
+                    $(this).parent().parent().remove();
                 }
                 $(this).next().val(num);
-                var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())-1;
-                var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())-price;
+                var totalCount = parseInt($(".totalCount").html())-1;
+                var totalMoney = parseFloat($(".totalMoney").html())-price;
                 var subTotal = num * price;
                 $(this).parent().next().html("￥"+subTotal);
-                $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
-                $("#cartfooter .footerToggle .totalMoney").html(totalMoney);
-                /*  减商品 */
-                $.getJSON(
-                    "${pageContext.request.contextPath}/business?method=updateGoods",
-                    {"gid":gid,
-                        "bid":"${business.bid}",
-                        "subTotal":subTotal,
-                        "subCount":num,
-                        "totalMoney":totalMoney,
-                        "totalCount":totalCount
-                    },
-                    function() {
-                        //保存数据，不用有回调函数
-                    });
+                if (totalCount==0 || totalMoney == 0.0 || totalMoney == 0) {
+	               	$(".totalCount").hide();
+	                $(".totalMoney").hide();
+	            	$.getJSON(
+	                    "${pageContext.request.contextPath}/business?method=deleteGoods",
+	                    {"bid":"${business.bid}"},
+	                    function (){
+	
+	                    }
+                )
+   			}else{
+   				 $(".totalCount").html(totalCount);
+   	             $(".totalMoney").html(totalMoney);
+   			       
+	             /*  减商品 */
+	             $.getJSON(
+	                 "${pageContext.request.contextPath}/business?method=updateGoods",
+	                 {"gid":gid,
+	                     "bid":"${business.bid}",
+	                     "subTotal":subTotal,
+	                     "subCount":num,
+	                     "totalMoney":totalMoney,
+	                     "totalCount":totalCount
+	                 },
+	                 function() {
+	                     //保存数据，不用有回调函数
+	                 });
+   			     }
             });
 
         });
@@ -398,28 +411,41 @@
             var n = $(this).next().val();
             var num = parseInt(n) - 1;
             if (num == 0){
-                $(this).parent().parent().hide();
+                $(this).parent().parent().remove();
             }
             $(this).next().val(num);
-            var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())-1;
-            var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())-price;
+            var totalCount = parseInt($(".totalCount").html())-1;
+            var totalMoney = parseFloat($(".totalMoney").html())-price;
             var subTotal = num * price;
             $(this).parent().next().html("￥"+subTotal);
-            $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
-            $("#cartfooter .footerToggle .totalMoney").html(totalMoney);
-            /*  减商品 */
-            $.getJSON(
-                "${pageContext.request.contextPath}/business?method=updateGoods",
-                {"gid":gid,
-                 "bid":"${business.bid}",
-                 "subTotal":subTotal,
-                 "subCount":num,
-                 "totalMoney":totalMoney,
-                 "totalCount":totalCount
-                },
-                function() {
-                    //保存数据，不用有回调函数
-                });
+            if (totalCount==0 || totalMoney == 0.0 || totalMoney == 0) {
+            	 $(".totalCount").hide();
+            	 $(".totalMoney").hide();
+            	 $.getJSON(
+                         "${pageContext.request.contextPath}/business?method=deleteGoods",
+                         {"bid":"${business.bid}"},
+                         function (){
+
+                         }
+                     )
+			}else{
+				$(".totalCount").html(totalCount);
+	            $(".totalMoney").html(totalMoney);
+			        
+	           /*  减商品 */
+	           $.getJSON(
+	               "${pageContext.request.contextPath}/business?method=updateGoods",
+	               {"gid":gid,
+	                "bid":"${business.bid}",
+	                "subTotal":subTotal,
+	                "subCount":num,
+	                "totalMoney":totalMoney,
+	                "totalCount":totalCount
+	               },
+	               function() {
+	                   //保存数据，不用有回调函数
+	               });
+			}
         });
 
         $(".addnum").off('click').on('click',function () {
@@ -430,12 +456,12 @@
             var n = $(this).prev().val();
             var num = parseInt(n) + 1;
             $(this).prev().val(num);
-            var totalCount = parseInt($("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html())+1;
-            var totalMoney = parseFloat($("#cartfooter .footerToggle .totalMoney").html())+price;
+            var totalCount = parseInt($(".totalCount").html())+1;
+            var totalMoney = parseFloat($(".totalMoney").html())+price;
             var subTotal = num * price;
             $(this).parent().next().html('￥'+subTotal);
-            $("#cartfooter .footerToggle .icon-gouwuchekong .totalCount").html(totalCount);
-            $("#cartfooter .footerToggle .totalMoney").html(totalMoney);
+            $(".totalCount").html(totalCount);
+            $(".totalMoney").html(totalMoney);
             /*  增商品 */
             $.getJSON(
                 "${pageContext.request.contextPath}/business?method=updateGoods",
@@ -453,9 +479,9 @@
 
         //清空购物车
         $(".clearShop").click(function () {
-            $(this).parent().parent().siblings().hide();
-            $(".totalCount").hide() ;
-            $(".totalMoney").hide();
+            $(this).parent().parent().siblings().remove();
+            $(".totalCount").remove() ;
+            $(".totalMoney").remove();
             $.getJSON(
                 "${pageContext.request.contextPath}/business?method=deleteGoods",
                 {"bid":"${business.bid}"},

@@ -184,6 +184,12 @@ public class BusinessController extends BaseServlet {
 		writer.print(current_cart);
 	}
 
+	/**
+	 * 首页更新购物车
+	 * @param request
+	 * @param response
+	 * @throws UnsupportedEncodingException
+	 */
 	public void updateCarts(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
@@ -204,7 +210,25 @@ public class BusinessController extends BaseServlet {
 
 		BusinessService service = new BusinessServiceImpl();
 		service.updateGoods(gid, bid,subTotal,subCount,totalCount,totalMoney);
+	}
 
+	/**
+	 * 首页清空购物车
+	 * @param request
+	 * @param response
+	 * @throws UnsupportedEncodingException
+	 */
+	public void clearAll(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+
+		Jedis jedis = JedisPoolUtils.getJedis();
+		String bid = jedis.get("current_bid");
+
+		BusinessService service = new BusinessServiceImpl();
+		service.deleteGoods(bid);
 	}
 
 }
