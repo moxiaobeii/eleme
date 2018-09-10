@@ -221,6 +221,29 @@
     <!-- 低部 -->
     <div class="footer"></div>
     
+    <div id="cover-all"></div>
+
+    <div class="whoGet">
+        <div class="who-up">
+            <a href="JavaScript:" class="fa fa-close" id="close"></a>
+            <h3>谁去拿外卖</h3>
+        </div>
+        <div class="who-down-out">
+            <div class="who-down-in">
+                <h2 class="fetchtakeout-badge"></h2>
+                <button class="fetchtakeout-btn" id="fetchtakeout-btn"></button>
+                <div class="fetchtakeout-rules">
+                    随机到最小数字的人去拿外卖
+                </div>
+                <div class="fetchtakeout-emptytext"></div>
+                <ul class="fetchtakeout-list">
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    
     
     <script type="text/javascript">
     	var indexT;
@@ -252,20 +275,6 @@
 	                }
 	            });
 	        });
-	
-	        //<!--导航栏选中显示餐馆的整个内容-->
-	        /* $(document).ready(function(){
-	            $.ajax({
-	                type: "POST", //用post方式传输
-	                data:'{}',
-	                dataType: "html", //数据格式：html
-	                url: '../reception/index-NavigationBar-out.jsp', //目标地址
-	                contentType: "application/json",
-	                success: function(date) {
-	                    $(".ordMes-all").html(date);
-	                }
-	            });
-	        }); */
 	
 	        //<!--底部-->
 	        $(document).ready(function(){
@@ -379,8 +388,8 @@
       					            				var $a221 = $("<a></a>").addClass("food-price").html("¥ " + searchJson[i].goods[j].price);
       					            				
       					            				var $td23 = $("<td></td>").addClass("search-col3  food-td");
-      					            				var $a231 = $("<a></a>").addClass("btn").html("去购买");
-      					            				var $td24 = $("<td></td>").addClass("search-col4  food-td");
+                                                    var $a231 = $("<a></a>").addClass("btn").html("去购买").attr("href","${pageContext.request.contextPath }/business?method=getBusinessInfo&bid="+searchJson[i].bid+"");;
+                                                    var $td24 = $("<td></td>").addClass("search-col4  food-td");
       					            				var $div241 = $("<div></div>").addClass("star");
       					            				var $span2411 = $("<span></span>").addClass("fa fa-star");
       					            				
@@ -520,7 +529,7 @@
      					            				var $a221 = $("<a></a>").addClass("food-price").html("¥ " + searchJson[i].goods[j].price);
      					            				
      					            				var $td23 = $("<td></td>").addClass("search-col3  food-td");
-     					            				var $a231 = $("<a></a>").addClass("btn").html("去购买");
+     					            				var $a231 = $("<a></a>").addClass("btn").html("去购买").attr("href","${pageContext.request.contextPath }/business?method=getBusinessInfo&bid="+searchJson[i].bid+"");;
      					            				var $td24 = $("<td></td>").addClass("search-col4  food-td");
      					            				var $div241 = $("<div></div>").addClass("star");
      					            				var $span2411 = $("<span></span>").addClass("fa fa-star");
@@ -571,19 +580,108 @@
  		    });
 		    
 		    
-		
-		    /* //鼠标移入“谁去拿外卖”变大
-		    $("#postOrd-who").mouseenter(function(){
-		        $(this).animate({
-		            width: '190px',
-		            height: '60px'
-		        },"slow");
-		    }).mouseleave(function(){
-		        $(this).animate({
-		            width: '186px',
-		            height: '55px',
-		        },"slow");
-		    }); */
+    	  
+			var min=100;
+ 		 	//鼠标点击“谁去拿外卖”显示一个窗口
+ 	        $("#postOrd-who").click(function(){
+ 	            //清空li标签
+ 	            min=100;
+ 	            $(".fetchtakeout-list").empty();
+ 	            $("#cover-all").addClass("cover-all");
+ 	            $(".whoGet").css("display","block");
+ 	        });
+ 	        //点击关闭按钮关闭窗口
+ 	        $("#close").click(function(){
+ 	            $("#cover-all").removeClass("cover-all");
+ 	            $(".whoGet").css("display","none");
+ 	        });
+
+ 	        //鼠标移入移出按钮和按下弹起按钮动画,并且松开按钮生成100以内的随机数
+ 	        //生成随机数
+ 	        //x上限，y下限
+ 	        var x = 100;
+ 	        var y = 1;
+ 	        $(".fetchtakeout-btn").mouseenter(function(){
+ 	            $(this).css("background-position","0 -40px");
+ 	        }).mouseleave(function(){
+ 	            $(this).css("background-position","0 0px");
+ 	        }).mousedown(function(){
+ 	            $(this).css("background-position","0 -80px");
+ 	        }).mouseup(function(e){
+ 	            if (e.stopPropagation) {
+ 	                e.stopPropagation();
+ 	            } else {
+ 	                e.cancelBubble = true;
+ 	            }
+ 	            $(this).css("background-position","0 -40px");
+ 	            var rand = parseInt(Math.random() * (x - y + 1) + y);
+ 	            //拿到父类的节点
+ 	            var $parent = $(".fetchtakeout-list");
+ 	            //生成子节点
+ 	            var $li = $("<li></li>").addClass("this-num").html("扔出了一个"+rand);
+ 	            if($($parent).children().length<10){
+ 	                $li.appendTo($parent);
+ 	                if(rand < min){
+ 	                    //说明是比最小值还小
+ 	                    min = rand;
+ 	                    $li.addClass("selected");
+ 	                    $li.siblings().removeClass("selected");
+ 	                }else{
+ 	                    //说明比最小值大
+ 	                }
+ 	            }else{
+ 	                if($parent.find("li").eq(0).hasClass("selected")){
+ 	                    $parent.find("li").eq(1).remove();
+ 	                }else{
+ 	                    $parent.find("li").eq(0).remove();
+ 	                }
+ 	            }
+ 	        });
+
+
+ 	        //空格实现鼠标弹起效果
+ 	        $(document).keydown(function(event) {
+ 	            //if (event.target.nodeName == 'TEXTAREA' || event.target.nodeName == 'INPUT') {
+ 	            //    return;
+ 	            //}
+ 	            /* Act on the event */
+ 	            if (event.keyCode == 32) {
+ 	                event.preventDefault();
+ 	                $(".fetchtakeout-btn").css("background-position","0 -80px");
+ 	            }
+ 	        }).keyup(function(){
+ 	            $(".fetchtakeout-btn").css("background-position","0 -40px");
+ 	            var rand = parseInt(Math.random() * (x - y + 1) + y);
+ 	            //拿到父类的节点
+ 	            var $parent = $(".fetchtakeout-list");
+ 	            //生成子节点
+ 	            var $li = $("<li></li>").addClass("this-num").html("扔出了一个"+rand);
+ 	            if($($parent).children().length<10){
+ 	                $li.appendTo($parent);
+ 	                //$parent.find($li)..remove();
+ 	                if(rand < min){
+ 	                    //说明是比最小值还小
+ 	                    min = rand;
+
+ 	                    $li.addClass("selected");
+ 	                    $li.siblings().removeClass("selected");
+ 	                }else{
+ 	                    //说明比最小值大
+ 	                }
+ 	            }else{
+ 	                if($parent.find("li").eq(0).hasClass("selected")){
+ 	                    $parent.find("li").eq(1).remove();
+ 	                }else{
+ 	                    $parent.find("li").eq(0).remove();
+ 	                }
+ 	            }
+ 	        });
+		    
+		    
+		    
+		    
+		    
+		    
 		    
 		    
 		
@@ -634,7 +732,7 @@
 	   						var $parent = $(".ordMes-main-in");
 	   						if(json != ""){
 	   							for(var i=0; i<json.length; i++){
-	   						    	var $a = $("<a></a>").addClass("sellers");
+	   						    	var $a = $("<a></a>").addClass("sellers").attr("href","${pageContext.request.contextPath }/business?method=getBusinessInfo&bid="+json[i].bid+"");
 	   						    	var $div1 = $("<div></div>").addClass("seller-logo");
 	   						    	
 	   								var $img = $("<img/>").attr({"src":"${pageContext.request.contextPath }/"+json[i].logo+"", "alt":json[i].bname});
@@ -741,7 +839,7 @@
 	    						var $parent = $(".ordMes-main-in");
 	    						if(json != ""){
 	    							for(var i=0; i<json.length; i++){
-	    						    	var $a = $("<a></a>").addClass("sellers");
+	    						    	var $a = $("<a></a>").addClass("sellers").attr("href","${pageContext.request.contextPath }/business?method=getBusinessInfo&bid="+json[i].bid+"");
 	    						    	var $div1 = $("<div></div>").addClass("seller-logo");
 	    						    	
 	    								var $img = $("<img/>").attr({"src":"${pageContext.request.contextPath }/"+json[i].logo+"", "alt":json[i].bname});

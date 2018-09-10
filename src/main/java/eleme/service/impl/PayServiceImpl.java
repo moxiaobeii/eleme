@@ -245,8 +245,8 @@ public class PayServiceImpl implements PayService{
 	
 	
 	//将订单详情插入到数据库中
-	public void insertOrdersDetail(int userId, String oid, CartDetail cartDetail) throws SQLException {
-		PayDao.getPayDao().insertOrdersDetail(userId,oid,cartDetail);
+	public void insertOrdersDetail(int userId, String oid, List<CartDetail> listCart) throws SQLException {
+		PayDao.getPayDao().insertOrdersDetail(userId,oid,listCart);
 	}
 	
 	//将订单表插入到数据库中

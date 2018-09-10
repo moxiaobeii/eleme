@@ -231,7 +231,7 @@
 	
 		$.post(
                 "${pageContext.request.contextPath}/orderDetailsServlet?method=getOrderDetails",
-                 "oid="+${param.oid},
+                 "oid="+"${param.oid}",
                  function(result){
                 	var parsed = JSON.parse(result);
                 	//alert(parsed.order.bname);
@@ -285,7 +285,7 @@
                 	}
                 	
                 	//给评价按钮附上跳转链接
-                	$(".buttontype").attr("href","evalation.jsp?oid="+${param.oid});            
+                	$(".buttontype").attr("href","evalation.jsp?oid="+"${param.oid}");            
                 	}
                 
               )
@@ -293,7 +293,7 @@
 		$.post(
 			"${pageContext.request.contextPath}/evaluationServlet?method=getEval",
 
-			"oid="+${param.oid},
+			"oid="+"${param.oid}",
 			function(result){
 				if(result == "true"){
 					$(".buttontype").css("display","none");

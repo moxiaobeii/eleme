@@ -125,7 +125,7 @@
     var count = 60;  //间隔函数，1秒执行
     var curCount;   //当前剩余秒数
     var code = "";   //验证码
-    var codeLength = 4;  //验证码长度
+    var codeLength = 6;  //验证码长度
 
     function send() {
         var userphone = $(".userphone").val();
@@ -138,18 +138,17 @@
         $(".disable").attr("disabled","true");
         $(".disable").text(curCount + "s后重发");
         InterValObj = window.setInterval(SetRemainTime,1000);//启动计时器，1秒执行一次
-        alert(code);
         <%--//发送验证码和手机到后台--%>
-        <%--$.getJSON(--%>
-            <%--"${pageContext.request.contextPath}/userController?method=sendCode",--%>
-            <%--{--%>
-                <%--"code":code,--%>
-                <%--"phone":userphone--%>
-            <%--},--%>
-            <%--function (data) {--%>
+        $.getJSON(
+            "${pageContext.request.contextPath}/userController?method=sendCode",
+            {
+                "code":code,
+                "phone":userphone
+            },
+            function (data) {
 
-            <%--}--%>
-        <%--);--%>
+            }
+        );
 
     }
     function checkLogin() {
@@ -171,16 +170,8 @@
             if (userCode != code){
                 $(".validation .showMessage").html("验证码不正确");
             }else{
-                //发送验证码和手机到后台
-                $.getJSON(
-                    "${pageContext.request.contextPath}/userController?method=login",
-                    {
-                        "phone":userphone
-                    },
-                    function (data) {
-
-                    }
-                );
+                //发送手机到后台
+                window.location.href="${pageContext.request.contextPath}/userController?method=login&phone="+userphone+"";
             }
         }
     }

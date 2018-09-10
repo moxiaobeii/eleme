@@ -2,10 +2,7 @@ package eleme.controller;
 
 import com.google.gson.Gson;
 import eleme.dto.BusinessDto;
-import eleme.entity.Business;
-import eleme.entity.Cart;
-import eleme.entity.Goods;
-import eleme.entity.GoodsType;
+import eleme.entity.*;
 import eleme.service.BusinessService;
 import eleme.service.impl.BusinessServiceImpl;
 import eleme.utils.JedisPoolUtils;
@@ -15,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -48,6 +46,18 @@ public class BusinessController extends BaseServlet {
 		//查询购物车的信息
 		Cart cart = service.show(String.valueOf(bid));
 
+		//获得用户是否收藏该商家
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		boolean isCollection = true;
+		if (user == null){
+			isCollection = false;
+		}else {
+			service = new BusinessServiceImpl();
+			isCollection = service.getCollction(bid,user.getUserId());
+		}
+
+		request.setAttribute("isCollection",isCollection);
 		request.setAttribute("business", business);
 		request.setAttribute("goodsTypes", goodsTypes);
 		request.setAttribute("businessDtos", businessDtos);
@@ -158,7 +168,7 @@ public class BusinessController extends BaseServlet {
 
 		Gson gson = new Gson();
 		String goods = gson.toJson(goodsList);
-
+		
 		PrintWriter out = response.getWriter();
 		out.print(goods);
 	}
@@ -229,6 +239,47 @@ public class BusinessController extends BaseServlet {
 
 		BusinessService service = new BusinessServiceImpl();
 		service.deleteGoods(bid);
+	}
+
+	//收藏
+	public void collection(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+
+		String status = request.getParameter("status");
+		Jedis jedis = JedisPoolUtils.getJedis();
+		String bid = jedis.get("current_bid");
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		PrintWriter writer = response.getWriter();
+		if (user == null){
+			writer.print("false");
+		}else {
+			writer.print("true");
+			BusinessService service = new BusinessServiceImpl();
+			service.updateCollection(bid,status,user.getUserId());
+		}
+	}
+
+	public void isCollection(HttpServletRequest request,HttpServletResponse response) throws IOException {
+
+		Jedis jedis = JedisPoolUtils.getJedis();
+		int bid = Integer.parseInt(jedis.get("current_bid"));
+
+		//获得用户是否收藏该商家
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		boolean isCollection = true;
+		if (user == null){
+			isCollection = false;
+		}else {
+			BusinessService service = new BusinessServiceImpl();
+			isCollection = service.getCollction(bid,user.getUserId());
+		}
+		PrintWriter out = response.getWriter();
+		out.print(isCollection);
 	}
 
 }

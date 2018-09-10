@@ -375,6 +375,7 @@ a{
     text-align: center;
     margin-top: 10px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 /*导航栏主要内容部分-我的信息*/

@@ -61,8 +61,10 @@ public class PayDao {
 	}
 
 	//根据订单id和购物车来插入订单详情表
-	public void insertOrdersDetail(int userId, String oid, CartDetail cartDetail) throws SQLException {
-		qr.update("insert into order_details values(?,?,?,?,?,?,?)",Math.random()*100000,cartDetail.getSubTotal(),cartDetail.getSubCount(),cartDetail.getGoods().getBname(),4,oid,cartDetail.getGoods().getGname());
+	public void insertOrdersDetail(int userId, String oid, List<CartDetail> listCart) throws SQLException {
+		for(CartDetail cartDetail:listCart) {
+			qr.update("insert into order_details values(?,?,?,?,?,?,?)",Math.random()*100000,cartDetail.getSubTotal(),cartDetail.getSubCount(),cartDetail.getGoods().getBname(),4,oid,cartDetail.getGoods().getGname());
+		}
 		
 	}
 

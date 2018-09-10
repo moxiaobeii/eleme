@@ -23,17 +23,17 @@
         <div class="nav">
             <ul>
                 <h3>
-                    <a href="index.html" class="icon-logo" >
+                    <a href="${pageContext.request.contextPath}/index.jsp" class="icon-logo" >
                         <i class="icon iconfont icon-changyonglogo40"></i>
                         <span>饿了么</span>
                     </a>
 
                 </h3>
                 <li>
-                    <a href="index.html">首页</a>
+                    <a href="${pageContext.request.contextPath}/index.jsp">首页</a>
                 </li>
                 <li>
-                    <a href="order.html">我的订单</a>
+                    <a href="${pageContext.request.contextPath}/consigneeCtroller?method=queryRecentlyOrderInfo&url=recentlyorderpage">我的订单</a>
                 </li>
                 <li>
                     <a href="order.html">加盟合作</a>
@@ -257,7 +257,7 @@
     	function(result){
 			$(".eval2").add($(".eval3")).css("display","none");
 			var parsed = JSON.parse(result);
-			for(var i = 0; i < parsed.length; i++){
+			for(var i = parsed.length-1; i < parsed.length; i--){
 				//用户头像
 				var img = $("<img>").attr("src","${pageContext.request.contextPath }/image/userImg.jpg")
 				var userImg = $("<span></span>").addClass("user_img").append(img);
@@ -498,7 +498,7 @@
 					    	"shopName=" + shopName,
 					    	function(result){
 								var parsed = JSON.parse(result);
-								for(var i = 0; i < parsed.length; i++){
+								for(var i = parsed.length-1; i < parsed.length; i--){
 									//用户头像
 									var img = $("<img>").attr("src","${pageContext.request.contextPath }/image/userImg.jpg")
 									var userImg = $("<span></span>").addClass("user_img").append(img);									//评价内容
@@ -627,7 +627,7 @@
 				    	"shopName=" + shopName,
 				    	function(result){
 							var parsed = JSON.parse(result);
-							for(var i = 0; i < parsed.length; i++){
+							for(var i = parsed.length-1; i < parsed.length; i--){
 								//用户头像
 								var img = $("<img>").attr("src","${pageContext.request.contextPath }/image/userImg.jpg")
 								var userImg = $("<span></span>").addClass("user_img").append(img);								//评价内容

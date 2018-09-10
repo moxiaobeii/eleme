@@ -2,6 +2,7 @@ package eleme.dao;
 
 import eleme.dto.GoodsDto;
 import eleme.entity.Business;
+import eleme.entity.Collection;
 import eleme.entity.Goods;
 import eleme.entity.GoodsType;
 import eleme.utils.DataSourceUtils;
@@ -92,4 +93,50 @@ public class BusinessDao {
 		}
 		return goodsList;
 	}
+
+	/**
+	 * 判断是否收藏  true:有  false:没有
+	 * @param bid
+	 * @param userId
+	 * @return
+	 */
+	public boolean getCollction(int bid, int userId){
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from collectionBusiness where bid = ? and userId = ?";
+		boolean isCollection = true;
+		Collection collection = null;
+		try {
+			collection = runner.query(sql,new BeanHandler<Collection>(Collection.class),bid,userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (collection == null){
+			isCollection = false;
+		}
+		return isCollection;
+	}
+
+	//添加收藏
+	public void insertCollection(int statu, int userId, int bid) {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		int collectionBusiness_id = (int) (Math.random()*9000+1000);
+		String sql = "insert into collectionBusiness(collectionBusiness_id,bid,userId,status) values(?,?,?,?)";
+		try {
+			runner.update(sql,bid,userId,userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	//删除收藏
+	public void deleteCollection(int userId, int bid) {
+		QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "delete from collectionBusiness where userId = ? and bid = ?";
+		try {
+			runner.update(sql,userId,bid);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

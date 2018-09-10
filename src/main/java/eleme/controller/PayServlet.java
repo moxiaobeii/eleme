@@ -3,8 +3,10 @@ package eleme.controller;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -136,45 +138,52 @@ public class PayServlet extends BaseServlet {
 
 
 	//由订单页面点击跳转到支付页面的接口,获取订单信息,将此订单插入到数据库。并显示此订单的信息。
-	@SuppressWarnings("unused")
-	public void orderConfirm(HttpServletRequest request,HttpServletResponse response) {
-		HttpSession session = request.getSession();
-		User user = (User)session.getAttribute("user");
-		//获取备注
-		String mark = request.getParameter("mark");
-		//获取此收货地址id
-		String conId = request.getParameter("conId");
-		Consignee consignee = new PayServiceImpl().queryConsignee(conId);
-		request.setAttribute("current_con", consignee);
-		//获取此订单详情,将之插入到数据库中
-		Cart cart = (Cart) session.getAttribute("current_cart");
-		Map<Integer, CartDetail> cartMap = cart.getMap();
-		CartDetail cartDetail = null;
-		for(CartDetail cartDetails:cartMap.values()) {
-			cartDetail = cartDetails;
-		}
-		try {
-			//将订单详情表插入到数据库
-			//生成订单表,插入到数据库
-			String oid = "c"+Math.random()*100000;
-			request.setAttribute("oid", oid);
-			boolean insertResult = false;
-			if(!insertResult) {
-				new PayServiceImpl().insertOrders(user.getUserId(),oid,cart,cartDetail,mark,conId);
-				new PayServiceImpl().insertOrdersDetail(user.getUserId(),oid,cartDetail);
-				insertResult = true;
+		@SuppressWarnings("unused")
+		public void orderConfirm(HttpServletRequest request,HttpServletResponse response) {
+			HttpSession session = request.getSession();
+			User user = (User)session.getAttribute("user");
+			//获取备注
+			String mark = request.getParameter("mark");
+			//获取此收货地址id
+			String conId = request.getParameter("conId");
+			Consignee consignee = new PayServiceImpl().queryConsignee(conId);
+			request.setAttribute("current_con", consignee);
+			//获取此订单详情,将之插入到数据库中
+			Cart cart = (Cart) session.getAttribute("current_cart");
+			Map<Integer, CartDetail> cartMap = cart.getMap();
+			CartDetail cartDetail = null;
+			for(CartDetail cartDetails:cartMap.values()) {
+				cartDetail = cartDetails;
 			}
-			//跳转页面
-			request.getRequestDispatcher("/reception/pay.jsp").forward(request, response);
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		} catch (ServletException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			
+			//获得订单明细表集合
+			List<CartDetail> ListCart = new ArrayList<CartDetail>();
+			for (Integer key : cartMap.keySet()) {
+				ListCart.add(cartMap.get(key));
+		    }
+			
+			try {
+				//将订单详情表插入到数据库
+				//生成订单表,插入到数据库
+				String oid = "c"+Math.random()*100000;
+				request.setAttribute("oid", oid);
+				boolean insertResult = false;
+				if(!insertResult) {
+					new PayServiceImpl().insertOrders(user.getUserId(),oid,cart,cartDetail,mark,conId);
+					new PayServiceImpl().insertOrdersDetail(user.getUserId(),oid,ListCart);
+					insertResult = true;
+				}
+				//跳转页面
+				request.getRequestDispatcher("/reception/pay.jsp").forward(request, response);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		
-	
-	}
+		}
 	
 }

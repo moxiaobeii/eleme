@@ -31,4 +31,8 @@ public interface BusinessService {
 	public List<Goods> getGoodsBySearchVal(String bname,String search);
 
     public Cart getCartByBid();
+
+    public boolean getCollction(int bid, int userId);
+
+	public void updateCollection(String bid, String status, int userId);
 }

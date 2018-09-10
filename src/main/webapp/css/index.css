@@ -121,3 +121,150 @@ a{
     height: 55px;
     vertical-align: middle;
 }
+
+
+
+/*显示谁去拿外卖时,覆盖后面背景所有内容*/
+.cover-all{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+    z-index: 1000;
+    background: rgb(0, 0, 0);
+}
+
+/*谁去拿外卖的样式*/
+.whoGet{
+    z-index: 1003;
+    left: 503px;
+    top:  50px;
+    width: 360px;
+    position: fixed;
+    border: 1px solid gray;
+    background: #fff;
+    font-size: 12px;
+    border-radius: 5px;
+    display: none;
+}
+/*谁去拿外卖中上面的样式*/
+.whoGet .who-up{
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+/*谁去拿外卖中上面的样式-关闭按钮*/
+.whoGet .who-up #close{
+    display: inline-block;
+    float: right;
+    width: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #ccc;
+}
+/*.whoGet .who-up #close:before {*/
+    /*content: "\e90f";*/
+/*}*/
+/*.whoGet .who-up #close:after, :before {*/
+    /*box-sizing: inherit;*/
+/*}*/
+/*谁去拿外卖中上面的样式-文字*/
+.whoGet .who-up h3{
+    font-size: 16px;
+}
+/*谁去拿外卖中下面的样式*/
+.whoGet .who-down-out{
+    padding: 15px;
+}
+.whoGet .who-down-out .who-down-in{
+    position: relative;
+    margin: 0 auto 10px;
+    padding-top: 15px;
+    width: 300px;
+    color: #555;
+    box-shadow: 1px 1px 2px #ddd;
+    background-color: #dbf0fa;
+}
+/*谁去拿外卖中下面的样式-辉章*/
+.who-down-in .fetchtakeout-badge{
+    display: block;
+    width: 186px;
+    height: 188px;
+    margin: 0 auto;
+    background:url("../image/whoget.png")0 -120px no-repeat;
+}
+/*谁去拿外卖中下面的样式-按钮*/
+.who-down-in .fetchtakeout-btn{
+    display: block;
+    cursor: pointer;
+    margin: -45px auto 15px;
+    width: 271px;
+    height: 40px;
+    border: 0;
+    background:url("../image/whoget.png")no-repeat;
+}
+/*谁去拿外卖中下面的样式-提示文字*/
+.who-down-in .fetchtakeout-rules{
+    position: relative;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #777;
+    background: #dbf0fa;
+    overflow: hidden;
+
+}
+.who-down-in .fetchtakeout-rules:after{
+    left: auto;
+    right: 15px;
+}
+.who-down-in .fetchtakeout-rules:before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    display: block;
+    height: 7px;
+    width: 40px;
+    background-color: #ccc;
+}
+.fetchtakeout-rules:after, .fetchtakeout-rules:before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 5px;
+    display: block;
+    height: 7px;
+    width: 40px;
+    background-color: #ccc;
+}
+
+.who-down-in .fetchtakeout-emptytext{
+    position: absolute;
+    bottom: 40px;
+    right: 0;
+    font-size: 73px;
+    line-height: 1em;
+    color: #fff;
+
+}
+/*数字的ul*/
+.who-down-in .fetchtakeout-list{
+    margin: 0 10px;
+    padding: 5px;
+    height: 180px;
+    list-style: none;
+}
+.who-down-in .fetchtakeout-list .this-num{
+    padding-left: 3px;
+    height: 18px;
+}
+/*数字最小的的样式*/
+.who-down-in .fetchtakeout-list .selected{
+    color: #fe5a23;
+    font-weight: 700;
+    background: url("../image/whoget.png") 0 -320px no-repeat;
+    padding-left: 3px;
+    height: 19px;
+    line-height: 19px;
+}

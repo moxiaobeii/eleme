@@ -275,4 +275,20 @@ public class BusinessServiceImpl implements BusinessService {
 		
 	}
 
+    public boolean getCollction(int bid, int userId) {
+	    BusinessDao dao = new BusinessDao();
+        return  dao.getCollction(bid,userId);
+    }
+
+    public void updateCollection(String bid, String status, int userId) {
+        int statu = Integer.parseInt(status);
+        BusinessDao dao = new BusinessDao();
+        if (statu == 0){
+            statu = 1;
+            dao.insertCollection(statu,userId,Integer.parseInt(bid));
+        }else {
+            dao.deleteCollection(userId,Integer.parseInt(bid));
+        }
+    }
+
 }

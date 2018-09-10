@@ -86,7 +86,7 @@ public class CheckLoginFilter implements Filter {
 		} 
 		if((!checkRequestURIIntNotFilterList(request)) && session.getAttribute(sessionKey) == null) 
 		{ 
-			response.sendRedirect(request.getContextPath() + redirectURL); 
+			response.sendRedirect(request.getContextPath() + redirectURL);
 			return; 
 		} 
 		filterChain.doFilter(servletRequest, servletResponse); 

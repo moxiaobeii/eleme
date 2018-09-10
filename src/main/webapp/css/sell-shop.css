@@ -9,6 +9,17 @@
     width: 75%;
     height: 200px;
 }
+.search{
+    padding-top: 50px;
+    text-align: center;
+}
+.search-result{
+    display: inline-block;
+    padding-left: 180px;
+    line-height: 115px;
+    background: url("../image/seller/search.jpg") no-repeat;
+    color: #999;
+}
 .shopmenu-nav{
     width: 852px;
     padding: 10px 15px 5px;

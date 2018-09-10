@@ -47,13 +47,13 @@
 	                    <a class="profile-drop-b" href="${pageContext.request.contextPath }/consigneeCtroller?method=collectedBusinessInfo">我的收藏</a>
 	                    <a class="profile-drop-c" href="${pageContext.request.contextPath }/consigneeCtroller?method=queryConsigneeInfo">我的地址</a>
 	                    <a class="profile-drop-d">安全设置</a>
-	                    <a class="profile-drop-e" id="profile-drop-e">退出登录</a>
+	                    <a class="profile-drop-e" id="profile-drop-e" href="${pageContext.request.contextPath}/userController?method=quitSys">退出登录</a>
 	                </div>
 	            </div>
             </c:if>
             <c:if test="${user == null}">
                 <div class="top-itemR top-itemR-last">
-	                <span id="userName">登录/注册</span>
+	                <a id="userName" class="quitSys" style="color:white;text-decoration: none;" href="${pageContext.request.contextPath}/reception/login.jsp">登录/注册</a>
 	            </div>
             </c:if>
             
@@ -71,6 +71,8 @@
 			$("#top-itemR-profile-drop").addClass("showUser");
 		});	
 	});
+
+
 </script>
 </body>
 </html>

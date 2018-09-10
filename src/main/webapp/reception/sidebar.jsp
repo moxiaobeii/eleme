@@ -49,26 +49,13 @@
                         <span>1号购物车</span>
                         <a href="javascript:clearAll()">[清空]</a>
                     </dt>
-                     <%--<dd class="shop-one-down">--%>
-                        <%--<ul>--%>
-                            <%--<li>--%>
-                                <%--<div class="cuisine-name">超值套餐3</div>--%>
-                                <%--<div class="cuisine-num">--%>
-                                    <%--<span class="sub" id="sub">-</span>--%>
-                                    <%--<input id="num" type="text" value="1">--%>
-                                    <%--<span class="add" id="add">+</span>--%>
-                                <%--</div>--%>
-                                <%--<div class="cuisine-price" id="price">12</div>--%>
-                            <%--</li>--%>
-                        <%--</ul>--%>
-                    <%--</dd>--%>
                 </dl>
             </div>
             <div class="content-down">
                 <p>
                     共<span id="allNum">0</span>份,合计<span id="allPrice">0</span>
                 </p>
-                <button class="btn">去结算</button>
+                <a class="btn" href="${pageContext.request.contextPath}/ordersServlet?method=queryConsignee">去结算</a>
             </div>
         </div>
     </div>

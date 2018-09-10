@@ -208,8 +208,8 @@ body{
     background: rgba(255,255,255,.1);
     border-radius: 0 0 5px 5px;
     color: #eee;
-    display: none;
     cursor: pointer;
+    display: none;
 }
 .header .favorite .icon,.header .favorite .icon{
     font-size: 18px;
@@ -217,9 +217,6 @@ body{
 .scope{
     display: block;
     font-weight: 400;
-}
-.favorite-active{
-    display: block;
 }
 
 .main{

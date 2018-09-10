@@ -149,10 +149,11 @@
     <!-- UI组件库 1.0 -->
     <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
     <script type="text/javascript">
-	   /* 点击查看全部商家则跳转到首页 */
-	   function btn(){
-	   	window.location.href='index.jsp';
-	   }
+        /* 点击查看全部商家则跳转到首页 */
+        function btn(){
+            window.location.href='http://luoshaocong.s1.natapp.cc/eleme/index.jsp';
+
+        }
         var map = new AMap.Map('container', {
             zoom: 10
         });
@@ -195,7 +196,7 @@
                 infoWindow.setPosition(poi.location);
 
                 infoWindow.setContent('<div style="padding: 5px 35px;width: 200px"><h3 style="font-size: 17px;text-align: center">' + info.地区
-                + '</h3><p style="text-align: center">附近有<span style="color: red">278</span>家外卖商家</p><buttion onclick="btn()" style="cursor: pointer;display:block;background-color: red;height: 30px;width: 80px;text-align: center;line-height: 30px;padding: 2px 8px;color: white;margin: 0 auto">查看商家</buttion></div>');
+                + '</h3><p style="text-align: center">附近有<span style="color: red">278</span>家外卖商家</p><a onclick="btn()" href="/reception/index.jsp" style="cursor: pointer;display:block;background-color: red;height: 30px;width: 80px;text-align: center;line-height: 30px;padding: 2px 8px;color: white;margin: 0 auto">查看商家</a></div>');
                 infoWindow.open(map, marker.getPosition());
 
                 //map.setCenter(marker.getPosition());

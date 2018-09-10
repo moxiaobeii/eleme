@@ -20,7 +20,7 @@
         <div class="nav">
             <ul>
                 <h3>
-                    <a href="index.html" class="icon-logo" >
+                    <a href="${pageContext.request.contextPath}/index.jsp" class="icon-logo" >
                         <i class="icon iconfont icon-changyonglogo40"></i>
                         <span>饿了么</span>
                     </a>
@@ -89,27 +89,14 @@
                     <em class="info">${business.distribution_time}分钟</em>
                 </span>
             </div>
-            <c:if test="${business.collection == 1}" >
-	            <a class="favorite favorite-active">
-	                <i class="icon iconfont icon-shoucang"></i>
-	                <span class="scope">收藏</span>
-	            </a>
-            </c:if>
-            <c:if test="${business.collection == 0}">
-
-            </c:if>
-              <a class="um-favorite">
-	              <i class="icon iconfont icon-collection"></i>
-	              <span class="scope" >取消收藏</span>
-          	   </a>
-            <!-- <a class="favorite favorite-active">
+            <a class="favorite f-1"  title="1" href="javascript:void(0)">
                 <i class="icon iconfont icon-shoucang"></i>
                 <span class="scope">收藏</span>
             </a>
-            <a class="um-favorite">
+            <a class="um-favorite f-1"  title="0" href="javascript:void(0)">
                 <i class="icon iconfont icon-collection"></i>
                 <span class="scope">取消收藏</span>
-            </a> -->
+            </a>
         </div>
     </div>
 </div>
@@ -151,12 +138,13 @@
         <!--导航栏-->
         <div class="shopmenu-nav" id="shopmenu-nav">
         	<c:forEach items="${goodsTypes}" var="goodsType">
-        		<a href="">${goodsType.gtname}</a>
+        		<a href="#${goodsType.gtname}" class="goodsType">${goodsType.gtname}</a>
         	</c:forEach>
         </div>
         <!--分类菜单-->
-        <div class="shopmenu-list clear" >
+        <div class="shopmenu-list clear">
             <c:forEach items="${businessDtos}" var="businessDto">
+                <a name="${businessDto.gtname}" class="goods_type"></a>
 	            <div class="shopmenu-main">
 	                <h3 class="shopmenu-title">${businessDto.gtname}
 		                <c:if test="${businessDto.explain != null}">
@@ -493,15 +481,12 @@
     });
 
     $(document).ready(function () {
-        //收藏
-        $(".favorite").click(function () {
-            $(this).hide();
-            $(".um-favorite").show();
-        });
-        $(".um-favorite").click(function () {
-            $(this).hide();
+
+        if (${isCollection == false}){
             $(".favorite").show();
-        });
+        }else {
+            $(".um-favorite").show();
+        }
 
         //切换所有商品和评价
         $(".main .nav_left .shopnav-tab").click(function () {
@@ -599,7 +584,7 @@
     }
     //显示查询结果
     function show(goods) {
-        if (goods != null){
+        if (goods != ""){
             var contents = "<div class=\"shopmenu\">\n" +
                 "        <div class=\"shopmenu-list\">\n" +
                 "            <div class=\"shopmenu-main\" >\n" +
@@ -638,8 +623,66 @@
                 "        <a class=\"report\" href=\"#\">举报商家</a>\n" +
                 "    </div>\n" +
                 "</div>");
+        }else{
+            //搜索结果为空
+            $(".container").html("<div class=\"shopmenu\">\n" +
+                "        <div class=\"shopmenu-list\">\n" +
+                "                <div class=\"shopmenu-main\" >\n" +
+                "                <div class=\"search\">\n" +
+                "                    <p class=\"search-result\">没有搜索结果，换个条件试试吧</p>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "    </div>");
+            $(".container").append("</div>\n" +
+                    "    <div class=\"shopmain-right\">\n" +
+                    "        <div class=\"notice\">商家公告</div>\n" +
+                    "        <div class=\"clear\"></div>\n" +
+                    "        <div class=\"distribution\">\n" +
+                    "            <ul>\n" +
+                    "                <h4>配费说明</h4>\n" +
+                    "                <p>配送费￥1</p>\n" +
+                    "            </ul>\n" +
+                    "        </div>\n" +
+                    "        <a class=\"report\" href=\"#\">举报商家</a>\n" +
+                    "    </div>\n" +
+                    "</div>");
         }
     }
+
+    //收藏
+    $(".um-favorite").click(function () {
+        var status = $(this).attr("title");
+        $.getJSON(
+            "${pageContext.request.contextPath}/business?method=collection",
+            {"status":status},
+            function (data) {
+                if (data==false){
+                    window.location.href="${pageContext.request.contextPath}/reception/login.jsp"
+                }else{
+                        $(".um-favorite").show();
+                        $(this).hide();
+                }
+            }
+        )
+    })
+    //取消收藏
+    $(".favorite").click(function () {
+        var status = $(this).attr("title");
+        $.getJSON(
+            "${pageContext.request.contextPath}/business?method=collection",
+            {"status":status},
+            function (data) {
+                if (data==false){
+                    window.location.href="${pageContext.request.contextPath}/reception/login.jsp"
+                }else{
+                    $(".um-favorite").show();
+                    $(".favorite").hide();
+                }
+            }
+        )
+    })
+
 </script>
 
 </body>

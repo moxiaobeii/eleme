@@ -5,7 +5,7 @@
 <html>
 <body>
 	<%
-		response.sendRedirect("indexServlet?method=index");
+		response.sendRedirect("./reception/map-all.jsp");
 	%>
 </body>
 </html>

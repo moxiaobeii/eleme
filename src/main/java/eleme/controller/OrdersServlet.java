@@ -1,5 +1,20 @@
 package eleme.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import eleme.entity.Cart;
+import eleme.entity.Consignee;
+import eleme.entity.User;
+import eleme.service.impl.OrderServiceImpl;
+import eleme.service.impl.PayServiceImpl;
+import eleme.utils.JedisPoolUtils;
+import redis.clients.jedis.Jedis;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -8,30 +23,12 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import eleme.entity.Cart;
-import eleme.entity.Consignee;
-import eleme.entity.User;
-import eleme.service.impl.OrderServiceImpl;
-import eleme.service.impl.PayServiceImpl;
-import eleme.utils.JedisPoolUtils;
-import net.sf.json.JSON;
-import redis.clients.jedis.Jedis;
-
 @WebServlet("/ordersServlet")
 public class OrdersServlet extends BaseServlet {
 
 	@SuppressWarnings("unused")
 	public void queryConsignee(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
-		
+
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("utf-8");
@@ -80,8 +77,13 @@ public class OrdersServlet extends BaseServlet {
 			}
 		}else {
 			try {
+				String uri = request.getRequestURI().substring(7);
+				String method= request.getQueryString();
+				String url = uri + "?" + method;
+				System.out.println(url);
 				//用户没有登录的情况下,跳转登录页面
 				response.sendRedirect(request.getContextPath()+"/reception/login.jsp");
+				session.setAttribute("url",url);
 				
 			} catch (IOException e) {
 				e.printStackTrace();

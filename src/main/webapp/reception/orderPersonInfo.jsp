@@ -82,6 +82,7 @@
             					<p>
 	                				<span class="myMessage-center-div-p-span">头像</span>
 	               					<img src="${pageContext.request.contextPath }/image/personal-info-headPhoto.png">
+	               					<img src="${pageContext.request.contextPath }/image/tanchuang.png" id="tanchuang">
            						</p>
 					            <span class="myMessage-center-div-span1">用户名：</span>
 					            <span class="myMessage-center-div-span2">${UserInfo.username }</span><br/>
@@ -110,7 +111,52 @@
 </body>
 <script>
 	
-		
+$(document).ready(function(){
+
+    $(".myMessage-center-div-span1").animate({
+        left:'420px',
+        opacity:'0.5',
+        height:'30px',
+        width:'80px',
+        color:"#E22018"
+    });
+
+    $(".myMessage-center-div-span2").animate({
+        left:'240px',
+        opacity:'0.5',
+//            height:'150px',
+//            width:'150px'
+        color:"#E22018"
+
+    });
+
+});
+$(document).ready(function(){
+
+$(".myMessage-center-div-span1").animate({
+    left:'270px',
+    opacity:'0.5',
+    height:'21px',
+    width:'60px',
+    color:"#E22018"
+
+});
+$(".myMessage-center-div-span2").animate({
+    left:'350px',
+    opacity:'0.5',
+    //                height:'150px',
+    //                width:'150px'
+    color:"#E22018"
+
+});
+});
+
+$(document).ready(function(){
+	$("#tanchuang").animate({	
+	    height:'100px',
+	    width:'100px'		
+	});
+});
 		
 		
 		
